@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Time Tracker Jira",
+  "version": "1.0",
+
+  "icons": {
+    "128": "favicon.ico"
+  },
+  "content_scripts": [
+    {
+      "matches": [ "*://*/*" ],
+      "js": [ "allPage.js" ]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "unlimitedStorage"
+  ],
+
+  "browser_action": {
+    "default_title": "LostTime",
+    "default_icon": "favicon.ico",
+    "default_popup": "popup.html"
+  }
+
+}

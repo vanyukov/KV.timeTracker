@@ -1,0 +1,9 @@
+.timer{
+    margin-left: 2px;
+}
+
+.timer_hours,
+.timer_minutes,
+.timer_seconds{
+    padding-left: 4px;
+}
