@@ -12,4 +12,4 @@ ReactDom.render(<Provider stores={stores}>
     <App/>
 </Provider>, document.querySelector('#app'));
 
-stores.api.sql.openDB();
+stores.sqlStore.open();

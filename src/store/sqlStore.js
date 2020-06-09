@@ -1,16 +1,17 @@
 import {observable, computed, action} from 'mobx';
-import StoreClass from "./StoreClass";
 import * as sql from '~/api/sql'
 
-export default class ComplexStore extends StoreClass{
+class sqlStore {
+    @observable db;
 
-    constructor(rootStore){
-        super(rootStore);
+    constructor(){
         this.db = null;
     }
 
     @action open=()=>{
-        this.bd = sql.openDB();
+        this.db = sql.openDB();
+        sql.createTables(this.db);
     }
 }
 
+export default new sqlStore();
