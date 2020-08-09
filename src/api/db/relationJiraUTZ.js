@@ -1,5 +1,4 @@
 const relationJiraUTZ = {
-    id: 'unique',
     jira: '',
     utz: '',
 }

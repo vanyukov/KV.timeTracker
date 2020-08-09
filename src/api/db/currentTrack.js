@@ -1,5 +1,4 @@
 const currentTrack = {
-    id: 'unique',
     active: '',
     startTime: '',
     elapsedTime: '',

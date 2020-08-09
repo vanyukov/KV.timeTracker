@@ -1,5 +1,4 @@
 const comments = {
-    id: 'unique',
     text: '',
     idUTZ: '',
 }

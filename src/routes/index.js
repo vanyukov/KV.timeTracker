@@ -1,15 +1,20 @@
-import Home from '~/containers/Home';
+import Day from '~/containers/Day';
 
 let routes = [
     {
         name: 'home',
         url: '/',
-        component: Home,
+        component: Day,
         exact: true
     },
     {
+        name: 'day',
+        url: '/:year/:month/:day',
+        component: Day,
+    },
+    {
         url: '**',
-        component: Home
+        component: Day
     }
 ];
 

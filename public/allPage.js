@@ -1,1 +1,1 @@
-console.log('allPage.js')
+// console.log('allPage.js')

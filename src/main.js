@@ -12,4 +12,8 @@ ReactDom.render(<Provider stores={stores}>
     <App/>
 </Provider>, document.querySelector('#app'));
 
-stores.sqlStore.open();
+stores.dbStore.open()
+    .then(()=> {
+        stores.dbStore.loadCurrentTrack();
+        stores.dbStore.loadTracks();
+    });

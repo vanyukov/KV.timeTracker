@@ -1,29 +1,34 @@
 {
   "manifest_version": 2,
+
   "name": "Time Tracker Jira",
+  "description": "Time Tracker интегрированный с Jira",
   "version": "1.0",
 
-  "icons": {
-    "128": "favicon.ico"
+  "background": {
+    "scripts": ["background.js"]
   },
+  "externally_connectable": {
+    "matches": [
+      "*://localhost/*"
+    ]
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "unlimitedStorage",
+    "unlimited_storage"
+  ],
   "content_scripts": [
     {
       "matches": [ "*://*/*" ],
       "js": [ "allPage.js" ]
     }
   ],
-  "background": {
-    "scripts": ["background.js"]
-  },
-  "permissions": [
-    "activeTab",
-    "storage",
-    "unlimitedStorage"
-  ],
 
   "browser_action": {
     "default_title": "LostTime",
-    "default_icon": "favicon.ico",
+    "default_icon": "logo_57x57.png",
     "default_popup": "popup.html"
   }
 

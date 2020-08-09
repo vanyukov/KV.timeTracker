@@ -5,62 +5,29 @@ import ElapsedTime from "~/components/ ElapsedTime";
 
 function Header(props) {
 
-    let btnAction = null;
-    if (props.stores.currentTrack.active){
-        btnAction =
-            <Button
-                className="mr-2"
-                onClick ={props.stores.currentTrack.stop}
-            >
-                stop
-            </Button>;
-    } else {
-        btnAction =
-            <Button
-                className="mr-2"
-                onClick ={props.stores.currentTrack.start}
-            >
-                start
-            </Button>;
-    }
 
-    const [timeStart, setTimeStart] = useState(null);
-    const [timeDelay, setTimeDelay] = useState(null);
-    const [timeIdInterval, setIdInterval] = useState(0);
-    useEffect(()=>{
-        if (props.stores.currentTrack.active){
-            setTimeStart(new Date(new Date - props.stores.currentTrack.elapsedTime));
-            setTimeDelay(new Date);
-            setIdInterval(
-                setInterval(()=>{
-                    setTimeDelay(new Date);
-                }, 200)
-            );
-        } else {
-            clearInterval(timeIdInterval);
-        };
-
-        return () => {
-            clearInterval(timeIdInterval);
-        };
-
-    },[props.stores.currentTrack.active]);
-
+    let today = new Date;
+    const weekDays = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
+    const month = ['января', 'февраля', 'марта', 'апреля','мая', 'июня', 'июля', 'августа','сентября', 'октября', 'ноября', 'декабря'];
+    today = `${today.getDate()} ${month[today.getMonth()]} ${today.getFullYear()}, ${weekDays[today.getDay()]}`
 
     return(
         <Container>
             <Row>
                 <header>
-                    {btnAction}
-                    {(props.stores.currentTrack.active
-                    || props.stores.currentTrack.elapsedTime > 0)
-                        &&
-                        <ElapsedTime
-                            startTime={timeStart}
-                            endTime={timeDelay}
-                            elapsedTime = {0}
-                        />
-                    }
+                    <Button
+                        variant="success"
+                        className="mr-2"
+                        onClick ={props.stores.currentTrack.start}
+                    >
+                        New +
+                    </Button>
+                    {today}
+                    <Button
+                        className="ml-2"
+                    >
+                        Settings
+                    </Button>
                 </header>
             </Row>
         </Container>

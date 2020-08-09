@@ -1,5 +1,4 @@
 const tracks = {
-    id: 'unique',
     elapsedTime: '',
     date: '',
     ticket: '',
