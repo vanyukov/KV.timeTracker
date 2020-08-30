@@ -39,7 +39,7 @@ function DayItem(props) {
 
             {!props.track.active &&
             <Button
-                onClick ={props.track.start}
+                onClick ={props.start}
                 className="ml-2"
             >
                 Start

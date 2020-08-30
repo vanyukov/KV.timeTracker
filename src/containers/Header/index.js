@@ -10,7 +10,7 @@ function Header(props) {
                     <Button
                         variant="success"
                         className="mr-2"
-                        onClick ={props.stores.TracksStore.start}
+                        onClick ={()=>props.stores.TracksStore.start()}
                     >
                         New +
                     </Button>

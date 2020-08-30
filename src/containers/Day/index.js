@@ -17,6 +17,7 @@ function Day(props) {
                     key={track.date}
                     track={track}
                     stop={()=>props.stores.TracksStore.stop(track.date)}
+                    start={()=>props.stores.TracksStore.start(track)}
                     delete={()=>props.stores.TracksStore.delete(track.date)}
                 />
             })}

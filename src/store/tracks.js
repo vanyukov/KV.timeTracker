@@ -11,9 +11,12 @@ export default class TracksStore extends StoreClass{
         this.items = [];
     }
 
-    @action start=()=>{
-        const track = tracks.getNew();
-        this.items.push(track);
+    @action start=(track = tracks.getNew())=>{
+        if (track){
+            track.active = true;
+        } else {
+            this.items.push(track);
+        }
         this.rootStore.dbStore.saveTrack(track);
     }
 
