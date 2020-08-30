@@ -10,7 +10,7 @@ function DayItem(props) {
     const [timeIdInterval, setIdInterval] = useState(0);
     useEffect(()=>{
         if (props.track.active){
-            setTimeStart(new Date( props.track.startTime - props.track.elapsedTime));
+            setTimeStart(new Date( props.track.startTime));
             setTimeDelay(new Date);
             setIdInterval(
                 setInterval(()=>{
@@ -32,7 +32,7 @@ function DayItem(props) {
             <ElapsedTime
                 startTime={timeStart}
                 endTime={timeDelay}
-                elapsedTime = {0}
+                elapsedTime = {props.track.elapsedTime}
             />
 
             {props.track.ticket}
