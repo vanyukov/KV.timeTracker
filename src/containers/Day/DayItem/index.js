@@ -47,7 +47,7 @@ function DayItem(props) {
 
             {props.track.active &&
             <Button
-                onClick ={props.track.stop}
+                onClick ={props.stop}
                 className="ml-2"
             >
                 Stop
@@ -58,6 +58,14 @@ function DayItem(props) {
                 className="ml-2"
             >
                 Edit
+            </Button>
+
+            <Button
+                variant="secondary"
+                className="ml-2"
+                onClick ={props.delete}
+            >
+                Delete
             </Button>
         </Row>
     )

@@ -1,6 +1,14 @@
 const settings = {
-    name: '',
-    value: '',
+    getNew(){
+        return {
+            name: '',
+            value: '',
+        }
+    },
+
+    keys: {autoIncrement: true },
+
+    index: [],
 }
 
 export default settings;

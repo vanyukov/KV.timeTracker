@@ -12,12 +12,12 @@ function Day(props) {
 
     return(
         <Container>
-            <DayItem
-                track={props.stores.currentTrack}
-            />
             {props.stores.TracksStore.items.map(track=>{
                 return <DayItem
+                    key={track.date}
                     track={track}
+                    stop={()=>props.stores.TracksStore.stop(track.date)}
+                    delete={()=>props.stores.TracksStore.delete(track.date)}
                 />
             })}
         </Container>

@@ -1,16 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Button, Container, Row} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
-import ElapsedTime from "~/components/ ElapsedTime";
-
+import {getDatePresentation} from '~/api/helpers/dateTime';
 function Header(props) {
-
-
-    let today = new Date;
-    const weekDays = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
-    const month = ['января', 'февраля', 'марта', 'апреля','мая', 'июня', 'июля', 'августа','сентября', 'октября', 'ноября', 'декабря'];
-    today = `${today.getDate()} ${month[today.getMonth()]} ${today.getFullYear()}, ${weekDays[today.getDay()]}`
-
     return(
         <Container>
             <Row>
@@ -18,11 +10,13 @@ function Header(props) {
                     <Button
                         variant="success"
                         className="mr-2"
-                        onClick ={props.stores.currentTrack.start}
+                        onClick ={props.stores.TracksStore.start}
                     >
                         New +
                     </Button>
-                    {today}
+
+                    { getDatePresentation() }
+
                     <Button
                         className="ml-2"
                     >

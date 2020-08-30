@@ -20,27 +20,9 @@ class dbStore extends StoreClass{
         })
     }
 
-    @action setCurrentTrack=(data)=>{
-        indexedDB.add(this.db, 'currentTrack', data)
-    }
+    @action saveTrack=(value, key)=>indexedDB.add(this.db, 'tracks', value, key)
 
-    @action loadCurrentTrack=()=>{
-        const rootStore = this.rootStore;
-        indexedDB.getAll(this.db, 'currentTrack')
-            .then( result=> {
-                if (result.length){
-                    rootStore.currentTrack.load(result[result.length - 1])
-                }
-            } );
-    }
-
-    @action cleanCurrentTrack=()=>{
-        indexedDB.clean(this.db, 'currentTrack')
-    }
-
-    @action saveTrack=(data)=>{
-        indexedDB.add(this.db, 'tracks', data)
-    }
+    @action deleteTrack=(key)=>indexedDB.del(this.db, 'tracks', key)
 
     @action loadTracks=()=>{
         const rootStore = this.rootStore;

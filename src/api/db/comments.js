@@ -1,6 +1,14 @@
 const comments = {
-    text: '',
-    idUTZ: '',
+    getNew(){
+        return {
+            text: '',
+            idUTZ: '',
+        }
+    },
+
+    keys: {autoIncrement: true },
+
+    index: [],
 }
 
 export default comments;

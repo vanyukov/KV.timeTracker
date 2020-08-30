@@ -1,13 +1,27 @@
 const tracks = {
-    elapsedTime: '',
-    date: '',
-    ticket: '',
-    ticketTitle: '',
-    epic: '',
-    comment: '',
-    typeUTZ: '',
-    savedJira: '',
-    savedUTZ: '',
+    getNew() {
+        return {
+            active: true,
+            startTime: new Date,
+            elapsedTime: 0,
+            date: new Date,
+            ticket: 'ticket',
+            epic: 'epic',
+            comment: 'comment',
+            typeUTZ: 'typeUTZ',
+            savedJira: false,
+            savedUTZ: false,
+        }
+    },
+
+    keys: { keyPath: "date" },
+
+    index: [
+        {
+            name: 'active',
+            options: { unique:false }
+        }
+    ]
 }
 
 export default tracks;

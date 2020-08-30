@@ -14,6 +14,5 @@ ReactDom.render(<Provider stores={stores}>
 
 stores.dbStore.open()
     .then(()=> {
-        stores.dbStore.loadCurrentTrack();
         stores.dbStore.loadTracks();
     });

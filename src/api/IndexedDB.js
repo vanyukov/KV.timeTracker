@@ -1,5 +1,4 @@
 import tracks from "./db/tracks";
-import currentTrack from "./db/currentTrack";
 import settings from "./db/settings";
 import comments from "./db/comments";
 import relationJiraUTZ from "./db/relationJiraUTZ";
@@ -10,7 +9,6 @@ const dbInfo = {
 };
 const stores = {
     tracks,
-    currentTrack,
     settings,
     comments,
     relationJiraUTZ,
@@ -22,7 +20,10 @@ export function openDB() {
         dbReq.onupgradeneeded = (event) => {
             const db = event.target.result;
             for (let store in stores){
-                db.createObjectStore(store, {autoIncrement: true});
+                const objectStore = db.createObjectStore(store, stores[store].keys);
+                stores[store].index.forEach(item=>{
+                    objectStore.createIndex(item.name,item.name, item.options);
+                });
             }
             resolve(db);
         }
@@ -33,12 +34,31 @@ export function openDB() {
     })
 }
 
-export function add(db, store, data) {
+export function add(db, store, value, key) {
     return new Promise((resolve, reject)=>{
 
         const transaction = db.transaction(store, "readwrite");
         const dbStore = transaction.objectStore(store);
-        const request = dbStore.add(data);
+        let request = dbStore.add({...value});
+
+        request.onsuccess = function() {
+            console.log(store + ' add ', request.result);
+            resolve(request.result);
+        };
+
+        request.onerror = function() {
+            console.log("Ошибка", request.error);
+            reject(request.error);
+        };
+    })
+}
+
+export function del(db, store, key) {
+    return new Promise((resolve, reject)=>{
+
+        const transaction = db.transaction([store], "readwrite");
+        const dbStore = transaction.objectStore(store);
+        const request = dbStore.delete(key);
 
         request.onsuccess = function() {
             console.log(store + ' add ', request.result);
