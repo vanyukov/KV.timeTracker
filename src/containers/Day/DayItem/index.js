@@ -28,7 +28,7 @@ function DayItem(props) {
     },[props.track.active]);
 
     return(
-        <Row>
+        <Row className="mt-2">
             <ElapsedTime
                 startTime={timeStart}
                 endTime={timeDelay}
