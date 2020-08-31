@@ -57,6 +57,7 @@ function DayItem(props) {
             <Button
                 variant="secondary"
                 className="ml-2"
+                onClick ={props.edit}
             >
                 Edit
             </Button>
