@@ -44,7 +44,10 @@ function ItemLine(props) {
                 {props.track.ticket}
             </span>
 
-            <a href={jiraUrl+"/" + props.track.ticket} className={Style.jira_link}>
+            <a href={jiraUrl+"/" + props.track.ticket}
+               className={Style.jira_link}
+               target={'_blank'}
+            >
                 <img className={Style.jira_img} src="/public/img/jira-logo.png" />
             </a>
 
