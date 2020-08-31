@@ -9,6 +9,9 @@ function ItemLine(props) {
     const [timeStart, setTimeStart] = useState(null);
     const [timeDelay, setTimeDelay] = useState(null);
     const [timeIdInterval, setIdInterval] = useState(0);
+
+    const jiraUrl = props.stores.Settings.getSetting('jiraUrl');
+
     useEffect(()=>{
         if (props.track.active){
             setTimeStart(new Date( props.track.startTime));
@@ -41,7 +44,7 @@ function ItemLine(props) {
                 {props.track.ticket}
             </span>
 
-            <a href={"#"} className={Style.jira_link}>
+            <a href={jiraUrl+"/" + props.track.ticket} className={Style.jira_link}>
                 <img className={Style.jira_img} src="/public/img/jira-logo.png" />
             </a>
 
