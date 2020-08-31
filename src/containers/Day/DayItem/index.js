@@ -18,6 +18,7 @@ function DayItem(props) {
                 }, 200)
             );
         } else {
+            setTimeDelay(null);
             clearInterval(timeIdInterval);
         };
 

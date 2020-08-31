@@ -12,8 +12,15 @@ export default class TracksStore extends StoreClass{
     }
 
     @action start=(track = tracks.getNew())=>{
-        if (track){
+        this.items
+            .filter(item=>item.active)
+            .forEach(track=>{
+                this.stop(track.date)
+            })
+        if(!track.active){
+            track = this.items.find(item=>item.date == track.date);
             track.active = true;
+            track.startTime = new Date;
         } else {
             this.items.push(track);
         }
