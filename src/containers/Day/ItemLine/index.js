@@ -41,6 +41,10 @@ function ItemLine(props) {
                 {props.track.ticket}
             </span>
 
+            <a href={"#"} className={Style.jira_link}>
+                <img className={Style.jira_img} src="/public/img/jira-logo.png" />
+            </a>
+
             {!props.track.active &&
             <Button
                 onClick ={props.start}

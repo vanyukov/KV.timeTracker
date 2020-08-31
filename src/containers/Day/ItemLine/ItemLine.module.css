@@ -4,3 +4,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.jira_link{
+
+}
+
+.jira_img{
+    height: 30px;
+}
