@@ -4,7 +4,7 @@ import style from './ElapsedTime.module.css'
 export default function ElapsedTime(props) {
     const elapsedTime = timeDiffSplited(props.startTime, props.endTime, props.elapsedTime);
 
-    return(<span className={style.timer}>
+    return(<span className={style.timer + ' mr-2'}>
          <span className={style.timer_hours}>
              {elapsedTime.hours} ч.
          </span>
@@ -18,15 +18,16 @@ export default function ElapsedTime(props) {
 }
 
 function timeDiffSplited(timeStart, timeEnd = 0, elapsedTime = 0) {
-    const hourDiff = (timeEnd > timeStart ? timeEnd - timeStart : 0) + elapsedTime; //in ms
-    const hDiff = hourDiff / 3600 / 1000;
-    const minDiff = hourDiff/ 60 / 1000;
-    const secDiff = hourDiff / 1000;
-    const humanReadable = {};
+    const secondsDiff =  Math.floor((
+        (timeEnd > timeStart ? timeEnd - timeStart : 0) + elapsedTime
+        ) / 1000);
+    const timeSplit = {};
+    timeSplit.hours = Math.floor(secondsDiff / 3600 );
+    timeSplit.minutes = Math.floor((secondsDiff - timeSplit.hours * 3600 ) / 60 );
+    timeSplit.seconds = Math.floor(secondsDiff - timeSplit.hours * 3600 - timeSplit.minutes * 60 );
 
-    humanReadable.hours = Math.floor(hDiff);
-    humanReadable.minutes = Math.floor(minDiff - 60 * humanReadable.hours );
-    humanReadable.seconds = Math.floor(secDiff - 60 * humanReadable.hours  - 60 * humanReadable.minutes );
+    timeSplit.minutes = ('' + timeSplit.minutes).padStart(2, "0")
+    timeSplit.seconds = ('' + timeSplit.seconds).padStart(2, "0")
 
-    return humanReadable;
+    return timeSplit;
 }

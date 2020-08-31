@@ -20,7 +20,7 @@ class dbStore extends StoreClass{
         })
     }
 
-    @action saveTrack=(value, key)=>indexedDB.add(this.db, 'tracks', value, key)
+    @action saveTrack=(value, key)=>indexedDB.put(this.db, 'tracks', value, key)
 
     @action deleteTrack=(key)=>indexedDB.del(this.db, 'tracks', key)
 

@@ -34,20 +34,19 @@ export function openDB() {
     })
 }
 
-export function add(db, store, value, key) {
+export function put(db, store, value, key) {
     return new Promise((resolve, reject)=>{
 
         const transaction = db.transaction(store, "readwrite");
         const dbStore = transaction.objectStore(store);
-        let request = dbStore.add({...value});
+        let request = dbStore.put({...value});
 
         request.onsuccess = function() {
-            console.log(store + ' add ', request.result);
             resolve(request.result);
         };
 
         request.onerror = function() {
-            console.log("Ошибка", request.error);
+            console.error("Ошибка", request.error);
             reject(request.error);
         };
     })
@@ -61,12 +60,11 @@ export function del(db, store, key) {
         const request = dbStore.delete(key);
 
         request.onsuccess = function() {
-            console.log(store + ' add ', request.result);
             resolve(request.result);
         };
 
         request.onerror = function() {
-            console.log("Ошибка", request.error);
+            console.error("Ошибка", request.error);
             reject(request.error);
         };
     })
@@ -80,16 +78,11 @@ export function get(db, store, key) {
         const request = dbStore.get(key);
 
         request.onsuccess = function() {
-            if (request.result !== undefined) {
-                console.log(store, request.result);
-            } else {
-                console.log(store + ' - empty');
-            }
             resolve(request.result);
         };
 
         request.onerror = function() {
-            console.log("Ошибка", request.error);
+            console.error("Ошибка", request.error);
             reject(request.error);
         };
     })
@@ -103,16 +96,11 @@ export function getAll(db, store) {
         const request = dbStore.getAll();
 
         request.onsuccess = function() {
-            if (request.result !== undefined) {
-                console.log(store, request.result);
-            } else {
-                console.log(store + ' - empty');
-            }
             resolve(request.result);
         };
 
         request.onerror = function() {
-            console.log("Ошибка", request.error);
+            console.error("Ошибка", request.error);
             reject(request.error);
         };
     })
@@ -130,7 +118,7 @@ export function clean(db, store) {
         };
 
         request.onerror = function() {
-            console.log("Ошибка", request.error);
+            console.error("Ошибка", request.error);
             reject(request.error);
         };
     })

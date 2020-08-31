@@ -56,4 +56,15 @@ export default class TracksStore extends StoreClass{
             this.items.push( newLine )
         })
     }
+
+    @action update=(track)=>{
+        const itemStore = this.items.find(item=>item.date == track.date);
+        for ( let key in track){
+            itemStore[key] = track[key];
+        }
+        this.rootStore.dbStore.deleteTrack(itemStore.date);
+        this.rootStore.dbStore.saveTrack(track);
+    }
+
+
 }

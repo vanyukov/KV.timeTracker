@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import {Button, Container, Row} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import ElapsedTime from "~/components/ ElapsedTime";
+import Style from "./ItemLine.module.css"
 
-function DayItem(props) {
+function ItemLine(props) {
 
     const [timeStart, setTimeStart] = useState(null);
     const [timeDelay, setTimeDelay] = useState(null);
@@ -36,7 +37,9 @@ function DayItem(props) {
                 elapsedTime = {props.track.elapsedTime}
             />
 
-            {props.track.ticket}
+            <span className={Style.ticket} >
+                {props.track.ticket}
+            </span>
 
             {!props.track.active &&
             <Button
@@ -73,4 +76,4 @@ function DayItem(props) {
     )
 }
 
-export default withStore(DayItem);
+export default withStore(ItemLine);
