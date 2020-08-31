@@ -24,7 +24,7 @@ export default class TracksStore extends StoreClass{
         } else {
             this.items.push(track);
         }
-        this.rootStore.dbStore.saveTrack(track);
+        return this.rootStore.dbStore.saveTrack(track);
     }
 
     @action stop=(date)=>{

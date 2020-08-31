@@ -1,16 +1,31 @@
 import React from "react";
 import {Button, Form, Modal, Row, Col} from "react-bootstrap";
 import {getDatePresentation} from "~/api/helpers/dateTime";
+import withStore from "~/hocs/withStore";
+import tracks from "~/api/db/tracks";
 
-export default function ItemEditModal(props){
-    const editTicket = (event)=>props.changeTrackEdit('ticket', event.target.value)
-    const editEpic = (event)=>props.changeTrackEdit('epic', event.target.value)
-    const editComment = (event)=>props.changeTrackEdit('comment', event.target.value)
-    const editSavedJira = (event)=>props.changeTrackEdit('savedJira', event.target.checked)
-    const editSavedUTZ = (event)=>props.changeTrackEdit('savedUTZ', event.target.checked)
+function ItemEditModal(props){
+    const saveTrackEdit = () => {
+        closePopup();
+        props.stores.TracksStore.update(props.trackEdit);
+        setTrackEdit(tracks.getNew());
+    }
+    const changeTrackEdit = (field, value) =>{
+        props.setTrackEdit({
+            ...props.trackEdit,
+            [field]: value
+        })
+    }
+
+    const editTicket = (event)=>changeTrackEdit('ticket', event.target.value)
+    const editEpic = (event)=>changeTrackEdit('epic', event.target.value)
+    const editComment = (event)=>changeTrackEdit('comment', event.target.value)
+    const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
+    const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
+    const closePopup = ()=>props.setShowPopup(false)
 
     return (
-        <Modal show={props.showPopup} onHide={props.closePopup}>
+        <Modal show={props.showPopup} onHide={closePopup}>
             <Modal.Header closeButton>
                 <Modal.Title>
                     { getDatePresentation(props.trackEdit.date) }
@@ -77,13 +92,14 @@ export default function ItemEditModal(props){
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={props.saveTrackEdit}>
+                <Button variant="primary" onClick={saveTrackEdit}>
                     Save
                 </Button>
-                <Button variant="secondary" onClick={props.closePopup}>
+                <Button variant="secondary" onClick={closePopup}>
                     Close
                 </Button>
             </Modal.Footer>
         </Modal>
     )
 }
+export default withStore(ItemEditModal);

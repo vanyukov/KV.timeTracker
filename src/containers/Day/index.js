@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ItemLine from "~/containers/Day/ItemLine";
 import withStore from "~/hocs/withStore";
 import {Container} from "react-bootstrap";
-import ItemEditModal from "~/containers/Day/ItemEditModal";
+import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
 
 function Day(props) {
@@ -12,19 +12,6 @@ function Day(props) {
         setTrackEdit(track);
         setShowPopup(true);
     }
-    const closePopup = () => setShowPopup(false);
-    const saveTrackEdit = () => {
-        closePopup();
-        props.stores.TracksStore.update(trackEdit);
-        setTrackEdit(tracks.getNew());
-    }
-    const changeTrackEdit = (field, value) =>{
-        setTrackEdit({
-            ...trackEdit,
-            [field]: value
-        })
-    }
-
     return(
         <Container>
             {props.stores.TracksStore.items.map(track=>{
@@ -40,10 +27,9 @@ function Day(props) {
 
             <ItemEditModal
                 showPopup={showPopup}
-                closePopup={closePopup}
+                setShowPopup={setShowPopup}
                 trackEdit={trackEdit}
-                saveTrackEdit={saveTrackEdit}
-                changeTrackEdit={changeTrackEdit}
+                setTrackEdit={setTrackEdit}
             />
         </Container>
     )
