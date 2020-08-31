@@ -6,7 +6,7 @@ const settings = {
         }
     },
 
-    keys: {autoIncrement: true },
+    keys: {keyPath: "name"},
 
     index: [],
 }

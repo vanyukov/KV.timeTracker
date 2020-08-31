@@ -26,8 +26,8 @@ class App extends React.Component{
 
         return (
             <>
-                <Header />
                 <Router>
+                    <Header />
                     <Switch>
                         {routesComponents}
                     </Switch>

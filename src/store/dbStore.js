@@ -34,6 +34,11 @@ class dbStore extends StoreClass{
             } );
     }
 
+    @action loadSettings=()=>indexedDB.getAll(this.db, 'settings')
+
+    @action saveSetting=(value, key)=>indexedDB.put(this.db, 'settings', value, key)
+
+
 }
 
 export default dbStore;

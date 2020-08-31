@@ -4,6 +4,9 @@ import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
+import {Link} from "react-router-dom";
+import Style from "./Header.module.css"
+
 function Header(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
     const [showPopup, setShowPopup] = useState(false);
@@ -18,6 +21,9 @@ function Header(props) {
         <Container>
             <Row>
                 <header>
+                    <Link to="/" className={"mr-2"}>
+                        <img src="/public/img/logo.png" className={Style.logo_img }/>
+                    </Link>
                     <Button
                         variant="success"
                         className="mr-2"
@@ -28,11 +34,7 @@ function Header(props) {
 
                     { getDatePresentation() }
 
-                    <Button
-                        className="ml-2"
-                    >
-                        Settings
-                    </Button>
+                    <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
                 </header>
             </Row>
             <ItemEditModal

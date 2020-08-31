@@ -1,10 +1,17 @@
 import Day from '~/containers/Day';
+import Settings from '~/containers/Settings';
 
 let routes = [
     {
         name: 'home',
         url: '/',
         component: Day,
+        exact: true
+    },
+    {
+        name: 'settings',
+        url: '/settings',
+        component: Settings,
         exact: true
     },
     {

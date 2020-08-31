@@ -15,4 +15,5 @@ ReactDom.render(<Provider stores={stores}>
 stores.dbStore.open()
     .then(()=> {
         stores.dbStore.loadTracks();
+        stores.Settings.loadSettings();;
     });
