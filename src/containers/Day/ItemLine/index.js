@@ -19,7 +19,7 @@ function ItemLine(props) {
             setIdInterval(
                 setInterval(()=>{
                     setTimeDelay(new Date);
-                }, 200)
+                }, 1000)
             );
         } else {
             setTimeDelay(null);

@@ -26,7 +26,6 @@ export default class Settings extends StoreClass {
                 return new Promise((resolve, reject)=>{
                     if(result && result.value) {
                         resolve(result.value)
-                        console.log(name,result.value)
                     } else {
                         const defaultSetting = this.defaultSettings.find(item=>item.name==name);
                         if(defaultSetting){
