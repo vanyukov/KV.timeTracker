@@ -24,15 +24,7 @@ class dbStore extends StoreClass{
 
     @action deleteTrack=(key)=>indexedDB.del(this.db, 'tracks', key)
 
-    @action loadTracks=()=>{
-        const rootStore = this.rootStore;
-        indexedDB.getAll(this.db, 'tracks')
-            .then( result=> {
-                if (result.length){
-                    rootStore.TracksStore.loadTracks(result)
-                }
-            } );
-    }
+    @action loadTracks=()=>indexedDB.getAll(this.db, 'tracks')
 
     @action loadSettings=()=>indexedDB.getAll(this.db, 'settings')
 

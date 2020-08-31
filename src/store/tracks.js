@@ -43,18 +43,21 @@ export default class TracksStore extends StoreClass{
         this.rootStore.dbStore.deleteTrack(date);
     }
 
-    @action loadTracks(data){
-        if (!Array.isArray(data)){
-            return null;
-        }
-        data.forEach(item=>{
-            const newLine = {}
-            const track = tracks.getNew();
-            for (let field in track){
-                newLine[field] = item[field];
-            }
-            this.items.push( newLine )
-        })
+    @action loadTracks=(data)=>{
+        this.rootStore.dbStore.loadTracks()
+            .then( data=> {
+                if (!Array.isArray(data)){
+                    return null;
+                }
+                data.forEach(item=>{
+                    const newLine = {}
+                    const track = tracks.getNew();
+                    for (let field in track){
+                        newLine[field] = item[field];
+                    }
+                    this.items.push( newLine )
+                })
+            });
     }
 
     @action update=(track)=>{
