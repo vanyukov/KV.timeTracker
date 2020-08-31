@@ -30,6 +30,8 @@ class dbStore extends StoreClass{
 
     @action saveSetting=(value, key)=>indexedDB.put(this.db, 'settings', value, key)
 
+    @action getSetting=(key)=>indexedDB.get(this.db, 'settings', key)
+
 
 }
 

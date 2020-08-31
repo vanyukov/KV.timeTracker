@@ -13,6 +13,8 @@ function Settings(props) {
         props.stores.Settings.changeSetting(name, value)
     }
 
+    const loadDefault = ()=>props.stores.Settings.loadDefault()
+
     useEffect(() => {
         return () => {
             props.stores.Settings.loadSettings();
@@ -40,10 +42,18 @@ function Settings(props) {
                             <Form.Control
                                 value={item.value}
                                 onChange={(event)=>{changeSetting(item.name,  event.target.value)}}
-                                type="text"  />
+                                type="text"
+                            />
                         </Col>
                     </Form.Group>
                 })}
+                <Button
+                    variant="outline-secondary"
+                    size="sm"
+                    onClick={loadDefault}
+                >
+                    load default
+                </Button>
             </Form>
 
 

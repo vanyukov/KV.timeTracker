@@ -8,7 +8,7 @@ function ItemEditModal(props){
     const saveTrackEdit = () => {
         closePopup();
         props.stores.TracksStore.update(props.trackEdit);
-        setTrackEdit(tracks.getNew());
+        props.setTrackEdit(tracks.getNew());
     }
     const changeTrackEdit = (field, value) =>{
         props.setTrackEdit({

@@ -8,13 +8,44 @@ export default class Settings extends StoreClass {
     constructor(rootStore) {
         super(rootStore);
         this.items = [];
+        this.defaultSettings = [
+            {
+                name: 'jiraUrl',
+                value: 'http://jira.mts.quantumart.ru'
+            },
+            {
+                name: 'utzUrl',
+                value: 'http://timesheet.services.lenvendo.ru/report/my/list'
+            },
+        ]
     }
 
-    @action initSettings(){
-        const setting = settings.getNew();
-        setting.name = 'jiraUrl';
-        setting.value = 'http://jira.mts.quantumart.ru';
-        this.rootStore.dbStore.saveSetting(setting);
+    @action getSetting(name){
+        this.rootStore.dbStore.get(name)
+            .then((result)=>{
+                if(!result){
+                    const defaultSetting = this.defaultSettings.find(item=>item.name==name);
+                    if(defaultSetting){
+                        this.rootStore.dbStore.saveSetting(defaultSetting);
+                        this.items.push(defaultSetting);
+                    }
+                }
+            })
+    }
+
+    @action initSetting(name){
+        this.defaultSettings.find(item=> {
+            this.rootStore.dbStore.saveSetting(item);
+            this.items.push(item);
+        });
+    }
+
+    @action loadDefault(){
+        this.items.length = 0;
+        this.defaultSettings.forEach(item=> {
+            this.rootStore.dbStore.saveSetting(item);
+            this.items.push(item);
+        });
     }
 
     @action loadSettings() {
@@ -24,17 +55,7 @@ export default class Settings extends StoreClass {
                 if (!Array.isArray(data)) {
                     return null;
                 }
-                if (!data.length){
-                    this.initSettings();
-                }
-                data.forEach(item => {
-                    const newLine = {}
-                    const track = settings.getNew();
-                    for (let field in track) {
-                        newLine[field] = item[field];
-                    }
-                    this.items.push(newLine)
-                })
+                data.forEach(item=>this.items.push(item));
             })
     }
 

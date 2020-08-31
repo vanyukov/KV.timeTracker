@@ -39,7 +39,7 @@ export function put(db, store, value, key) {
 
         const transaction = db.transaction(store, "readwrite");
         const dbStore = transaction.objectStore(store);
-        let request = dbStore.put(value, key);
+        let request = dbStore.put({...value}, key);
 
         request.onsuccess = function() {
             resolve(request.result);
