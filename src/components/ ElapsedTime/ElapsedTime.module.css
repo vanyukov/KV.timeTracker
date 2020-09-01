@@ -1,12 +1,15 @@
 .timer{
-    margin-left: 2px;
 }
 
 .timer_hours,
 .timer_minutes,
 .timer_seconds{
     display: inline-block;
+    text-align: right;
+}
+
+.timer_minutes,
+.timer_seconds {
     min-width: 40px;
     padding-left: 4px;
-    text-align: right;
 }

@@ -36,15 +36,17 @@ function ItemLine(props) {
 
     return(
         <Row className="mt-2">
-            <ElapsedTime
-                startTime={timeStart}
-                endTime={timeDelay}
-                elapsedTime = {props.track.elapsedTime}
-            />
-
-            <span className={Style.ticket} >
-                {props.track.ticket}
-            </span>
+            <Form.Group className={"ml-1"}>
+                <ElapsedTime
+                    startTime={timeStart}
+                    endTime={timeDelay}
+                    elapsedTime = {props.track.elapsedTime}
+                />
+                <br/>
+                <span className={Style.ticket} >
+                    {props.track.ticket}
+                </span>
+            </Form.Group>
 
             <a href={jiraUrl+"/browse/" + props.track.ticket}
                className={Style.jira_link + " text-center"}
@@ -73,20 +75,18 @@ function ItemLine(props) {
                 Branch
             </a>
 
-            <Form>
-                <Form.Group className={"ml-1"}>
-                    <Form.Check
-                        type="checkbox"
-                        label="saved Jira"
-                        checked={props.track.savedJira}
-                        disabled />
-                    <Form.Check
-                        type="checkbox"
-                        label="saved UTZ"
-                        checked={props.track.savedUTZ}
-                        disabled />
-                </Form.Group>
-            </Form>
+            <Form.Group className={"ml-1"}>
+                <Form.Check
+                    type="checkbox"
+                    label="saved Jira"
+                    checked={props.track.savedJira}
+                    disabled />
+                <Form.Check
+                    type="checkbox"
+                    label="saved UTZ"
+                    checked={props.track.savedUTZ}
+                    disabled />
+            </Form.Group>
 
             {!props.track.active &&
             <Button

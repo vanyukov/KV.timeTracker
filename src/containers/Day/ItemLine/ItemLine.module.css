@@ -1,5 +1,6 @@
 .ticket{
     width: 70px;
+    font-weight: bold;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
