@@ -2,15 +2,27 @@ import moment from 'moment';
 moment.locale('ru');
 
 export function getDatePresentation(date=new Date) {
-    const weekDays = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"]
-    const month = ['января', 'февраля', 'марта', 'апреля','мая', 'июня', 'июля', 'августа','сентября', 'октября', 'ноября', 'декабря'];
-    return `${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}, ${weekDays[date.getDay()]}`
+    return  moment(date).format("LL") + ', ' + moment(date).format('dddd')
 }
 
-export function formatWeekDay(dayNumber){
-    return moment().day(dayNumber).format('dd')
+export function getClosestWeekDay(dayNumber){
+    return moment().day(dayNumber)
 }
 
 export function getCurrentWeekDay(date = new Date){
     return moment(date).day()
+}
+
+export function parseDate(date = new Date){
+    return {
+        millisecond: moment(date).millisecond(),
+        second: moment(date).second(),
+        minute: moment(date).minute(),
+        hour: moment(date).hour(),
+        date: moment(date).date(),
+        dayOfYear: moment(date).dayOfYear(),
+        weekday: moment(date).weekday(),
+        month: moment(date).month(),
+        year: moment(date).year(),
+    }
 }
