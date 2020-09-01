@@ -6,6 +6,7 @@ import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
 import {Link} from "react-router-dom";
 import Style from "./Header.module.css"
+import WeekNav from "~/containers/Header/WeekNav";
 
 function Header(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
@@ -37,6 +38,9 @@ function Header(props) {
                     <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
                 </header>
             </Row>
+
+            <WeekNav/>
+
             <ItemEditModal
                 showPopup={showPopup}
                 setShowPopup={setShowPopup}

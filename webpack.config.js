@@ -1,5 +1,6 @@
 let path = require('path');
 let MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 let conf = {
     entry: './src/main.js',
@@ -11,6 +12,9 @@ let conf = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'css/styles.css'
+        }),
+        new MomentLocalesPlugin({
+            localesToKeep: ['ru'],
         }),
     ],
     module: {
