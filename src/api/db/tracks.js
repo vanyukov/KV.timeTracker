@@ -6,6 +6,7 @@ const tracks = {
             elapsedTime: 0,
             date: new Date,
             ticket: 'ticket',
+            ticketTitle: 'ticketTitle',
             epic: 'epic',
             comment: 'comment',
             typeUTZ: 'typeUTZ',

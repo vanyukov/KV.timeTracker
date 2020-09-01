@@ -18,6 +18,7 @@ function ItemEditModal(props){
     }
 
     const editTicket = (event)=>changeTrackEdit('ticket', event.target.value)
+    const editTicketTitle = (event)=>changeTrackEdit('ticketTitle', event.target.value)
     const editEpic = (event)=>changeTrackEdit('epic', event.target.value)
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
@@ -34,10 +35,10 @@ function ItemEditModal(props){
             <Modal.Body>
                 <Form>
                     <Form.Group controlId="formTicket"  as={Row} >
-                        <Form.Label column sm="2">
+                        <Form.Label column sm="3">
                             Ticket
                         </Form.Label>
-                        <Col sm="10">
+                        <Col sm="9">
                             <Form.Control
                                 type="text"
                                 value={props.trackEdit.ticket}
@@ -45,11 +46,23 @@ function ItemEditModal(props){
                             />
                         </Col>
                     </Form.Group>
+                    <Form.Group controlId="formTicketTitle"  as={Row} >
+                        <Form.Label column sm="3">
+                            Ticket Title
+                        </Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                type="text"
+                                value={props.trackEdit.ticketTitle}
+                                onChange={editTicketTitle}
+                            />
+                        </Col>
+                    </Form.Group>
                     <Form.Group controlId="formEpic"  as={Row} >
-                        <Form.Label column sm="2">
+                        <Form.Label column sm="3">
                             Epic
                         </Form.Label>
-                        <Col sm="10">
+                        <Col sm="9">
                             <Form.Control
                                 type="text"
                                 value={props.trackEdit.epic}
@@ -58,10 +71,10 @@ function ItemEditModal(props){
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="formComment"  as={Row} >
-                        <Form.Label column sm="2">
+                        <Form.Label column sm="3">
                             Epic
                         </Form.Label>
-                        <Col sm="10">
+                        <Col sm="9">
                             <Form.Control
                                 as="textarea" rows="3"
                                 value={props.trackEdit.comment}
@@ -69,8 +82,9 @@ function ItemEditModal(props){
                             />
                         </Col>
                     </Form.Group>
-                    <Form.Group controlId="formSavedJira" >
+                    <Form.Group controlId="formCheckbox" >
                         <Form.Check
+                            sm="3"
                             inline
                             label="Сохранено в Jira"
                             type="checkbox"
@@ -78,9 +92,8 @@ function ItemEditModal(props){
                             checked={props.trackEdit.savedJira}
                             onChange={editSavedJira}
                         />
-                    </Form.Group>
-                    <Form.Group controlId="formSavedUTZ" >
                         <Form.Check
+                            sm="3"
                             inline
                             label="Сохранено в УТЗ"
                             type="checkbox"
