@@ -21,28 +21,17 @@ export default class Settings extends StoreClass {
     }
 
     @action getSetting(name){
-        this.rootStore.dbStore.getSetting(name)
-            .then((result)=>{
-                return new Promise((resolve, reject)=>{
-                    if(result && result.value) {
-                        resolve(result.value)
-                    } else {
-                        const defaultSetting = this.defaultSettings.find(item=>item.name==name);
-                        if(defaultSetting){
-                            this.rootStore.dbStore.saveSetting(defaultSetting);
-                            this.items.push(defaultSetting);
-                        };
-                        resolve(defaultSetting)
-                    }
-                })
-            })
-    }
 
-    @action initSetting(name){
-        this.defaultSettings.find(item=> {
-            this.rootStore.dbStore.saveSetting(item);
-            this.items.push(item);
-        });
+        const setting = this.items.find(item=>item.name==name);
+        if (setting){
+            return setting.value;
+        }
+
+        const defaultSetting = this.defaultSettings.find(item=>item.name==name);
+        if(defaultSetting){
+            this.rootStore.dbStore.saveSetting(defaultSetting);
+            return defaultSetting.value;
+        }
     }
 
     @action loadDefault(){
