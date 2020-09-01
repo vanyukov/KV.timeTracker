@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Container, Row} from "react-bootstrap";
+import {Button, Container, Form, Row} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import ElapsedTime from "~/components/ ElapsedTime";
 import Style from "./ItemLine.module.css"
@@ -72,6 +72,21 @@ function ItemLine(props) {
                 <br/>
                 Branch
             </a>
+
+            <Form>
+                <Form.Group className={"ml-1"}>
+                    <Form.Check
+                        type="checkbox"
+                        label="saved Jira"
+                        checked={props.track.savedJira}
+                        disabled />
+                    <Form.Check
+                        type="checkbox"
+                        label="saved UTZ"
+                        checked={props.track.savedUTZ}
+                        disabled />
+                </Form.Group>
+            </Form>
 
             {!props.track.active &&
             <Button

@@ -2,6 +2,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 #app {
-    width: 600px;
+    width: 700px;
+    min-height: 200px;
     padding: 10px;
 }
