@@ -35,8 +35,8 @@ function ItemLine(props) {
     },[props.track.active]);
 
     return(
-        <Row className="mt-2">
-            <Form.Group className={"ml-1"}>
+        <Row className={Style.row + " mt-2 mb-2"}>
+            <Form.Group className={"ml-1 mb-0"}>
                 <ElapsedTime
                     startTime={timeStart}
                     endTime={timeDelay}
@@ -75,7 +75,7 @@ function ItemLine(props) {
                 Branch
             </a>
 
-            <Form.Group className={"ml-1"}>
+            <Form.Group className={"ml-1 mb-0"}>
                 <Form.Check
                     type="checkbox"
                     label="saved Jira"
