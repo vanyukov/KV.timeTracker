@@ -6,9 +6,12 @@
 }
 
 .jira_link{
-
 }
 
-.jira_img{
+.jira_img,
+.git_img{
     height: 30px;
+}
+
+.git_link{
 }
