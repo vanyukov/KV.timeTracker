@@ -100,6 +100,7 @@ function ItemLine(props) {
             <Button
                 onClick ={props.stop}
                 className="ml-2"
+                variant="danger"
             >
                 Stop
             </Button>}
