@@ -1,6 +1,7 @@
 import {observable, computed, action} from 'mobx';
 import StoreClass from "./StoreClass";
 import tracks from "~/api/db/tracks";
+import * as dateTime from "~/api/helpers/dateTime";
 
 export default class TracksStore extends StoreClass{
     @observable items;
@@ -69,5 +70,15 @@ export default class TracksStore extends StoreClass{
         this.rootStore.dbStore.saveTrack(track);
     }
 
-
+    tracksOfDay=(params)=>{
+        let filterDate ='';
+        if (params.day){
+            const month = String(params.month).padStart(2,'0');
+            const day = String(params.day).padStart(2,'0');
+            filterDate = `${params.year}-${month}-${day}`;
+        } else {
+            filterDate = dateTime.getDayStart().format("YYYY-MM-DD")
+        }
+        return this.items.filter( item=>( dateTime.getDayStart(item.date).format("YYYY-MM-DD") == filterDate ) )
+    }
 }

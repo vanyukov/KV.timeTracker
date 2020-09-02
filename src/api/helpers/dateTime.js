@@ -13,6 +13,10 @@ export function getCurrentWeekDay(date = new Date){
     return moment(date).day()
 }
 
+export function getDayStart(date = new Date){
+    return moment(date).hour(0);
+}
+
 export function parseDate(date = new Date){
     return {
         millisecond: moment(date).millisecond(),

@@ -10,13 +10,15 @@ const currentWeekDay = dateTime.getCurrentWeekDay()
 function WeekNav(props){
 
     return(
-        <Nav defaultActiveKey="/home" as="ul">
+        <Nav variant="pills" as="ul" className={"mt-2 mb-1"} defaultActiveKey="/">
             {[1, 2, 3, 4, 5, 6, 7].map(dayNumber=>{
                 const date = dateTime.getClosestWeekDay(dayNumber)
                 const parseDate = dateTime.parseDate(date)
                 return (
                 <Nav.Item as="li" key={dayNumber}>
-                    <Link to={"/" + parseDate.year + "/" + parseDate.month + "/" + parseDate.date  } className={Style.nav_link + " nav-link " + (currentWeekDay==dayNumber ? " disabled " : '')} >
+                    <Link to={"/" + parseDate.year + "/" + (parseDate.month + 1) + "/" + parseDate.date  }
+                          className={Style.nav_link + " nav-link " + (currentWeekDay==dayNumber ? " active " : '')}
+                    >
                         {date.format('dd')}
                     </Link>
                 </Nav.Item>

@@ -14,7 +14,7 @@ function Day(props) {
     }
     return(
         <Container>
-            {props.stores.TracksStore.items
+            {props.stores.TracksStore.tracksOfDay(props.match.params)
                 .sort((a, b)=>b.date - a.date)
                 .map(track=>{
                 return <ItemLine
