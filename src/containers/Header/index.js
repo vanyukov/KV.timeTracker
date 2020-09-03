@@ -23,7 +23,7 @@ function Header(props) {
             <Row>
                 <header>
                     <Link to="/" className={"mr-2"}>
-                        <img src="/public/img/logo.png" className={Style.logo_img }/>
+                        <img src="/img/logo.png" className={Style.logo_img }/>
                     </Link>
                     <Button
                         variant="success"

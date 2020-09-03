@@ -51,7 +51,7 @@ function ItemLine(props) {
                className={Style.jira_link + " text-center"}
                target={'_blank'}
             >
-                <img className={Style.jira_img} src="/public/img/jira-logo.png" />
+                <img className={Style.jira_img} src="/img/jira-logo.png" />
                 <br/>
                 Jira
             </a>
