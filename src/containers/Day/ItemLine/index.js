@@ -36,13 +36,12 @@ function ItemLine(props) {
 
     return(
         <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
-            <Form.Group className={"ml-1 mb-0"}>
+            <Form.Group className={"ml-1 mb-0 d-flex flex-column"}>
                 <ElapsedTime
                     startTime={timeStart}
                     endTime={timeDelay}
                     elapsedTime = {props.track.elapsedTime}
                 />
-                <br/>
                 <span className={Style.ticket} >
                     {props.track.ticket}
                 </span>
