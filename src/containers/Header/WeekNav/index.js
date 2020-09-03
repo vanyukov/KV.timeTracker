@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import withStore from "~/hocs/withStore";
 import {Nav} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Style from "~/containers/Header/WeekNav/WeekNav.module.css";
 import * as dateTime from "~/api/helpers/dateTime";
 
@@ -14,10 +14,12 @@ function WeekNav(props){
             {[1, 2, 3, 4, 5, 6, 7].map(dayNumber=>{
                 const date = dateTime.getClosestWeekDay(dayNumber)
                 const parseDate = dateTime.parseDate(date)
+                const linkDay = `/${parseDate.year}/${parseDate.month + 1}/${parseDate.date}`
+                const isActiveDate = props.location.pathname == linkDay
                 return (
                 <Nav.Item as="li" key={dayNumber}>
-                    <Link to={"/" + parseDate.year + "/" + (parseDate.month + 1) + "/" + parseDate.date  }
-                          className={Style.nav_link + " nav-link " + (currentWeekDay==dayNumber ? " active " : '')}
+                    <Link to={ linkDay }
+                          className={Style.nav_link + " nav-link " + (currentWeekDay==dayNumber ? Style.nav_link_today : '') + (isActiveDate ? ' disabled ' : '')}
                     >
                         {date.format('dd')}
                     </Link>
@@ -29,4 +31,4 @@ function WeekNav(props){
 
 }
 
-export default withStore(WeekNav);
+export default withRouter(withStore(WeekNav));
