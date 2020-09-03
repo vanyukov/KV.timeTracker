@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import ItemLine from "~/containers/Day/ItemLine";
 import withStore from "~/hocs/withStore";
-import {Container} from "react-bootstrap";
+import {Container, Form} from "react-bootstrap";
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
+import ElapsedTime from "~/components/ ElapsedTime";
 
 function Day(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
@@ -26,6 +27,23 @@ function Day(props) {
                     delete={()=>props.stores.TracksStore.delete(track.date)}
                 />
             })}
+
+            <div className="d-flex justify-content-start">
+                <span className={"mr-1"}>Итого: </span>
+                <ElapsedTime
+                    startTime={0}
+                    endTime={0}
+                    elapsedTime = {props.stores.TracksStore
+                        .tracksOfDay(props.match.params)
+                        .reduce(
+                                ((sum, track)=>sum+=(track.elapsedTime +
+                                    (track.active ? (new Date - track.startTime) : 0)
+                                )), 0
+                            )
+                        }
+                />
+
+            </div>
 
             <ItemEditModal
                 showPopup={showPopup}
