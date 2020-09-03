@@ -35,7 +35,7 @@ function ItemLine(props) {
     },[props.track.active]);
 
     return(
-        <Row className={Style.row + " mt-2 mb-2"}>
+        <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
             <Form.Group className={"ml-1 mb-0"}>
                 <ElapsedTime
                     startTime={timeStart}

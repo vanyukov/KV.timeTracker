@@ -1,7 +1,13 @@
 .row{
+    padding-top: 2px;
     padding-bottom: 2px;
     margin-bottom: 2px;
     border-bottom: 1px solid #80808021;
+    border-radius: 4px;
+}
+
+.row_active{
+    background-color: #28a74524;
 }
 
 .ticket{
