@@ -36,6 +36,18 @@ function ItemEditModal(props){
                 <Form>
                     <Form.Group controlId="formTicket"  as={Row} >
                         <Form.Label column sm="3">
+                            Time
+                        </Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                type="text"
+                                value={props.trackEdit.elapsedTime}
+                                placeholder="0:00:00"
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="formTicket"  as={Row} >
+                        <Form.Label column sm="3">
                             Ticket
                         </Form.Label>
                         <Col sm="9">
