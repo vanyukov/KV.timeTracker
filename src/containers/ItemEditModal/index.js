@@ -42,6 +42,7 @@ function ItemEditModal(props){
                             <Form.Control
                                 type="text"
                                 value={props.trackEdit.ticket}
+                                placeholder="Ticket"
                                 onChange={editTicket}
                             />
                         </Col>
@@ -54,6 +55,7 @@ function ItemEditModal(props){
                             <Form.Control
                                 type="text"
                                 value={props.trackEdit.ticketTitle}
+                                placeholder="Ticket Title"
                                 onChange={editTicketTitle}
                             />
                         </Col>
@@ -66,18 +68,20 @@ function ItemEditModal(props){
                             <Form.Control
                                 type="text"
                                 value={props.trackEdit.epic}
+                                placeholder="Epic"
                                 onChange={editEpic}
                             />
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="formComment"  as={Row} >
                         <Form.Label column sm="3">
-                            Epic
+                            Comment
                         </Form.Label>
                         <Col sm="9">
                             <Form.Control
                                 as="textarea" rows="3"
                                 value={props.trackEdit.comment}
+                                placeholder="Comment"
                                 onChange={editComment}
                             />
                         </Col>
