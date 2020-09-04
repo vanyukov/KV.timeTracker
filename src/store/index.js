@@ -3,6 +3,7 @@ import deviceStore from './device';
 import TracksStore from "~/store/tracks";
 import Settings from "~/store/settings";
 import dbStore from "~/store/dbStore"
+import chromeStore from "~/store/chromeStore"
 import * as IndexedDB from '~/api/IndexedDB'
 
 
@@ -13,6 +14,7 @@ class RootStore{
         };
 
         this.dbStore = new dbStore(this);
+        this.chromeStore = new chromeStore(this);
         this.TracksStore = new TracksStore(this);
         this.Settings = new Settings(this);
         this.device     = new deviceStore(this);

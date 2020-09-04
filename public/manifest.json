@@ -15,6 +15,7 @@
   },
   "permissions": [
     "activeTab",
+    "tabs",
     "storage",
     "unlimitedStorage",
     "unlimited_storage"

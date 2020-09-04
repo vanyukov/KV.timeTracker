@@ -25,6 +25,9 @@ export default class TracksStore extends StoreClass{
         } else {
             this.items.push(track);
         }
+        if (!track.ticket){
+            this.getJiraTicket(track);
+        }
         return this.rootStore.dbStore.saveTrack(track);
     }
 
@@ -68,6 +71,10 @@ export default class TracksStore extends StoreClass{
         }
         this.rootStore.dbStore.deleteTrack(itemStore.date);
         this.rootStore.dbStore.saveTrack(track);
+    }
+
+    @action getJiraTicket=(track)=>{
+
     }
 
     tracksOfDay=(params)=>{
