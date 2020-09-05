@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Form, Modal, Row, Col} from "react-bootstrap";
 import {getDatePresentation} from "~/api/helpers/dateTime";
 import withStore from "~/hocs/withStore";
@@ -24,10 +24,38 @@ function ItemEditModal(props){
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
-    const closePopup = (event)=>props.setShowPopup(false);
+    const closePopup = ()=>props.setShowPopup(false);
+    const editStartTime = (startTime)=> changeTrackEdit('startTime', startTime)
+    const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
 
-    const elapsedTime = dateTime.timeDiffSplitted(props.trackEdit.startTime, new Date, props.trackEdit.elapsedTime);
-    const elapsedTimeFormat = elapsedTime.hours + ':' + elapsedTime.minutes;
+    const getElapsedTimeFormat = ()=>{
+        const elapsedTime = dateTime.timeDiffSplitted(props.trackEdit.startTime, (props.trackEdit.active ? new Date : 0), props.trackEdit.elapsedTime)
+        return elapsedTime.hours + ':' + elapsedTime.minutes
+    }
+
+    const [elapsedTimeFormat, setElapsedTimeFormat] = useState(getElapsedTimeFormat());
+
+    useEffect(()=>{
+        setElapsedTimeFormat(getElapsedTimeFormat())
+    }, [props.trackEdit.startTime, props.showPopup])
+
+    const changeElapsedTimeFormat = (e)=>{
+        const newVal = e.target.value.match(/\d{0,2}:[0-5]{0,1}\d{0,1}/)
+        if(!newVal){
+            return null
+        }
+        setElapsedTimeFormat(newVal)
+    }
+
+    const onBlurElapsedTimeFormat = (e)=>{
+        const time = e.target.value.split(':')
+        const elapsedTime = (+time[0] * 60 + (+time[1])) * 60 * 1000
+        if (props.trackEdit.active){
+            editStartTime(new Date(Date.now() - elapsedTime))
+        } else {
+            editElapsedTime(elapsedTime)
+        }
+    }
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
@@ -38,7 +66,7 @@ function ItemEditModal(props){
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="formTicket"  as={Row} >
+                    <Form.Group controlId="formTime"  as={Row} >
                         <Form.Label column sm="3">
                             Time
                         </Form.Label>
@@ -46,8 +74,9 @@ function ItemEditModal(props){
                             <Form.Control
                                 type="text"
                                 value={elapsedTimeFormat}
-                                onChange={(e)=>console.log(e.target.value)}
-                                placeholder="0:00:00"
+                                onChange={changeElapsedTimeFormat}
+                                onBlur={onBlurElapsedTimeFormat}
+                                placeholder="0:00"
                             />
                         </Col>
                     </Form.Group>

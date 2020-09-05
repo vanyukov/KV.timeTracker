@@ -32,7 +32,7 @@ function ItemLine(props) {
             clearInterval(timeIdInterval);
         };
 
-    },[props.track.active]);
+    },[props.track.active, props.track.startTime, props.track.elapsedTime]);
 
     return(
         <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
