@@ -1,7 +1,7 @@
 import React from "react";
 import withStore from "~/hocs/withStore";
 import {Nav} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Style from "~/containers/Header/WeekNav/WeekNav.module.css";
 import * as dateTime from "~/api/helpers/dateTime";
 import * as navigation from "~/api/helpers/navigation"
@@ -37,4 +37,4 @@ function WeekNav(props){
 
 }
 
-export default withStore(WeekNav);
+export default withRouter(withStore(WeekNav));
