@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import withStore from "~/hocs/withStore";
 import {Nav} from "react-bootstrap";
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Style from "~/containers/Header/WeekNav/WeekNav.module.css";
 import * as dateTime from "~/api/helpers/dateTime";
+import * as navigation from "~/api/helpers/navigation"
 
 const currentWeekDay = dateTime.getCurrentWeekDay()
 
 function WeekNav(props){
 
-    const pathname = props.location.pathname != '/' ? props.location.pathname : dateTime.getFormat('/yyyy/M/D')
+    const pathname = navigation.isYearInUrl() ? window.location.pathname : dateTime.getFormat('/yyyy/M/D')
 
     return(
         <Nav variant="pills" as="ul" className={"mt-2 mb-1"} defaultActiveKey="/">
@@ -36,4 +37,4 @@ function WeekNav(props){
 
 }
 
-export default withRouter(withStore(WeekNav));
+export default withStore(WeekNav);

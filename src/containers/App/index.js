@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, NavLink} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import withStore from '~/hocs/withStore';
 import routes, { routesMap } from '~/routes';
@@ -26,12 +26,12 @@ class App extends React.Component{
 
         return (
             <>
-                <Router>
+                <BrowserRouter>
                     <Header />
                     <Switch>
                         {routesComponents}
                     </Switch>
-                </Router>
+                </BrowserRouter>
             </>
 
         )

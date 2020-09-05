@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Button, Container, Row} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Style from "./Header.module.css"
 import WeekNav from "~/containers/Header/WeekNav";
+import * as navigation from "~/api/helpers/navigation"
 
 function Header(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
@@ -33,7 +34,7 @@ function Header(props) {
                         New +
                     </Button>
 
-                    { getDatePresentation(props.location.pathname != '/' ? props.location.pathname : undefined) }
+                    { getDatePresentation(navigation.isYearInUrl() ? window.location.pathname : undefined) }
 
                     <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
                 </header>
@@ -51,4 +52,4 @@ function Header(props) {
     )
 }
 
-export default withRouter(withStore(Header));
+export default withStore(Header);
