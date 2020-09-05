@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Time Tracker Jira",
+  "name": "LV Time Tracker",
   "description": "Time Tracker интегрированный с Jira",
   "version": "1.0",
 
