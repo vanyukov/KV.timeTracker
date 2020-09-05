@@ -84,8 +84,8 @@ export default class TracksStore extends StoreClass{
             const day = String(params.day).padStart(2,'0');
             filterDate = `${params.year}-${month}-${day}`;
         } else {
-            filterDate = dateTime.getDayStart().format("YYYY-MM-DD")
+            filterDate = dateTime.getFormat("YYYY-MM-DD")
         }
-        return this.items.filter( item=>( dateTime.getDayStart(item.date).format("YYYY-MM-DD") == filterDate ) )
+        return this.items.filter( item=>( dateTime.getFormat("YYYY-MM-DD", item.date) == filterDate ) )
     }
 }

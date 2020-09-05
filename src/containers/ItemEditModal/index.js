@@ -3,6 +3,7 @@ import {Button, Form, Modal, Row, Col} from "react-bootstrap";
 import {getDatePresentation} from "~/api/helpers/dateTime";
 import withStore from "~/hocs/withStore";
 import tracks from "~/api/db/tracks";
+import * as dateTime from "~/api/helpers/dateTime";
 
 function ItemEditModal(props){
     const saveTrackEdit = () => {
@@ -23,7 +24,10 @@ function ItemEditModal(props){
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
-    const closePopup = ()=>props.setShowPopup(false)
+    const closePopup = (event)=>props.setShowPopup(false);
+
+    const elapsedTime = dateTime.timeDiffSplitted(props.trackEdit.startTime, new Date, props.trackEdit.elapsedTime);
+    const elapsedTimeFormat = elapsedTime.hours + ':' + elapsedTime.minutes;
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
@@ -41,7 +45,8 @@ function ItemEditModal(props){
                         <Col sm="9">
                             <Form.Control
                                 type="text"
-                                value={props.trackEdit.elapsedTime}
+                                value={elapsedTimeFormat}
+                                onChange={(e)=>console.log(e.target.value)}
                                 placeholder="0:00:00"
                             />
                         </Col>

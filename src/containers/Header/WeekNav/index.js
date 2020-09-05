@@ -9,7 +9,7 @@ const currentWeekDay = dateTime.getCurrentWeekDay()
 
 function WeekNav(props){
 
-    const pathname = props.location.pathname != '/' ? props.location.pathname : dateTime.getDayStart().format('/yyyy/M/D')
+    const pathname = props.location.pathname != '/' ? props.location.pathname : dateTime.getFormat('/yyyy/M/D')
 
     return(
         <Nav variant="pills" as="ul" className={"mt-2 mb-1"} defaultActiveKey="/">
@@ -26,7 +26,7 @@ function WeekNav(props){
                           + (currentWeekDay==dayNumber ? Style.nav_link_today : '')
                           + (isActiveDate ? ' disabled ' : '')}
                     >
-                        {date.format('dd')}
+                        {dateTime.getFormat('dd', date)}
                     </Link>
                 </Nav.Item>
                 )
