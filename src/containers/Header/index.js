@@ -4,7 +4,7 @@ import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Style from "./Header.module.css"
 import WeekNav from "~/containers/Header/WeekNav";
 
@@ -33,7 +33,7 @@ function Header(props) {
                         New +
                     </Button>
 
-                    { getDatePresentation() }
+                    { getDatePresentation(props.location.pathname != '/' ? props.location.pathname : undefined) }
 
                     <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
                 </header>
@@ -51,4 +51,4 @@ function Header(props) {
     )
 }
 
-export default withStore(Header);
+export default withRouter(withStore(Header));
