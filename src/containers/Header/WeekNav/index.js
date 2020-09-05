@@ -9,17 +9,22 @@ const currentWeekDay = dateTime.getCurrentWeekDay()
 
 function WeekNav(props){
 
+    const pathname = props.location.pathname != '/' ? props.location.pathname : dateTime.getDayStart().format('/yyyy/M/D')
+
     return(
         <Nav variant="pills" as="ul" className={"mt-2 mb-1"} defaultActiveKey="/">
             {[1, 2, 3, 4, 5, 6, 7].map(dayNumber=>{
                 const date = dateTime.getClosestWeekDay(dayNumber)
                 const parseDate = dateTime.parseDate(date)
                 const linkDay = `/${parseDate.year}/${parseDate.month + 1}/${parseDate.date}`
-                const isActiveDate = props.location.pathname == linkDay
+                const isActiveDate = pathname == linkDay
                 return (
                 <Nav.Item as="li" key={dayNumber}>
                     <Link to={ linkDay }
-                          className={Style.nav_link + " nav-link " + (currentWeekDay==dayNumber ? Style.nav_link_today : '') + (isActiveDate ? ' disabled ' : '')}
+                          className={Style.nav_link
+                          + " nav-link "
+                          + (currentWeekDay==dayNumber ? Style.nav_link_today : '')
+                          + (isActiveDate ? ' disabled ' : '')}
                     >
                         {date.format('dd')}
                     </Link>
