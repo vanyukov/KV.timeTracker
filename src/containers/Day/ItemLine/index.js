@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Container, Form, Row} from "react-bootstrap";
+import {Button, OverlayTrigger, Form, Row, Tooltip} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import ElapsedTime from "~/components/ ElapsedTime";
 import Style from "./ItemLine.module.css"
@@ -35,91 +35,100 @@ function ItemLine(props) {
     },[props.track.active, props.track.startTime, props.track.elapsedTime]);
 
     return(
-        <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
-            <Form.Group className={"ml-1 mb-0 d-flex flex-column"}>
-                <ElapsedTime
-                    startTime={timeStart}
-                    endTime={timeDelay}
-                    elapsedTime = {props.track.elapsedTime}
-                />
-                <span className={Style.ticket} >
+        <OverlayTrigger placement='bottom' overlay={
+            <Tooltip
+                id={"tooltip-" + props.track.ticket}
+                className={props.track.ticketTitle ? "" : " d-none "}
+            >
+                {props.track.ticketTitle}
+            </Tooltip>
+        }>
+            <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
+                <Form.Group className={"ml-1 mb-0 d-flex flex-column"}>
+                    <ElapsedTime
+                        startTime={timeStart}
+                        endTime={timeDelay}
+                        elapsedTime = {props.track.elapsedTime}
+                    />
+                    <span className={Style.ticket} >
                     {props.track.ticket}
                 </span>
-            </Form.Group>
+                </Form.Group>
 
-            <a href={jiraUrl+"/browse/" + props.track.ticket}
-               className={Style.jira_link + " text-center"}
-               target={'_blank'}
-            >
-                <img className={Style.jira_img} src="/img/jira-logo.png" />
-                <br/>
-                Jira
-            </a>
+                <a href={jiraUrl+"/browse/" + props.track.ticket}
+                   className={Style.jira_link + " text-center"}
+                   target={'_blank'}
+                >
+                    <img className={Style.jira_img} src="/img/jira-logo.png" />
+                    <br/>
+                    Jira
+                </a>
 
-            <a href={gitRepositoryUrl+"/commits/" + props.track.ticket}
-               className={Style.git_link + " text-center ml-1"}
-               target={'_blank'}
-            >
-                {gitLabLogo()}
-                <br/>
-                Commits
-            </a>
+                <a href={gitRepositoryUrl+"/commits/" + props.track.ticket}
+                   className={Style.git_link + " text-center ml-1"}
+                   target={'_blank'}
+                >
+                    {gitLabLogo()}
+                    <br/>
+                    Commits
+                </a>
 
-            <a href={gitRepositoryUrl+"/-/tree/" + props.track.ticket}
-               className={Style.git_link + " text-center ml-1"}
-               target={'_blank'}
-            >
-                {gitLabLogo()}
-                <br/>
-                Branch
-            </a>
+                <a href={gitRepositoryUrl+"/-/tree/" + props.track.ticket}
+                   className={Style.git_link + " text-center ml-1"}
+                   target={'_blank'}
+                >
+                    {gitLabLogo()}
+                    <br/>
+                    Branch
+                </a>
 
-            <Form.Group className={"ml-1 mb-0"}>
-                <Form.Check
-                    type="checkbox"
-                    label="saved Jira"
-                    checked={props.track.savedJira}
-                    disabled />
-                <Form.Check
-                    type="checkbox"
-                    label="saved UTZ"
-                    checked={props.track.savedUTZ}
-                    disabled />
-            </Form.Group>
+                <Form.Group className={"ml-1 mb-0"}>
+                    <Form.Check
+                        type="checkbox"
+                        label="saved Jira"
+                        checked={props.track.savedJira}
+                        disabled />
+                    <Form.Check
+                        type="checkbox"
+                        label="saved UTZ"
+                        checked={props.track.savedUTZ}
+                        disabled />
+                </Form.Group>
 
-            {!props.track.active &&
-            <Button
-                onClick ={props.start}
-                className="ml-2"
-            >
-                Start
-            </Button>}
+                {!props.track.active &&
+                <Button
+                    onClick ={props.start}
+                    className="ml-2"
+                >
+                    Start
+                </Button>}
 
-            {props.track.active &&
-            <Button
-                onClick ={props.stop}
-                className="ml-2"
-                variant="danger"
-            >
-                Stop
-            </Button>}
+                {props.track.active &&
+                <Button
+                    onClick ={props.stop}
+                    className="ml-2"
+                    variant="danger"
+                >
+                    Stop
+                </Button>}
 
-            <Button
-                variant="secondary"
-                className="ml-2"
-                onClick ={props.edit}
-            >
-                Edit
-            </Button>
+                <Button
+                    variant="secondary"
+                    className="ml-2"
+                    onClick ={props.edit}
+                >
+                    Edit
+                </Button>
 
-            <Button
-                variant="secondary"
-                className="ml-2"
-                onClick ={props.delete}
-            >
-                Delete
-            </Button>
-        </Row>
+                <Button
+                    variant="secondary"
+                    className="ml-2"
+                    onClick ={props.delete}
+                >
+                    Delete
+                </Button>
+            </Row>
+        </OverlayTrigger>
     )
 }
 
