@@ -29,7 +29,10 @@ function ItemEditModal(props){
     const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
 
     const getElapsedTimeFormat = ()=>{
-        const elapsedTime = dateTime.timeDiffSplitted(props.trackEdit.startTime, (props.trackEdit.active ? new Date : 0), props.trackEdit.elapsedTime)
+        const elapsedTime = dateTime.timeDiffSplitted(
+            props.trackEdit.startTime,
+            (props.trackEdit.active ? new Date : 0), props.trackEdit.elapsedTime
+        )
         return elapsedTime.hours + ':' + elapsedTime.minutes
     }
 
@@ -56,6 +59,23 @@ function ItemEditModal(props){
             editElapsedTime(elapsedTime)
         }
     }
+
+    useEffect(()=>{
+        let isNeedUpdate = false;
+        const trackUpdated = {...props.trackEdit}
+        if (!props.trackEdit.ticket){
+            trackUpdated.ticket = props.stores.chromeStore.getJiraTicket()
+            isNeedUpdate = true;
+        }
+        if (!props.trackEdit.ticketTitle){
+            trackUpdated.ticketTitle = props.stores.chromeStore.getJiraTicketTitle()
+            isNeedUpdate = true;
+        }
+        if (isNeedUpdate){
+            props.setTrackEdit(trackUpdated);
+        }
+
+    }, [props.trackEdit.ticket, props.trackEdit.ticketTitle])
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>

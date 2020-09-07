@@ -22,14 +22,34 @@ class chromeStore extends StoreClass{
         chrome.getCurrentTab()
             .then(result=>this.currentTab = result)
             .then(result=>{
+                this.isJiraTab = !!(this.currentTab.url.indexOf(
+                    this.rootStore.Settings.getSetting('jiraUrl')
+                ) + 1)
 
             })
     }
 
-    @computed get jiraTicket(){
-        if (this.isExtensionMode){
-
+    @action getJiraTicket(){
+        if (this.isExtensionMode
+            && this.isJiraTab
+        ){
+            return this.currentTab.url
+                .split('/').pop()
+                .split('?').shift()
         }
+
+        return ''
+    }
+
+    @action getJiraTicketTitle(){
+        console.log(this.currentTab)
+        if (this.isExtensionMode
+            && this.isJiraTab
+        ){
+            return this.currentTab.title
+        }
+
+        return ''
     }
 
 }
