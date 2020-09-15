@@ -43,7 +43,7 @@ function ItemLine(props) {
                 {props.track.ticketTitle}
             </Tooltip>
         }>
-            <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : '')}>
+            <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : props.track.ticket == props.stores.chromeStore.getJiraTicket() ? Style.row_current : '')}>
                 <Form.Group className={"ml-1 mb-0 d-flex flex-column"}>
                     <ElapsedTime
                         startTime={timeStart}

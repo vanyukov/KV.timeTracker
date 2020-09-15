@@ -10,6 +10,10 @@
     background-color: #28a74524;
 }
 
+.row_current{
+    background-color: #007bff21;
+}
+
 .ticket{
     width: 140px;
     font-weight: bold;
