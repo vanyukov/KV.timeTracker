@@ -4,7 +4,7 @@ import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Style from "./Header.module.css"
 import WeekNav from "~/containers/Header/WeekNav";
 import * as navigation from "~/api/helpers/navigation"
@@ -52,4 +52,4 @@ function Header(props) {
     )
 }
 
-export default withStore(Header);
+export default withRouter(withStore(Header));
