@@ -62,21 +62,42 @@ function ItemEditModal(props){
     }
 
     useEffect(()=>{
-        let isNeedUpdate = false;
         const trackUpdated = {...props.trackEdit}
         if (!props.trackEdit.ticket){
             trackUpdated.ticket = props.stores.chromeStore.getJiraTicket()
-            isNeedUpdate = true;
-        }
-        if (!props.trackEdit.ticketTitle){
-            trackUpdated.ticketTitle = props.stores.chromeStore.getJiraTicketTitle()
-            isNeedUpdate = true;
-        }
-        if (isNeedUpdate){
             props.setTrackEdit(trackUpdated);
         }
+    }, [props.trackEdit.ticket])
 
-    }, [props.trackEdit.ticket, props.trackEdit.ticketTitle])
+    useEffect(()=>{
+        const trackUpdated = {...props.trackEdit}
+        if (!props.trackEdit.ticketTitle){
+            props.stores.chromeStore.getJiraTicketTitle()
+                .then(result=>{
+                    if (!result){
+                        return null;
+                    }
+                    trackUpdated.ticketTitle = result
+                    props.setTrackEdit(trackUpdated);
+                })
+        }
+
+    }, [props.trackEdit.ticketTitle])
+
+    useEffect(()=>{
+        if (!props.trackEdit.branch){
+            const trackUpdated = {...props.branch}
+            props.stores.chromeStore.getJiraBranch()
+                .then(result=>{
+                    if (!result){
+                        return null;
+                    }
+                    trackUpdated.branch = result
+                    props.setTrackEdit(trackUpdated);
+                })
+        }
+
+    }, [props.trackEdit.branch])
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>

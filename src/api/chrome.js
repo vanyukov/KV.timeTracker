@@ -6,6 +6,16 @@ export function getCurrentTab(){
     })
 }
 
+export function runJS(tab, query){
+    return new Promise((resolve, reject)=>{
+        chrome.tabs.executeScript(
+            tab.id,
+            {code: query},
+            resultsArray=>resolve(resultsArray[0])
+        );
+    })
+}
+
 export function isExtensionMode(){
     return !!chrome.tabs;
 }

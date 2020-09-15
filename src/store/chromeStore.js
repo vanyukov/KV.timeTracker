@@ -42,14 +42,23 @@ class chromeStore extends StoreClass{
     }
 
     @action getJiraTicketTitle(){
-        console.log(this.currentTab)
         if (this.isExtensionMode
             && this.isJiraTab
         ){
-            return this.currentTab.title
+            return  chrome.runJS(this.currentTab, 'document.querySelector("#summary-val").textContent')
         }
 
-        return ''
+        return new Promise((resolve, reject)=>resolve(null))
+    }
+
+    @action getJiraBranch(){
+        if (this.isExtensionMode
+            && this.isJiraTab
+        ){
+            return  chrome.runJS(this.currentTab, 'document.querySelector("[title=\'Ticket branch\']").parentElement.querySelector(\'strike\').textContent')
+        }
+
+        return new Promise((resolve, reject)=>resolve(null))
     }
 
 }
