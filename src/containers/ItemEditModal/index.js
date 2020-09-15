@@ -6,6 +6,8 @@ import tracks from "~/api/db/tracks";
 import * as dateTime from "~/api/helpers/dateTime";
 
 function ItemEditModal(props){
+
+    // SAVE TRACK
     const saveTrackEdit = () => {
         closePopup();
         props.stores.TracksStore.update(props.trackEdit);
@@ -26,13 +28,15 @@ function ItemEditModal(props){
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
     const closePopup = ()=>props.setShowPopup(false);
-    const editStartTime = (startTime)=> changeTrackEdit('startTime', startTime)
     const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
+
+    // TIME
 
     const getElapsedTimeFormat = ()=>{
         const elapsedTime = dateTime.timeDiffSplitted(
             props.trackEdit.startTime,
-            (props.trackEdit.active ? new Date : 0), props.trackEdit.elapsedTime
+            props.trackEdit.active ? new Date : 0,
+            props.trackEdit.elapsedTime
         )
         return elapsedTime.hours + ':' + elapsedTime.minutes
     }
@@ -55,11 +59,18 @@ function ItemEditModal(props){
         const time = e.target.value.split(':')
         const elapsedTime = (+time[0] * 60 + (+time[1])) * 60 * 1000
         if (props.trackEdit.active){
-            editStartTime(new Date(Date.now() - elapsedTime))
+            props.setTrackEdit({
+                ...props.trackEdit,
+                startTime: (new Date(Date.now() - elapsedTime)),
+                elapsedTime: 0,
+            })
         } else {
             editElapsedTime(elapsedTime)
         }
     }
+
+
+    // JIRA
 
     useEffect(()=>{
         const trackUpdated = {...props.trackEdit}
@@ -98,6 +109,8 @@ function ItemEditModal(props){
         }
 
     }, [props.trackEdit.branch])
+
+    //
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
