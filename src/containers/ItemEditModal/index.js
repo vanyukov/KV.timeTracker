@@ -20,6 +20,7 @@ function ItemEditModal(props){
 
     const editTicket = (event)=>changeTrackEdit('ticket', event.target.value)
     const editTicketTitle = (event)=>changeTrackEdit('ticketTitle', event.target.value)
+    const editBranch = (event)=>changeTrackEdit('branch', event.target.value)
     const editEpic = (event)=>changeTrackEdit('epic', event.target.value)
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
@@ -123,6 +124,19 @@ function ItemEditModal(props){
                                 value={props.trackEdit.ticketTitle}
                                 placeholder="Ticket Title"
                                 onChange={editTicketTitle}
+                            />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group controlId="formBranch"  as={Row} >
+                        <Form.Label column sm="3">
+                            Branch
+                        </Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                type="text"
+                                value={props.trackEdit.branch}
+                                placeholder="Branch"
+                                onChange={editBranch}
                             />
                         </Col>
                     </Form.Group>

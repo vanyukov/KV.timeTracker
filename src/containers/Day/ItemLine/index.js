@@ -64,7 +64,7 @@ function ItemLine(props) {
                     Jira
                 </a>
 
-                <a href={gitRepositoryUrl+"/commits/" + props.track.ticket}
+                <a href={gitRepositoryUrl+"/commits/" + (props.track.branch || props.track.ticket)}
                    className={Style.git_link + " text-center ml-1"}
                    target={'_blank'}
                 >
@@ -73,7 +73,7 @@ function ItemLine(props) {
                     Commits
                 </a>
 
-                <a href={gitRepositoryUrl+"/-/tree/" + props.track.ticket}
+                <a href={gitRepositoryUrl+"/-/tree/" + (props.track.branch || props.track.ticket)}
                    className={Style.git_link + " text-center ml-1"}
                    target={'_blank'}
                 >

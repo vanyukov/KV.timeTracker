@@ -7,6 +7,7 @@ const tracks = {
             date: new Date,
             ticket: '',
             ticketTitle: '',
+            branch: '',
             epic: '',
             comment: '',
             typeUTZ: 'typeUTZ',
