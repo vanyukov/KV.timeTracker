@@ -1,6 +1,7 @@
 import React from "react";
 import withStore from "~/hocs/withStore";
 import {ListGroup, InputGroup, FormControl} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import GoBack from "~/components/btn/GoBack";
 import * as dateTime from "~/api/helpers/dateTime";
 import Style from "./ViewAll.module.css"
@@ -24,7 +25,9 @@ function ViewAll(props){
                             <InputGroup>
                                 <InputGroup.Prepend>
                                     <InputGroup.Text>
-                                        {dateTime.getFormat("YYYY-MM-DD", track.date)}
+                                        <Link to={dateTime.getFormat("/YYYY/MM/DD", track.date)}>
+                                            {dateTime.getFormat("YYYY-MM-DD", track.date)}
+                                        </Link>
                                     </InputGroup.Text>
                                     <InputGroup.Text className={Style.time}>
                                         {elapsedTime.hours} <small>h.</small> {elapsedTime.minutes} <small>m.</small>
