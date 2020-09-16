@@ -13,6 +13,10 @@ export function getCurrentWeekDay(date = new Date){
     return moment(date).day()
 }
 
+export function getCountMonthDay(date = new Date){
+    return [31,30,29,28].find(day=> moment(date).date(day).date() == day)
+}
+
 export function getDayStart(date = new Date){
     return moment(date).hour(0);
 }

@@ -32,6 +32,11 @@ function WeekNav(props){
                 </Nav.Item>
                 )
             })}
+            <Link to={ '/' + dateTime.parseDate().year + '/' + (dateTime.parseDate().month+1)}
+                  className={" nav-link "}
+            >
+                Месяц
+            </Link>
         </Nav>
     )
 

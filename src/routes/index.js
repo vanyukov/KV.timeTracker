@@ -1,4 +1,5 @@
 import Day from '~/containers/Day';
+import Month from '~/containers/Month';
 import Settings from '~/containers/Settings';
 import Reports from '~/containers/Reports';
 import ViewAll from '~/containers/Reports/ViewAll';
@@ -32,6 +33,11 @@ let routes = [
         name: 'day',
         url: '/:year/:month/:day',
         component: Day,
+    },
+    {
+        name: 'day',
+        url: '/:year/:month',
+        component: Month,
     },
     {
         url: '**',
