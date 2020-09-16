@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import withStore from "~/hocs/withStore";
-import {ListGroup, InputGroup, FormControl} from "react-bootstrap";
+import {ListGroup, InputGroup, FormControl, Container} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import GoBack from "~/components/btn/GoBack";
 import * as dateTime from "~/api/helpers/dateTime";
 import Style from "./ViewAll.module.css"
+import tracks from "~/api/db/tracks";
+import ItemEditModal from "~/containers/ItemEditModal";
+import Button from "react-bootstrap/Button";
 
 function ViewAll(props){
+    const [trackEdit, setTrackEdit] = useState(tracks.getNew());
+    const [showPopup, setShowPopup] = useState(false);
+    const openPopupTrackEdit = track => {
+        setTrackEdit(track);
+        setShowPopup(true);
+    }
 
     return(
         <>
@@ -32,14 +41,23 @@ function ViewAll(props){
                                     <InputGroup.Text className={Style.time}>
                                         {elapsedTime.hours} <small>h.</small> {elapsedTime.minutes} <small>m.</small>
                                     </InputGroup.Text>
-                                    <InputGroup.Text className={Style.ticket}>
-                                        {track.ticket}
-                                    </InputGroup.Text>
+                                    <Button
+                                        variant="outline-primary"
+                                        className={Style.ticket}
+                                        onClick={()=>{openPopupTrackEdit(track)}}
+                                    >{track.ticket}</Button>
                                 </InputGroup.Prepend>
                             </InputGroup>
                         </ListGroup.Item>
                     })}
             </ListGroup>
+
+            <ItemEditModal
+                showPopup={showPopup}
+                setShowPopup={setShowPopup}
+                trackEdit={trackEdit}
+                setTrackEdit={setTrackEdit}
+            />
         </>
     )
 
