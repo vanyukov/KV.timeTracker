@@ -48,6 +48,17 @@
 .git_link__235a409{
 }
 
+.time__1aeb7e7  {
+    width: 90px;
+}
+
+.ticket__74b8b9f  {
+    width: 90px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .logo_img__ea69080{
     max-height: 37px;
 }
