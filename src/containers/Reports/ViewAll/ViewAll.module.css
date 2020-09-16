@@ -1,0 +1,10 @@
+.time  {
+    width: 90px;
+}
+
+.ticket  {
+    width: 90px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
