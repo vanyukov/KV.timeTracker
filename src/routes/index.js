@@ -1,5 +1,6 @@
 import Day from '~/containers/Day';
 import Settings from '~/containers/Settings';
+import Reports from '~/containers/Reports';
 
 let routes = [
     {
@@ -12,6 +13,12 @@ let routes = [
         name: 'settings',
         url: '/settings',
         component: Settings,
+        exact: true
+    },
+    {
+        name: 'reports',
+        url: '/reports',
+        component: Reports,
         exact: true
     },
     {

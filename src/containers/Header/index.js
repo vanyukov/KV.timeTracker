@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Container, Row} from "react-bootstrap";
+import {Button, Container, Row, Col} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
@@ -22,22 +22,25 @@ function Header(props) {
     return(
         <Container>
             <Row>
-                <header>
-                    <Link to="/" className={"mr-2"}>
-                        <img src="/img/logo.png" className={Style.logo_img }/>
-                    </Link>
-                    <Button
-                        variant="success"
-                        className="mr-2"
-                        onClick ={createNewTrack}
-                    >
-                        New +
-                    </Button>
+                <Col>
+                    <header>
+                        <Link to="/" className={"mr-2"}>
+                            <img src="/img/logo.png" className={Style.logo_img }/>
+                        </Link>
+                        <Button
+                            variant="success"
+                            className="mr-2"
+                            onClick ={createNewTrack}
+                        >
+                            New +
+                        </Button>
 
-                    { getDatePresentation(navigation.isYearInUrl() ? window.location.pathname : undefined) }
+                        { getDatePresentation(navigation.isYearInUrl() ? window.location.pathname : undefined) }
 
-                    <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
-                </header>
+                        <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
+                        <Link to="/reports" className={"btn btn-secondary ml-2"}>Reports</Link>
+                    </header>
+                </Col>
             </Row>
 
             <WeekNav/>
