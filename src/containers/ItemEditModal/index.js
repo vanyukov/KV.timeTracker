@@ -121,9 +121,21 @@ function ItemEditModal(props){
             </Modal.Header>
             <Modal.Body>
                 <Form>
+                    <Form.Group controlId="formDate"  as={Row} >
+                        <Form.Label column sm="3">
+                            Дата
+                        </Form.Label>
+                        <Col sm="9">
+                            <Form.Control
+                                type="text"
+                                value={dateTime.getFormat("YYYY-MM-DD", props.trackEdit.date)}
+                                disabled
+                            />
+                        </Col>
+                    </Form.Group>
                     <Form.Group controlId="formTime"  as={Row} >
                         <Form.Label column sm="3">
-                            Time
+                            Прошло
                         </Form.Label>
                         <Col sm="9">
                             <Form.Control
@@ -150,7 +162,7 @@ function ItemEditModal(props){
                     </Form.Group>
                     <Form.Group controlId="formTicketTitle"  as={Row} >
                         <Form.Label column sm="3">
-                            Ticket Title
+                            Задача
                         </Form.Label>
                         <Col sm="9">
                             <Form.Control
@@ -189,7 +201,7 @@ function ItemEditModal(props){
                     </Form.Group>
                     <Form.Group controlId="formComment"  as={Row} >
                         <Form.Label column sm="3">
-                            Comment
+                            Комментарий
                         </Form.Label>
                         <Col sm="9">
                             <Form.Control
