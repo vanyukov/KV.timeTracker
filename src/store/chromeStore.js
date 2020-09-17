@@ -38,7 +38,7 @@ class chromeStore extends StoreClass{
                 .split('?').shift()
         }
 
-        return ''
+        return new Promise((resolve, reject)=>resolve('ticket'))
     }
 
     @action getJiraTicketTitle(){
@@ -48,7 +48,7 @@ class chromeStore extends StoreClass{
             return  chrome.runJS(this.currentTab, 'document.querySelector("#summary-val").textContent')
         }
 
-        return new Promise((resolve, reject)=>resolve(null))
+        return new Promise((resolve, reject)=>resolve('title'))
     }
 
     @action getJiraBranch(){
@@ -58,7 +58,7 @@ class chromeStore extends StoreClass{
             return  chrome.runJS(this.currentTab, 'document.querySelector("[title=\'Ticket branch\']").parentElement.querySelector(\'strike\').textContent')
         }
 
-        return new Promise((resolve, reject)=>resolve(null))
+        return new Promise((resolve, reject)=>resolve('branch'))
     }
 
 }

@@ -13,10 +13,13 @@ function Header(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
     const [showPopup, setShowPopup] = useState(false);
     const createNewTrack = () => {
-        const track =tracks.getNew();
-        props.stores.TracksStore.start(track);
-        setTrackEdit(track);
-        setShowPopup(true);
+        props.stores.TracksStore
+            .fillNewTrack( tracks.getNew() )
+            .then(trackFilled=> {
+                props.stores.TracksStore.start(trackFilled);
+                setTrackEdit(trackFilled)
+                setShowPopup(true);
+            });
     }
 
     return(

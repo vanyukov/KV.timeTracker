@@ -70,6 +70,27 @@ export default class TracksStore extends StoreClass{
         this.rootStore.dbStore.saveTrack(track);
     }
 
+    @action fillNewTrack=(track)=>{
+        return Promise.all([
+            this.rootStore.chromeStore.getJiraTicket(),
+            this.rootStore.chromeStore.getJiraTicketTitle(),
+            this.rootStore.chromeStore.getJiraBranch(),
+        ])
+        .then(results=>{
+            if (results[0]){
+                track.ticket = results[0]
+            }
+            if (results[1]){
+                track.ticketTitle = results[1]
+            }
+            if (results[2]){
+                track.branch = results[2]
+            }
+            return track
+        })
+
+    }
+
     tracksOfDay=(params)=>{
         let filterDate ='';
         if (params.day){
