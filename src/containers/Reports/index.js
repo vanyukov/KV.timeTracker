@@ -8,7 +8,7 @@ function Reports(props) {
     return(
         <Container>
             <Row>
-                <Col xs={4}>
+                <Col xs={5}>
                     <h1 className={"mt-2"}>
                         Reports
                         <GoBack className={"ml-2"}/>
