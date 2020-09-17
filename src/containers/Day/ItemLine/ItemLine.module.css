@@ -22,13 +22,19 @@
     text-overflow: ellipsis;
 }
 
-.jira_link{
-}
-
 .jira_img,
 .git_img{
     height: 23px;
 }
 
-.git_link{
+.branch{
+    width: 60px;
+}
+
+.commits{
+    width: 70px;
+}
+
+.jira{
+    width: 70px;
 }

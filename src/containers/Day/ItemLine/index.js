@@ -43,7 +43,7 @@ function ItemLine(props) {
                 {props.track.ticketTitle}
             </Tooltip>
         }>
-            <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : props.track.ticket == props.stores.chromeStore.getJiraTicket() ? Style.row_current : '')}>
+            <Row className={Style.row + " mt-2 mb-2 " + (props.track.active ? Style.row_active : props.track.ticket == props.stores.chromeStore.getFieldFromJira('ticket') ? Style.row_current : '')}>
                 <Form.Group className={"ml-1 mb-0 d-flex flex-column"}>
                     <ElapsedTime
                         startTime={timeStart}
@@ -51,36 +51,39 @@ function ItemLine(props) {
                         elapsedTime = {props.track.elapsedTime}
                     />
                     <span className={Style.ticket} >
-                    {props.track.ticket}
+                    {props.track.ticket || props.track.ticketTitle}
                 </span>
                 </Form.Group>
 
-                <a href={jiraUrl+"/browse/" + props.track.ticket}
-                   className={Style.jira_link + " text-center"}
-                   target={'_blank'}
-                >
-                    <img className={Style.jira_img} src="/img/jira-logo.png" />
-                    <br/>
-                    Jira
-                </a>
+                <span className={Style.jira+ " text-center"}>
+                    {props.track.ticket && <a href={jiraUrl + "/browse/" + props.track.ticket}
+                        target={'_blank'}
+                    >
+                        <img className={Style.jira_img} src="/img/jira-logo.png"/>
+                        <br/>
+                        Jira
+                    </a>}
+                </span>
 
-                <a href={gitRepositoryUrl+"/commits/" + (props.track.branch || props.track.ticket)}
-                   className={Style.git_link + " text-center ml-1"}
-                   target={'_blank'}
-                >
-                    {gitLabLogo()}
-                    <br/>
-                    Commits
-                </a>
+                <span className={Style.commits+ " text-center"}>
+                 {props.track.branch && <a href={gitRepositoryUrl + "/commits/" + (props.track.branch)}
+                     target={'_blank'}
+                 >
+                     {gitLabLogo()}
+                     <br/>
+                     Commits
+                 </a>}
+               </span>
 
-                <a href={gitRepositoryUrl+"/-/tree/" + (props.track.branch || props.track.ticket)}
-                   className={Style.git_link + " text-center ml-1"}
-                   target={'_blank'}
-                >
-                    {gitLabLogo()}
-                    <br/>
-                    Branch
-                </a>
+                <span className={Style.branch+ " text-center"}>
+                    {props.track.branch && <a href={gitRepositoryUrl + "/-/tree/" + (props.track.branch)}
+                        target={'_blank'}
+                    >
+                        {gitLabLogo()}
+                        <br/>
+                        Branch
+                    </a>}
+                </span>
 
                 <Form.Group className={"ml-1 mb-0"}>
                     <Form.Check
