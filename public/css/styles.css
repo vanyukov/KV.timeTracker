@@ -37,15 +37,21 @@
     text-overflow: ellipsis;
 }
 
-.jira_link__92e7779{
-}
-
 .jira_img__8b8c910,
 .git_img__f412cc6{
     height: 23px;
 }
 
-.git_link__235a409{
+.branch__949f1b7{
+    width: 60px;
+}
+
+.commits__a837e17{
+    width: 70px;
+}
+
+.jira__2405bfc{
+    width: 70px;
 }
 
 .day__768f7a9{
