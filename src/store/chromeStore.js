@@ -29,36 +29,27 @@ class chromeStore extends StoreClass{
             })
     }
 
-    @action getJiraTicket(){
-        if (this.isExtensionMode
-            && this.isJiraTab
-        ){
+    @action getFieldFromJira(field){
+        if (!this.isExtensionMode){
+            return new Promise((resolve, reject)=>resolve(field))
+        }
+        if(!this.isJiraTab){
+            return new Promise((resolve, reject)=>resolve(''))
+        }
+
+        if (field == 'ticket'){
             return this.currentTab.url
-                .split('/').pop()
-                .split('?').shift()
-        }
+                    .split('/').pop()
+                    .split('?').shift()
 
-        return new Promise((resolve, reject)=>resolve('ticket'))
-    }
-
-    @action getJiraTicketTitle(){
-        if (this.isExtensionMode
-            && this.isJiraTab
-        ){
+        } else if (field == 'title'){
             return  chrome.runJS(this.currentTab, 'document.querySelector("#summary-val").textContent')
-        }
 
-        return new Promise((resolve, reject)=>resolve('title'))
-    }
-
-    @action getJiraBranch(){
-        if (this.isExtensionMode
-            && this.isJiraTab
-        ){
+        } else if (field == 'branch'){
             return  chrome.runJS(this.currentTab, 'document.querySelector("[title=\'Ticket branch\']").parentElement.querySelector(\'strike\').textContent')
+
         }
 
-        return new Promise((resolve, reject)=>resolve('branch'))
     }
 
 }

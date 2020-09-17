@@ -72,9 +72,9 @@ export default class TracksStore extends StoreClass{
 
     @action fillNewTrack=(track)=>{
         return Promise.all([
-            this.rootStore.chromeStore.getJiraTicket(),
-            this.rootStore.chromeStore.getJiraTicketTitle(),
-            this.rootStore.chromeStore.getJiraBranch(),
+            this.rootStore.chromeStore.getFieldFromJira('ticket'),
+            this.rootStore.chromeStore.getFieldFromJira('title'),
+            this.rootStore.chromeStore.getFieldFromJira('branch'),
         ])
         .then(results=>{
             if (results[0]){
@@ -85,6 +85,8 @@ export default class TracksStore extends StoreClass{
             }
             if (results[2]){
                 track.branch = results[2]
+            } else if (results[0]){
+                track.branch = results[0]
             }
             return track
         })
