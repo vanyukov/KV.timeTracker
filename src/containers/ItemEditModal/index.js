@@ -76,6 +76,12 @@ function ItemEditModal(props){
             <Modal.Header closeButton>
                 <Modal.Title>
                     { getDatePresentation(props.trackEdit.date) }
+                    <Button variant="primary"
+                            className={"ml-3"}
+                            onClick={saveTrackEdit}
+                    >
+                        Save
+                    </Button>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -194,12 +200,6 @@ function ItemEditModal(props){
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="primary" onClick={saveTrackEdit}>
-                    Save
-                </Button>
-                <Button variant="secondary" onClick={closePopup}>
-                    Close
-                </Button>
             </Modal.Footer>
         </Modal>
     )
