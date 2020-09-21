@@ -74,7 +74,7 @@ function ItemEditModal(props){
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
             <Modal.Header closeButton>
-                <Modal.Title>
+                <Modal.Title className={"h5"}>
                     { getDatePresentation(props.trackEdit.date) }
                     <Button variant="primary"
                             className={"ml-3"}
