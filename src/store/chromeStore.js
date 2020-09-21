@@ -48,6 +48,9 @@ class chromeStore extends StoreClass{
         } else if (field == 'branch'){
             return  chrome.runJS(this.currentTab, 'document.querySelector("[title=\'Ticket branch\']").parentElement.querySelector(\'strike\').textContent')
 
+        } else if (field == 'epic'){
+            return  chrome.runJS(this.currentTab, 'document.querySelector("[data-fieldtype=\'gh-epic-link\'] a").href.split(\'/\').pop()')
+
         }
 
     }
