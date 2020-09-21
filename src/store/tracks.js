@@ -89,6 +89,7 @@ export default class TracksStore extends StoreClass{
             } else if (results[0]){
                 track.branch = results[0]
             }
+            console.log('epic', results[3])
             if (results[3]){
                 track.epic = results[3]
             }
