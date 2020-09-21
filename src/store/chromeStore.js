@@ -107,6 +107,14 @@ class chromeStore extends StoreClass{
         });
     }
 
+    @action saveJira(track){
+        if (track.ticket != this.getFieldFromJira('ticket')) {
+            return Promise.reject('')
+        }
+        chrome.runJS(this.currentTab, 'document.getElementById(\'opsbar-operations_more\').dispatchEvent(new Event(\'click\'))')
+
+    }
+
 }
 
 export default chromeStore;

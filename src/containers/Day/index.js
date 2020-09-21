@@ -13,6 +13,8 @@ function Day(props) {
         setTrackEdit(track);
         setShowPopup(true);
     }
+    const tabJiraTicket = props.stores.chromeStore.isJiraTab && props.stores.chromeStore.getFieldFromJira('ticket');
+
     return(
         <Container>
             {props.stores.TracksStore.tracksOfDay(props.match.params)
@@ -25,6 +27,8 @@ function Day(props) {
                     start={()=>props.stores.TracksStore.start(track)}
                     edit={()=>openPopupTrackEdit(track)}
                     delete={()=>props.stores.TracksStore.delete(track.date)}
+                    saveJira={()=>props.stores.chromeStore.saveJira(track)}
+                    showSaveJira={tabJiraTicket == track.ticket && !track.savedJira && track.ticket}
                 />
             })}
 

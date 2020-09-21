@@ -86,11 +86,17 @@ function ItemLine(props) {
                 </span>
 
                 <Form.Group className={"ml-1 mb-0"}>
-                    <Form.Check
+                    {props.showSaveJira && <Button
+                        onClick={props.saveJira}
+                        className="ml-2"
+                    >
+                        save Jira
+                    </Button>}
+                    {!props.showSaveJira && <Form.Check
                         type="checkbox"
                         label="saved Jira"
                         checked={props.track.savedJira}
-                        disabled />
+                        disabled/>}
                     <Form.Check
                         type="checkbox"
                         label="saved UTZ"
