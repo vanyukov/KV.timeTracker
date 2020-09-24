@@ -37,6 +37,10 @@ export function openDB() {
 export function put(db, store, value, key) {
     return new Promise((resolve, reject)=>{
 
+        if (!db){
+            resolve(null);
+        };
+
         const transaction = db.transaction(store, "readwrite");
         const dbStore = transaction.objectStore(store);
         let request = dbStore.put({...value}, key);
@@ -54,6 +58,10 @@ export function put(db, store, value, key) {
 
 export function del(db, store, key) {
     return new Promise((resolve, reject)=>{
+
+        if (!db){
+            resolve(null);
+        };
 
         const transaction = db.transaction([store], "readwrite");
         const dbStore = transaction.objectStore(store);
@@ -73,6 +81,10 @@ export function del(db, store, key) {
 export function get(db, store, key) {
     return new Promise((resolve, reject)=>{
 
+        if (!db){
+            resolve(null);
+        };
+
         const transaction = db.transaction(store, "readonly");
         const dbStore = transaction.objectStore(store);
         const request = dbStore.get(key);
@@ -91,6 +103,10 @@ export function get(db, store, key) {
 export function getAll(db, store) {
     return new Promise((resolve, reject)=>{
 
+        if (!db){
+            resolve(null);
+        };
+
         const transaction = db.transaction(store, "readonly");
         const dbStore = transaction.objectStore(store);
         const request = dbStore.getAll();
@@ -108,6 +124,10 @@ export function getAll(db, store) {
 
 export function clean(db, store) {
     return new Promise((resolve, reject)=>{
+
+        if (!db){
+            resolve(null);
+        };
 
         const transaction = db.transaction(store, "readwrite");
         const dbStore = transaction.objectStore(store);
