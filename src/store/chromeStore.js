@@ -1,6 +1,7 @@
 import {observable, computed, action} from 'mobx';
 import * as chrome from '~/api/chrome'
 import StoreClass from "~/store/StoreClass";
+import * as dateTime from "~/api/helpers/dateTime";
 
 class chromeStore extends StoreClass{
     @observable isExtensionMode;
@@ -111,7 +112,48 @@ class chromeStore extends StoreClass{
         if (track.ticket != this.getFieldFromJira('ticket')) {
             return Promise.reject('')
         }
-        chrome.runJS(this.currentTab, 'document.getElementById(\'opsbar-operations_more\').dispatchEvent(new Event(\'click\'))')
+        chrome.runJS(this.currentTab, "document.getElementById('log-work').click()");
+
+        //Time
+        const elapsedTime = dateTime.timeDiffSplitted(track.startTime, (track.active ? new Date :  0), track.elapsedTime);
+        this.injectTimeLogField("document.getElementById('log-work-time-logged').value = '" + elapsedTime.hours + "h " + elapsedTime.minutes + "m'");
+
+        //Date
+        const dateStart = dateTime.parseDate(track.date);
+        const time = dateStart.date
+            + "/"
+            + dateTime.getFormat('MMM', track.date).substr(0, 3)
+            + "/"
+            + dateTime.getFormat('YY hh:mm', track.date)
+            + " " + (dateStart.hour > 11 ? 'PM' : 'AM')
+        ;
+        this.injectTimeLogField("document.getElementById('log-work-date-logged-date-picker').value = '" + time + "'");
+
+        //Comment
+        const instance = this;
+        setTimeout(function (){
+            instance.injectTimeLogField(
+                "document.querySelector('iframe').contentWindow.document.querySelector('.mce-content-body').innerHTML = '<p>" + track.comment + "</p>';"
+                + "document.querySelector('rich-editor').innerHTML = '<p>" + track.comment + "</p>'; "
+                + "document.querySelectorAll('[name=\"comment\"]')[0].value = '" + track.comment + "'; "
+            );
+        }, 500)
+    }
+
+    injectTimeLogField(query){
+        const instance = this;
+        return chrome.runJS(this.currentTab, "document.getElementById('log-work-time-logged')")
+            .then(result=>{
+                if (result){
+                    return chrome.runJS(instance.currentTab, query)
+                } else {
+                    return new Promise(((resolve, reject)=>{
+                        setTimeout(()=>{
+                            resolve(instance.injectTimeLogField(query))
+                        }, 100)
+                    }))
+                }
+            })
 
     }
 
