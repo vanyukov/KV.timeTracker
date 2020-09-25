@@ -1,6 +1,7 @@
 import Day from '~/containers/Day';
 import Month from '~/containers/Month';
 import Settings from '~/containers/Settings';
+import Comments from '~/containers/Comments';
 import Reports from '~/containers/Reports';
 import ViewAll from '~/containers/Reports/ViewAll';
 
@@ -15,6 +16,12 @@ let routes = [
         name: 'settings',
         url: '/settings',
         component: Settings,
+        exact: true
+    },
+    {
+        name: 'comments',
+        url: '/comments',
+        component: Comments,
         exact: true
     },
     {

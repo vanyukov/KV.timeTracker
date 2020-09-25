@@ -1,6 +1,5 @@
 import {observable, computed, action} from 'mobx';
 import StoreClass from "./StoreClass";
-import settings from "~/api/db/settings";
 
 export default class Settings extends StoreClass {
     @observable items;

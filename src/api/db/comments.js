@@ -3,6 +3,7 @@ const comments = {
         return {
             text: '',
             idUTZ: '',
+            preview: '',
         }
     },
 

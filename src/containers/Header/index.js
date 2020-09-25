@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Container, Row, Col} from "react-bootstrap";
+import {Button, Container, NavDropdown, Row, Col} from "react-bootstrap";
 import withStore from '~/hocs/withStore';
 import {getDatePresentation} from '~/api/helpers/dateTime';
 import ItemEditModal from "~/containers/ItemEditModal";
@@ -26,7 +26,7 @@ function Header(props) {
         <Container>
             <Row>
                 <Col>
-                    <header>
+                    <header className={"d-flex align-items-center"}>
                         <Link to="/" className={"mr-2"}>
                             <img src="/img/logo.png" className={Style.logo_img }/>
                         </Link>
@@ -40,8 +40,17 @@ function Header(props) {
 
                         { getDatePresentation(navigation.isYearInUrl() ? window.location.pathname : undefined) }
 
-                        <Link to="/settings" className={"btn btn-secondary ml-2"}>Settings</Link>
-                        <Link to="/reports" className={"btn btn-secondary ml-2"}>Reports</Link>
+                        <NavDropdown title="menu" id="header-nav-dropdown" >
+                            <NavDropdown.Item as={"div"}>
+                                <Link to="/settings">Settings</Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={"div"}>
+                                <Link to="/reports">Reports</Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={"div"}>
+                                <Link to="/comments">Comments</Link>
+                            </NavDropdown.Item>
+                        </NavDropdown>
                     </header>
                 </Col>
             </Row>
