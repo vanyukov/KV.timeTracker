@@ -9,10 +9,6 @@ function Comments(props) {
         history.goBack();
     }
 
-    const changeSetting = (name, value) =>{
-        props.stores.Comments.changeSetting(name, value)
-    }
-
     const loadDefault = ()=>props.stores.Comments.loadDefault()
 
     return(
@@ -27,27 +23,96 @@ function Comments(props) {
                 >go back</Button>
             </h1>
             <Form className={"mb-2"}>
+                <Row>
+                    <Col className={"mb-2"}>
+                        <Form.Control
+                            value={'text'}
+                            type="text"
+                            disabled={true}
+                        />
+                    </Col>
+                    <Col >
+                        <Form.Control
+                            value={'preview'}
+                            type="text"
+                            disabled={true}
+                        />
+                    </Col>
+                    <Col sm={2}>
+                        <Form.Control
+                            value={'idUTZ'}
+                            type="text"
+                            disabled={true}
+                        />
+                    </Col>
+                    <Col sm={3}>
+                    </Col>
+                </Row>
                 {props.stores.Comments.items.map(item=>{
-                    return <Form.Group as={Row} controlId="formHorizontalEmail" key={item.name}>
-                        <Form.Label column sm={2}>
-                            {item.name}
-                        </Form.Label>
-                        <Col sm={10}>
+
+                    return <Form.Group as={Row} controlId="formHorizontalEmail" key={item.key}>
+                        <Col >
                             <Form.Control
-                                value={item.value}
-                                onChange={(event)=>{changeSetting(item.name,  event.target.value)}}
+                                value={item.text}
+                                as={"textarea"}
+                                onChange={(event)=>{props.stores.Comments.changeComment(item.key, 'text', event.target.value)}}
                                 type="text"
                             />
                         </Col>
+                        <Col >
+                            <Form.Control
+                                value={item.preview}
+                                onChange={(event)=>{props.stores.Comments.changeComment(item.key, 'preview', event.target.value)}}
+                                type="text"
+                            />
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Control
+                                value={item.idUTZ}
+                                onChange={(event)=>{props.stores.Comments.changeComment(item.key, 'idUTZ', event.target.value)}}
+                                type="text"
+                            />
+                        </Col>
+                        <Col sm={3}>
+                            <Button
+                                variant="primary"
+                                size="sm"
+                                className={"mr-2"}
+                                onClick={()=>props.stores.Comments.saveComment(item)}
+                            >
+                                Save
+                            </Button>
+                            <Button
+                                variant="outline-danger"
+                                size="sm"
+                                onClick={()=>props.stores.Comments.deleteComment(item)}
+                            >
+                                del
+                            </Button>
+
+                        </Col>
                     </Form.Group>
                 })}
-                <Button
-                    variant="outline-secondary"
-                    size="sm"
-                    onClick={loadDefault}
-                >
-                    load default
-                </Button>
+                <Row className={"mb-2"}>
+                    <Col>
+                        <Button
+                            variant="success"
+                            size="sm"
+                            onClick={()=>props.stores.Comments.newComment()}
+                        >
+                            New +
+                        </Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        onClick={loadDefault}
+                    >
+                        load default
+                    </Button>
+                </Row>
             </Form>
 
 

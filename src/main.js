@@ -15,5 +15,6 @@ ReactDom.render(<Provider stores={stores}>
 stores.dbStore.open()
     .then(()=> {
         stores.TracksStore.loadTracks();
-        stores.Settings.loadSettings();;
+        stores.Settings.loadSettings();
+        stores.Comments.loadComments();
     });

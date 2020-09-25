@@ -1,8 +1,9 @@
 import {observable, computed, action} from 'mobx';
 import StoreClass from "./StoreClass";
+import comments from "~/api/db/comments"
 
 export default class Comments extends StoreClass {
-    @observable items;
+    @observable items = [];
 
     constructor(rootStore) {
         super(rootStore);
@@ -26,16 +27,39 @@ export default class Comments extends StoreClass {
         ]
     }
 
-    @action getComment(name){
-
+    @action loadDefault(){
+        this.defaultComments.forEach(item=> {
+            this.rootStore.dbStore.saveComment(item);
+            this.items.push(item);
+        });
     }
 
-    @action loadDefault(name){
-
+    @action newComment(){
+        this.items.push(comments.getNew());
     }
 
-    @action changeComment(name, value){
-        this.items.find(item=>item.name==name).value = value
+    @action loadComments() {
+        this.rootStore.dbStore.loadComments()
+            .then((data)=>{
+                if (Array.isArray(data) && data.length) {
+                    data.forEach(item=>this.items.push(item));
+                } else {
+                    this.loadDefault()
+                }
+            })
+    }
+
+    @action changeComment(key, field, value){
+        this.items.find(item=>item.key==key)[field] = value
+    }
+
+    @action saveComment(comment){
+        this.rootStore.dbStore.saveComment(comment, comment.key);
+    }
+
+    @action deleteComment(comment){
+        this.items =this.items.filter(item=>comment.key!=item.key)
+        this.rootStore.dbStore.deleteComment(comment.key);
     }
 
 

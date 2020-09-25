@@ -122,6 +122,37 @@ export function getAll(db, store) {
     })
 }
 
+export function getAllWithKeys(db, store){
+    return new Promise((resolve, reject)=>{
+        if (!db){
+            resolve(null);
+        };
+
+        const transaction = db.transaction(store, "readonly");
+        const dbStore = transaction.objectStore(store);
+        const request = dbStore.openCursor();
+        const result = [];
+
+        request.onsuccess = function(event) {
+            let cursor = event.target.result;
+            if (cursor) {
+                result.push({
+                    key: cursor.primaryKey,
+                    ...cursor.value
+                })
+                cursor.continue();
+            } else {
+                resolve(result);
+            }
+        };
+
+        request.onerror = function() {
+            console.error("Ошибка", request.error);
+            reject(request.error);
+        };
+    })
+}
+
 export function clean(db, store) {
     return new Promise((resolve, reject)=>{
 

@@ -32,6 +32,11 @@ class dbStore extends StoreClass{
 
     @action getSetting=(key)=>indexedDB.get(this.db, 'settings', key)
 
+    @action loadComments=()=>indexedDB.getAllWithKeys(this.db, 'comments')
+
+    @action saveComment=(value, key)=>indexedDB.put(this.db, 'comments', value, key)
+
+    @action deleteComment=(key)=>indexedDB.del(this.db, 'comments', key)
 
 }
 
