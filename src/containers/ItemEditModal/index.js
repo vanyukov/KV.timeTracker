@@ -29,6 +29,7 @@ function ItemEditModal(props){
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
     const closePopup = ()=>props.setShowPopup(false);
     const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
+    const setComment = (text)=>changeTrackEdit('comment', text)
 
     // TIME
 
@@ -175,6 +176,12 @@ function ItemEditModal(props){
                                 placeholder="Comment"
                                 onChange={editComment}
                             />
+                            {props.stores.Comments.items.map(comment=><Button variant="outline-primary"
+                                                                              className={"mr-2 mt-1"}
+                                                                              onClick={()=>{setComment(comment.text)}}
+                            >
+                                {comment.preview}
+                            </Button>)}
                         </Col>
                     </Form.Group>
                     <Form.Group controlId="formCheckbox" >
