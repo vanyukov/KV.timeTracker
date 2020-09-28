@@ -7,12 +7,14 @@ class chromeStore extends StoreClass{
     @observable isExtensionMode;
     @observable currentTab;
     @observable isJiraTab;
+    @observable isUtzTab;
 
     constructor(rootStore){
         super(rootStore);
         this.isExtensionMode = chrome.isExtensionMode();
         this.currentTab = null;
         this.isJiraTab = false;
+        this.isUtzTab = false;
 
         if (this.isExtensionMode){
             this.setCurrentTab();
@@ -25,6 +27,10 @@ class chromeStore extends StoreClass{
             .then(result=>{
                 this.isJiraTab = !!(this.currentTab.url.indexOf(
                     this.rootStore.Settings.getSetting('jiraUrl')
+                ) + 1)
+
+                this.isUtzTab = !!(this.currentTab.url.indexOf(
+                    this.rootStore.Settings.getSetting('utzUrl')
                 ) + 1)
 
             })
@@ -64,6 +70,20 @@ class chromeStore extends StoreClass{
 
         }
 
+    }
+
+    @action getFieldFromUtz(field){
+        if (!this.isExtensionMode){
+            return Promise.resolve(field)
+        }
+        if(!this.isUtzTab){
+            return Promise.resolve(null)
+        }
+
+        if (field=='date'){
+            return  chrome.runJS(this.currentTab, 'document.querySelector("#contentwrapper .heading").innerText.match(/\\d\\d.\\d\\d.\\d\\d\\d\\d/)')
+
+        }
     }
 
     getEpicLinkId(){
@@ -155,6 +175,11 @@ class chromeStore extends StoreClass{
                 }
             })
 
+    }
+
+    @action saveUTZ(track){
+
+        console.log('saveUTZ')
     }
 
 }

@@ -5,15 +5,30 @@ import {Container, Form} from "react-bootstrap";
 import ItemEditModal from "~/containers/ItemEditModal";
 import tracks from "~/api/db/tracks";
 import ElapsedTime from "~/components/ ElapsedTime";
+import * as dateTime from "~/api/helpers/dateTime";
 
 function Day(props) {
     const [trackEdit, setTrackEdit] = useState(tracks.getNew());
     const [showPopup, setShowPopup] = useState(false);
+    const [utzDay, setUtzDay] = useState(null);
     const openPopupTrackEdit = track => {
         setTrackEdit(track);
         setShowPopup(true);
     }
     const tabJiraTicket = props.stores.chromeStore.isJiraTab && props.stores.chromeStore.getFieldFromJira('ticket');
+
+    useEffect(()=>{
+
+        if (props.stores.chromeStore.isUtzTab){
+            props.stores.chromeStore.getFieldFromUtz('date')
+                .then(result=>{
+                    if (result){
+                        setUtzDay(result[0])
+                    }
+                })
+        }
+
+    },[props.stores.chromeStore.isUtzTab])
 
     return(
         <Container>
@@ -29,6 +44,8 @@ function Day(props) {
                     delete={()=>props.stores.TracksStore.delete(track.date)}
                     saveJira={()=>props.stores.chromeStore.saveJira(track)}
                     showSaveJira={tabJiraTicket == track.ticket && !track.savedJira && track.ticket}
+                    showSaveUTZ={!track.savedUTZ && track.ticket && (utzDay == dateTime.getFormat("DD.MM.YYYY",track.date))}
+                    saveUTZ={()=>props.stores.chromeStore.saveUTZ(track)}
                 />
             })}
 

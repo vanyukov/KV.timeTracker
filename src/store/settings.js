@@ -14,7 +14,7 @@ export default class Settings extends StoreClass {
             },
             {
                 name: 'utzUrl',
-                value: 'http://timesheet.services.lenvendo.ru/report/my/list'
+                value: 'http://timesheet.services.lenvendo.ru'
             },
             {
                 name: 'gitRepositoryUrl',

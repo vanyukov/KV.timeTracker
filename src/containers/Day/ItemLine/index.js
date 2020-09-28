@@ -97,11 +97,19 @@ function ItemLine(props) {
                         label="saved Jira"
                         checked={props.track.savedJira}
                         disabled/>}
-                    <Form.Check
+
+                    {props.showSaveUTZ && <Button
+                        onClick={props.saveUTZ}
+                        className="ml-2"
+                    >
+                        save UTZ
+                    </Button>}
+                    {!props.showSaveUTZ && <Form.Check
                         type="checkbox"
                         label="saved UTZ"
                         checked={props.track.savedUTZ}
                         disabled />
+                    }
                 </Form.Group>
 
                 {!props.track.active &&
