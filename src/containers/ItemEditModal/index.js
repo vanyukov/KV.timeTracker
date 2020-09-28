@@ -179,6 +179,7 @@ function ItemEditModal(props){
                             {props.stores.Comments.items.map(comment=><Button variant="outline-primary"
                                                                               className={"mr-2 mt-1"}
                                                                               onClick={()=>{setComment(comment.text)}}
+                                                                              key={comment.key}
                             >
                                 {comment.preview}
                             </Button>)}
