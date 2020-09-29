@@ -1,8 +1,7 @@
-const relationJiraUTZ = {
+const UtzJobTypes = {
     getNew(){
         return {
-            jira: '',
-            utz: '',
+            type: '',
         }
     },
 
@@ -11,4 +10,4 @@ const relationJiraUTZ = {
     index: [],
 }
 
-export default relationJiraUTZ;
+export default UtzJobTypes;

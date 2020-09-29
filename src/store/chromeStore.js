@@ -129,6 +129,12 @@ class chromeStore extends StoreClass{
     }
 
     @action saveJira(track){
+
+        const instance = this;
+        function injectTimeLogField(query) {
+            return instance.injectField("document.getElementById('log-work-time-logged')", query)
+        }
+
         if (track.ticket != this.getFieldFromJira('ticket')) {
             return Promise.reject('')
         }
@@ -136,7 +142,7 @@ class chromeStore extends StoreClass{
 
         //Time
         const elapsedTime = dateTime.timeDiffSplitted(track.startTime, (track.active ? new Date :  0), track.elapsedTime);
-        this.injectTimeLogField("document.getElementById('log-work-time-logged').value = '" + elapsedTime.hours + "h " + elapsedTime.minutes + "m'");
+        injectTimeLogField("document.getElementById('log-work-time-logged').value = '" + elapsedTime.hours + "h " + elapsedTime.minutes + "m'");
 
         //Date
         const dateStart = dateTime.parseDate(track.date);
@@ -147,12 +153,11 @@ class chromeStore extends StoreClass{
             + dateTime.getFormat('YY hh:mm', track.date)
             + " " + (dateStart.hour > 11 ? 'PM' : 'AM')
         ;
-        this.injectTimeLogField("document.getElementById('log-work-date-logged-date-picker').value = '" + time + "'");
+        injectTimeLogField("document.getElementById('log-work-date-logged-date-picker').value = '" + time + "'");
 
         //Comment
-        const instance = this;
         setTimeout(function (){
-            instance.injectTimeLogField(
+            injectTimeLogField(
                 "document.querySelector('iframe').contentWindow.document.querySelector('.mce-content-body').innerHTML = '<p>" + track.comment + "</p>';"
                 + "document.querySelector('rich-editor').innerHTML = '<p>" + track.comment + "</p>'; "
                 + "document.querySelectorAll('[name=\"comment\"]')[0].value = '" + track.comment + "'; "
@@ -160,16 +165,16 @@ class chromeStore extends StoreClass{
         }, 500)
     }
 
-    injectTimeLogField(query){
+    injectField(checkedField, query){
         const instance = this;
-        return chrome.runJS(this.currentTab, "document.getElementById('log-work-time-logged')")
+        return chrome.runJS(this.currentTab, checkedField)
             .then(result=>{
                 if (result){
                     return chrome.runJS(instance.currentTab, query)
                 } else {
                     return new Promise(((resolve, reject)=>{
                         setTimeout(()=>{
-                            resolve(instance.injectTimeLogField(query))
+                            resolve(instance.injectField(checkedField,query))
                         }, 100)
                     }))
                 }
@@ -179,7 +184,58 @@ class chromeStore extends StoreClass{
 
     @action saveUTZ(track){
 
-        console.log('saveUTZ')
+        const elapsedTime = dateTime.timeDiffSplitted(track.startTime, track.active ? new Date : 0, track.elapsedTime)
+
+        //open popup
+        chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0]")
+        .then(result=>{
+            if (!result){
+                chrome.runJS(this.currentTab, "document.querySelector('#addRowLink').click()");
+            };
+        });
+
+        //set Клиент = mts
+        this.injectField(
+            "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id')",
+            "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').value = 19")
+            .then(result=>{
+                return chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').dispatchEvent(new Event('change'))");
+            })
+            .then(result=>{
+
+                //Код задачи
+                let id = 0;
+                if (track.ticket.match(/^IMO-/)){
+                    id = 1289
+                } else if (track.ticket.match(/^IMD-/)){
+                    id = 1268
+                } else if (track.ticket.match(/^IMSUPNEW-/)){
+                    id = 1258
+                };
+
+                if (id){
+                    setTimeout(()=>{
+                            chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').value = '" + id + "'")
+                            .then(result=>{
+                                return chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').dispatchEvent(new Event(\"change\"))")
+                            })
+                    },1000)
+                }
+
+                // Тикет
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_issue').value = '" + track.ticket + "'")
+
+                // Тип работ
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = 'Разработка проектных решений'")
+
+                // Номер эпика
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_epic_number').value = '" + track.epic + "'")
+
+                // Время (ч)
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + (+elapsedTime.minutes * 100 / 60) : "") + "'")
+
+            })
+
     }
 
 }

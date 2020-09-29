@@ -44,7 +44,7 @@ function Day(props) {
                     delete={()=>props.stores.TracksStore.delete(track.date)}
                     saveJira={()=>props.stores.chromeStore.saveJira(track)}
                     showSaveJira={tabJiraTicket == track.ticket && !track.savedJira && track.ticket}
-                    showSaveUTZ={!track.savedUTZ && track.ticket && (utzDay == dateTime.getFormat("DD.MM.YYYY",track.date))}
+                    showSaveUTZ={!track.savedUTZ && (utzDay == dateTime.getFormat("DD.MM.YYYY",track.date))}
                     saveUTZ={()=>props.stores.chromeStore.saveUTZ(track)}
                 />
             })}

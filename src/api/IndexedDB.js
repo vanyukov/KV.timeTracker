@@ -1,7 +1,7 @@
 import tracks from "./db/tracks";
 import settings from "./db/settings";
 import comments from "./db/comments";
-import relationJiraUTZ from "./db/relationJiraUTZ";
+import UtzJobTypes from "./db/utzJobTypes";
 
 const dbInfo = {
     name: 'TimeTracks',
@@ -11,7 +11,7 @@ const stores = {
     tracks,
     settings,
     comments,
-    relationJiraUTZ,
+    relationJiraUTZ: UtzJobTypes,
 }
 
 export function openDB() {

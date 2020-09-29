@@ -7,6 +7,7 @@ export function getCurrentTab(){
 }
 
 export function runJS(tab, query){
+console.log(query)
     return new Promise((resolve, reject)=>{
         chrome.tabs.executeScript(
             tab.id,
