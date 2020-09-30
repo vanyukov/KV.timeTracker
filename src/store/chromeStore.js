@@ -67,6 +67,9 @@ class chromeStore extends StoreClass{
                             return this.getEpicLink(epicLinkId, this.getFieldFromJira('ticket'));
                         })
                 })
+                .catch(e => {
+                    console.log(e);
+                })
 
         }
 
