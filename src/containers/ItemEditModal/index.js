@@ -27,9 +27,16 @@ function ItemEditModal(props){
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
-    const closePopup = ()=>props.setShowPopup(false);
+    const closePopup = ()=>props.setShowPopup(false)
     const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
     const setComment = (text)=>changeTrackEdit('comment', text)
+
+    const fillTrack = () => {
+        props.stores.TracksStore
+            .fillNewTrack( props.trackEdit )
+            .then(props.setTrackEdit);
+    }
+
 
     // TIME
 
@@ -82,6 +89,12 @@ function ItemEditModal(props){
                             onClick={saveTrackEdit}
                     >
                         Save
+                    </Button>
+                    <Button variant="outline-primary"
+                            className={"ml-1"}
+                            onClick={fillTrack}
+                    >
+                        fill
                     </Button>
                 </Modal.Title>
             </Modal.Header>
