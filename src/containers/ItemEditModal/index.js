@@ -205,7 +205,7 @@ function ItemEditModal(props){
                             inline
                             label="Внеурочка"
                             type="checkbox"
-                            id="inline-checkbox-jira"
+                            id="inline-checkbox-overtime"
                             checked={props.trackEdit.overtime}
                             onChange={editSavedOvertime}
                         />
