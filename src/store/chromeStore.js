@@ -144,7 +144,14 @@ class chromeStore extends StoreClass{
         chrome.runJS(this.currentTab, "document.getElementById('log-work').click()");
 
         //Time
-        const elapsedTime = dateTime.timeDiffSplitted(track.startTime, (track.active ? new Date :  0), track.elapsedTime);
+        let trackTime =  track.elapsedTime
+        if ( track.active ){
+            trackTime += new Date - track.startTime
+        }
+        if ( track.overtime ){
+            trackTime *= 2;
+        }
+        const elapsedTime = dateTime.timeDiffSplitted(0, 0, trackTime);
         injectTimeLogField("document.getElementById('log-work-time-logged').value = '" + elapsedTime.hours + "h " + elapsedTime.minutes + "m'");
 
         //Date
