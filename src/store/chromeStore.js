@@ -228,14 +228,25 @@ class chromeStore extends StoreClass{
                 // Тикет
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_issue').value = '" + track.ticket + "'")
 
-                // Тип работ
-                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = 'Разработка проектных решений'")
-
                 // Номер эпика
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_epic_number').value = '" + track.epic + "'")
 
                 // Время (ч)
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + (+elapsedTime.minutes * 100 / 60) : "") + "'")
+
+                // Время (ч)
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + (+elapsedTime.minutes * 100 / 60) : "") + "'")
+
+                //Комментарий
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_comment').value = '" + track.comment + "'")
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#comments').text = '" + track.comment + "'")
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.delete_comment').style.cssText = ''")
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.editable-input .fancy_textarea').value = '" + track.comment + "'")
+
+                setTimeout(()=>{
+                    // Тип работ
+                    chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = 'Разработка проектных решений'")
+                }, 1000)
 
             })
 
