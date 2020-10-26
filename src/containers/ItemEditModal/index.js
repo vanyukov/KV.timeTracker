@@ -25,6 +25,7 @@ function ItemEditModal(props){
     const editBranch = (event)=>changeTrackEdit('branch', event.target.value)
     const editEpic = (event)=>changeTrackEdit('epic', event.target.value)
     const editComment = (event)=>changeTrackEdit('comment', event.target.value)
+    const editSavedOvertime = (event)=>changeTrackEdit('overtime', event.target.checked)
     const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
     const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
     const closePopup = ()=>props.setShowPopup(false)
@@ -197,6 +198,17 @@ function ItemEditModal(props){
                                 {comment.preview}
                             </Button>)}
                         </Col>
+                    </Form.Group>
+                    <Form.Group controlId="formCheckbox" >
+                        <Form.Check
+                            sm="3"
+                            inline
+                            label="Внеурочка"
+                            type="checkbox"
+                            id="inline-checkbox-jira"
+                            checked={props.trackEdit.overtime}
+                            onChange={editSavedOvertime}
+                        />
                     </Form.Group>
                     <Form.Group controlId="formCheckbox" >
                         <Form.Check

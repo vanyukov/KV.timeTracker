@@ -10,6 +10,7 @@ const tracks = {
             branch: '',
             epic: '',
             comment: '',
+            overtime: false,
             typeUTZ: 0,
             savedJira: false,
             savedUTZ: false,
