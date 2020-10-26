@@ -163,7 +163,7 @@ class chromeStore extends StoreClass{
             injectTimeLogField(
                 "document.querySelector('iframe').contentWindow.document.querySelector('.mce-content-body').innerHTML = '<p>" + track.comment + "</p>';"
                 + "document.querySelector('rich-editor').innerHTML = '<p>" + track.comment + "</p>'; "
-                + "document.querySelectorAll('[name=\"comment\"]')[0].value = '" + track.comment + "'; "
+                + "document.querySelector('#log-work #comment').value = '" + track.comment + "'; "
             );
         }, 500)
     }
