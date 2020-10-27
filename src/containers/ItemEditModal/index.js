@@ -7,6 +7,8 @@ import * as dateTime from "~/api/helpers/dateTime";
 
 function ItemEditModal(props){
 
+    const closePopup = ()=>props.setShowPopup(false)
+
     // SAVE TRACK
     const saveTrackEdit = () => {
         closePopup();
@@ -20,15 +22,6 @@ function ItemEditModal(props){
         })
     }
 
-    const editTicket = (event)=>changeTrackEdit('ticket', event.target.value)
-    const editTicketTitle = (event)=>changeTrackEdit('ticketTitle', event.target.value)
-    const editBranch = (event)=>changeTrackEdit('branch', event.target.value)
-    const editEpic = (event)=>changeTrackEdit('epic', event.target.value)
-    const editComment = (event)=>changeTrackEdit('comment', event.target.value)
-    const editSavedOvertime = (event)=>changeTrackEdit('overtime', event.target.checked)
-    const editSavedJira = (event)=>changeTrackEdit('savedJira', event.target.checked)
-    const editSavedUTZ = (event)=>changeTrackEdit('savedUTZ', event.target.checked)
-    const closePopup = ()=>props.setShowPopup(false)
     const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
     const setComment = (text)=>changeTrackEdit('comment', text)
 
@@ -37,7 +30,6 @@ function ItemEditModal(props){
             .fillNewTrack( props.trackEdit )
             .then(props.setTrackEdit);
     }
-
 
     // TIME
 
@@ -136,7 +128,7 @@ function ItemEditModal(props){
                                 type="text"
                                 value={props.trackEdit.ticket}
                                 placeholder="Ticket"
-                                onChange={editTicket}
+                                onChange={event=>changeTrackEdit('ticket', event.target.value)}
                             />
                         </Col>
                     </Form.Group>
@@ -149,7 +141,7 @@ function ItemEditModal(props){
                                 type="text"
                                 value={props.trackEdit.ticketTitle}
                                 placeholder="Ticket Title"
-                                onChange={editTicketTitle}
+                                onChange={event=>changeTrackEdit('ticketTitle', event.target.value)}
                             />
                         </Col>
                     </Form.Group>
@@ -162,7 +154,7 @@ function ItemEditModal(props){
                                 type="text"
                                 value={props.trackEdit.branch}
                                 placeholder="Branch"
-                                onChange={editBranch}
+                                onChange={event=>changeTrackEdit('branch', event.target.value)}
                             />
                         </Col>
                     </Form.Group>
@@ -175,7 +167,7 @@ function ItemEditModal(props){
                                 type="text"
                                 value={props.trackEdit.epic}
                                 placeholder="Epic"
-                                onChange={editEpic}
+                                onChange={event=>changeTrackEdit('epic', event.target.value)}
                             />
                         </Col>
                     </Form.Group>
@@ -188,7 +180,7 @@ function ItemEditModal(props){
                                 as="textarea" rows="3"
                                 value={props.trackEdit.comment}
                                 placeholder="Comment"
-                                onChange={editComment}
+                                onChange={event=>changeTrackEdit('comment', event.target.value)}
                             />
                             {props.stores.Comments.items.map(comment=><Button variant="outline-primary"
                                                                               className={"mr-2 mt-1"}
@@ -207,7 +199,7 @@ function ItemEditModal(props){
                             type="checkbox"
                             id="inline-checkbox-overtime"
                             checked={props.trackEdit.overtime}
-                            onChange={editSavedOvertime}
+                            onChange={event=>changeTrackEdit('overtime', event.target.checked)}
                         />
                     </Form.Group>
                     <Form.Group controlId="formCheckbox" >
@@ -218,7 +210,7 @@ function ItemEditModal(props){
                             type="checkbox"
                             id="inline-checkbox-jira"
                             checked={props.trackEdit.savedJira}
-                            onChange={editSavedJira}
+                            onChange={event=>changeTrackEdit('savedJira', event.target.checked)}
                         />
                         <Form.Check
                             sm="3"
@@ -227,7 +219,7 @@ function ItemEditModal(props){
                             type="checkbox"
                             id="inline-checkbox-UTZ"
                             checked={props.trackEdit.savedUTZ}
-                            onChange={editSavedUTZ}
+                            onChange={event=>changeTrackEdit('savedUTZ', event.target.checked)}
                         />
                     </Form.Group>
                 </Form>
