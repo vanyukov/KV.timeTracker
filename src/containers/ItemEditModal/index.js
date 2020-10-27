@@ -4,6 +4,7 @@ import {getDatePresentation} from "~/api/helpers/dateTime";
 import withStore from "~/hocs/withStore";
 import tracks from "~/api/db/tracks";
 import * as dateTime from "~/api/helpers/dateTime";
+import SelectTypeUtz from "~/components/selectTypeUtz";
 
 function ItemEditModal(props){
 
@@ -30,6 +31,8 @@ function ItemEditModal(props){
             .fillNewTrack( props.trackEdit )
             .then(props.setTrackEdit);
     }
+
+    const changeIdUTZ = (keyComment, keyUtz) => changeTrackEdit('typeUTZ', keyUtz)
 
     // TIME
 
@@ -194,6 +197,11 @@ function ItemEditModal(props){
                             </Button>)}
                         </Col>
                     </Form.Group>
+                    <SelectTypeUtz
+                        typeUTZ={props.trackEdit.typeUTZ}
+                        keyComment={''}
+                        changeIdUTZ={changeIdUTZ}
+                    />
                     <Form.Group controlId="formCheckbox" >
                         <Form.Check
                             sm="3"

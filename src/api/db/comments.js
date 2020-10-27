@@ -2,7 +2,7 @@ const comments = {
     getNew(){
         return {
             text: '',
-            idUTZ: '',
+            typeUTZ: '',
             preview: '',
         }
     },

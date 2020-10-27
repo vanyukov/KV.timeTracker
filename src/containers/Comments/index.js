@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Link, useHistory} from "react-router-dom";
 import withStore from "~/hocs/withStore";
-import {Container, Row, Col, Button, Form, InputGroup} from "react-bootstrap";
+import {Container, Row, Col, Button, Form} from "react-bootstrap";
+import SelectTypeUtz from "~/components/selectTypeUtz";
 
 function Comments(props) {
     const history = useHistory();
@@ -10,6 +11,7 @@ function Comments(props) {
     }
 
     const loadDefault = ()=>props.stores.Comments.loadDefault()
+    const changeTypeUTZ = (keyComment, keyUtz) => props.stores.Comments.changeComment(keyComment, 'typeUTZ', keyUtz)
 
     return(
         <Container>
@@ -67,13 +69,11 @@ function Comments(props) {
                             />
                         </Col>
                         <Col sm={3}>
-                            <Form.Control
-                                as="select"
-                                value={item.idUTZ}
-                                onChange={(event)=>{props.stores.Comments.changeComment(item.key, 'idUTZ', event.target.value)}}
-                            >
-                                {props.stores.UtzJobTypes.items.map(item=><option key={item.key} value={item.key}>{item.type}</option>)}
-                            </Form.Control>
+                            <SelectTypeUtz
+                                typeUTZ={item.typeUTZ}
+                                keyComment={item.key}
+                                changeTypeUTZ={changeTypeUTZ}
+                            />
                         </Col>
                         <Col sm={3}>
                             <Button
