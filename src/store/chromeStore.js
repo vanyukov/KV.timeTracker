@@ -239,10 +239,7 @@ class chromeStore extends StoreClass{
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_epic_number').value = '" + track.epic + "'")
 
                 // Время (ч)
-                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + (+elapsedTime.minutes * 100 / 60) : "") + "'")
-
-                // Время (ч)
-                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + (+elapsedTime.minutes * 100 / 60) : "") + "'")
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" + (+elapsedTime.hours) + (+elapsedTime.minutes ? "." + Math.round(+elapsedTime.minutes * 100 / 60) : "") + "'")
 
                 //Комментарий
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_comment').value = '" + track.comment + "'")
