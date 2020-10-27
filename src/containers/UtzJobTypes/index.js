@@ -36,7 +36,7 @@ function UtzJobTypes(props) {
                 </Row>
                 {props.stores.UtzJobTypes.items.map(item=>{
 
-                    return <Form.Group as={Row} controlId="formHorizontalEmail" key={item.key}>
+                    return <Form.Group as={Row} controlId={"formHorizontal" + item.key} key={item.key}>
                         <Col >
                             <Form.Control
                                 value={item.type}

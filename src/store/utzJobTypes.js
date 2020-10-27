@@ -32,7 +32,12 @@ export default class UtzJobTypes extends StoreClass {
     }
 
     @action newUtzJobType(){
-        this.items.push(utzJobTypes.getNew());
+        this.rootStore.dbStore.saveUtzJobType(utzJobTypes.getNew())
+            .then(res=>{
+                const newItem = utzJobTypes.getNew()
+                newItem.key = res;
+                this.items.push(newItem);
+            })
     }
 
     @action loadUtzJobTypes() {
