@@ -250,9 +250,10 @@ class chromeStore extends StoreClass{
                 //Внеурочка
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = '" + track.overtime + "'")
 
+                // Тип работ
+                const typeUtz = this.rootStore.UtzJobTypes.items.find(item=>track.typeUTZ==item.key)
                 setTimeout(()=>{
-                    // Тип работ
-                    chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = 'Разработка проектных решений'")
+                    chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = '" + typeUtz.type + "'")
                 }, 1000)
 
             })
