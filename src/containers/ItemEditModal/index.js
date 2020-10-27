@@ -22,17 +22,11 @@ function ItemEditModal(props){
             [field]: value
         })
     }
-
-    const editElapsedTime = (elapsedTime)=> changeTrackEdit('elapsedTime', elapsedTime)
-    const setComment = (text)=>changeTrackEdit('comment', text)
-
     const fillTrack = () => {
         props.stores.TracksStore
             .fillNewTrack( props.trackEdit )
             .then(props.setTrackEdit);
     }
-
-    const changeIdUTZ = (keyComment, keyUtz) => changeTrackEdit('typeUTZ', keyUtz)
 
     // TIME
 
@@ -69,7 +63,7 @@ function ItemEditModal(props){
                 elapsedTime: 0,
             })
         } else {
-            editElapsedTime(elapsedTime)
+            changeTrackEdit('elapsedTime', elapsedTime)
         }
     }
 
@@ -190,18 +184,23 @@ function ItemEditModal(props){
                             />
                             {props.stores.Comments.items.map(comment=><Button variant="outline-primary"
                                                                               className={"mr-2 mt-1"}
-                                                                              onClick={()=>{setComment(comment.text)}}
+                                                                              onClick={()=>{changeTrackEdit('comment', comment.text)}}
                                                                               key={comment.key}
                             >
                                 {comment.preview}
                             </Button>)}
                         </Col>
                     </Form.Group>
-                    <SelectTypeUtz
-                        typeUTZ={props.trackEdit.typeUTZ}
-                        keyComment={''}
-                        changeIdUTZ={changeIdUTZ}
-                    />
+                    <Form.Group controlId="formTypeUTZ" >
+                        <Form.Label column sm="3">
+                            Тип УТЗ
+                        </Form.Label>
+                        <SelectTypeUtz
+                            typeUTZ={props.trackEdit.typeUTZ}
+                            keyComment={''}
+                            changeTypeUTZ={(keyComment, keyUtz) => changeTrackEdit('typeUTZ', keyUtz)}
+                        />
+                    </Form.Group>
                     <Form.Group controlId="formCheckbox" >
                         <Form.Check
                             sm="3"
