@@ -5,6 +5,10 @@ import withStore from "~/hocs/withStore";
 import tracks from "~/api/db/tracks";
 import * as dateTime from "~/api/helpers/dateTime";
 import SelectTypeUtz from "~/components/selectTypeUtz";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import ru from 'date-fns/locale/ru';
+registerLocale('ru', ru)
 
 function ItemEditModal(props){
 
@@ -67,7 +71,8 @@ function ItemEditModal(props){
         }
     }
 
-    //
+    //Date
+    const [startDate, setStartDate] = useState(new Date());
 
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
@@ -98,10 +103,16 @@ function ItemEditModal(props){
                             Дата
                         </Form.Label>
                         <Col sm="9">
-                            <Form.Control
-                                type="text"
-                                value={dateTime.getFormat("YYYY-MM-DD", props.trackEdit.date)}
-                                disabled
+
+                            <DatePicker
+                                dateFormat="yyyy-MM-dd"
+                                selected={props.trackEdit.date}
+                                onChange={date => setStartDate(date)}
+                                locale="ru"
+                                customInput={<Form.Control
+                                    type="text"
+                                    value={dateTime.getFormat("YYYY-MM-DD", props.trackEdit.date)}
+                                />}
                             />
                         </Col>
                     </Form.Group>
