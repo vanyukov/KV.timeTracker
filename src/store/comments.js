@@ -1,6 +1,7 @@
 import {observable, computed, action} from 'mobx';
 import StoreClass from "./StoreClass";
 import comments from "~/api/db/comments"
+import utzJobTypes from "~/api/db/utzJobTypes";
 
 export default class Comments extends StoreClass {
     @observable items = [];
@@ -40,7 +41,13 @@ export default class Comments extends StoreClass {
     }
 
     @action newComment(){
-        this.items.push(comments.getNew());
+        this.rootStore.dbStore.saveComment(comments.getNew())
+            .then(res=>{
+                const newItem = comments.getNew()
+                newItem.key = res;
+                this.items.push(newItem);
+            })
+
     }
 
     @action loadComments() {
