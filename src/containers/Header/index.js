@@ -48,10 +48,10 @@ function Header(props) {
                                 <Link to="/reports">Reports</Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item as={"div"}>
-                                <Link to="/comments">Comments</Link>
+                                <Link to="/comments">Сохраненные комментарии</Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item as={"div"}>
-                                <Link to="/utzJobTypes">UtzJobTypes</Link>
+                                <Link to="/utzJobTypes">Типы работ УТЗ</Link>
                             </NavDropdown.Item>
                         </NavDropdown>
                     </header>

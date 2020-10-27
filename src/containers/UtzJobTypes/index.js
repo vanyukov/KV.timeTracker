@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import withStore from "~/hocs/withStore";
 import {Container, Row, Col, Button, Form} from "react-bootstrap";
 
@@ -14,7 +14,7 @@ function UtzJobTypes(props) {
     return(
         <Container>
             <h1 className={"mt-2"}>
-                UtzJobTypes
+                Типы работ УТЗ
                 <Button
                     variant="outline-secondary"
                     size="sm"
