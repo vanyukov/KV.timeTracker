@@ -42,10 +42,22 @@ function Day(props) {
                     start={()=>props.stores.TracksStore.start(track)}
                     edit={()=>openPopupTrackEdit(track)}
                     delete={()=>props.stores.TracksStore.delete(track.date)}
-                    saveJira={()=>props.stores.chromeStore.saveJira(track)}
                     showSaveJira={tabJiraTicket == track.ticket && track.ticket}
                     showSaveUTZ={utzDay == dateTime.getFormat("DD.MM.YYYY",track.date)}
-                    saveUTZ={()=>props.stores.chromeStore.saveUTZ(track)}
+                    saveJira={()=> {
+                        props.stores.chromeStore.saveJira(track)
+                        props.stores.TracksStore.update({
+                            ...track,
+                            savedJira: true
+                        })
+                    }}
+                    saveUTZ={()=> {
+                        props.stores.chromeStore.saveUTZ(track)
+                        props.stores.TracksStore.update({
+                            ...track,
+                            savedUTZ: true
+                        })
+                    }}
                 />
             })}
 
