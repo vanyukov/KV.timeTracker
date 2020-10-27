@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import withStore from "~/hocs/withStore";
-import {Container, Row, Col, Button, Form} from "react-bootstrap";
+import {Container, Row, Col, Button, Form, InputGroup} from "react-bootstrap";
 
 function Comments(props) {
     const history = useHistory();
@@ -38,9 +38,9 @@ function Comments(props) {
                             disabled={true}
                         />
                     </Col>
-                    <Col sm={2}>
+                    <Col sm={3}>
                         <Form.Control
-                            value={'idUTZ'}
+                            value={'Тип работ УТЗ'}
                             type="text"
                             disabled={true}
                         />
@@ -66,12 +66,14 @@ function Comments(props) {
                                 type="text"
                             />
                         </Col>
-                        <Col sm={2}>
+                        <Col sm={3}>
                             <Form.Control
+                                as="select"
                                 value={item.idUTZ}
                                 onChange={(event)=>{props.stores.Comments.changeComment(item.key, 'idUTZ', event.target.value)}}
-                                type="text"
-                            />
+                            >
+                                {props.stores.UtzJobTypes.items.map(item=><option key={item.key} value={item.key}>{item.type}</option>)}
+                            </Form.Control>
                         </Col>
                         <Col sm={3}>
                             <Button
