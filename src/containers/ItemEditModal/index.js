@@ -17,10 +17,10 @@ function ItemEditModal(props){
         props.setTrackEdit(tracks.getNew());
     }
     const changeTrackEdit = (field, value) =>{
-        props.setTrackEdit({
-            ...props.trackEdit,
+        props.setTrackEdit(prevState => ({
+            ...prevState,
             [field]: value
-        })
+        }))
     }
     const fillTrack = () => {
         props.stores.TracksStore
@@ -184,7 +184,12 @@ function ItemEditModal(props){
                             />
                             {props.stores.Comments.items.map(comment=><Button variant="outline-primary"
                                                                               className={"mr-2 mt-1"}
-                                                                              onClick={()=>{changeTrackEdit('comment', comment.text)}}
+                                                                              onClick={()=>{
+                                                                                  changeTrackEdit('comment', comment.text)
+                                                                                  if (comment.typeUTZ){
+                                                                                      changeTrackEdit('typeUTZ', comment.typeUTZ)
+                                                                                  }
+                                                                              }}
                                                                               key={comment.key}
                             >
                                 {comment.preview}
