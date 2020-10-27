@@ -83,12 +83,15 @@ function ItemEditModal(props){
                     >
                         Save
                     </Button>
+                    {props.stores.chromeStore.isJiraTab
+                    &&
                     <Button variant="outline-primary"
                             className={"ml-1"}
                             onClick={fillTrack}
                     >
                         fill
                     </Button>
+                    }
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
