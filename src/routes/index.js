@@ -2,6 +2,7 @@ import Day from '~/containers/Day';
 import Month from '~/containers/Month';
 import Settings from '~/containers/Settings';
 import Comments from '~/containers/Comments';
+import UtzJobTypes from '~/containers/UtzJobTypes';
 import Reports from '~/containers/Reports';
 import ViewAll from '~/containers/Reports/ViewAll';
 
@@ -16,6 +17,12 @@ let routes = [
         name: 'settings',
         url: '/settings',
         component: Settings,
+        exact: true
+    },
+    {
+        name: 'utzJobTypes',
+        url: '/utzJobTypes',
+        component: UtzJobTypes,
         exact: true
     },
     {

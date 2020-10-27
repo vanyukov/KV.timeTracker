@@ -1,17 +1,17 @@
 import tracks from "./db/tracks";
 import settings from "./db/settings";
 import comments from "./db/comments";
-import UtzJobTypes from "./db/utzJobTypes";
+import utzJobTypes from "./db/utzJobTypes";
 
 const dbInfo = {
     name: 'TimeTracks',
-    version: 1,
+    version: 2,
 };
 const stores = {
     tracks,
     settings,
     comments,
-    relationJiraUTZ: UtzJobTypes,
+    utzJobTypes,
 }
 
 export function openDB() {
@@ -20,10 +20,12 @@ export function openDB() {
         dbReq.onupgradeneeded = (event) => {
             const db = event.target.result;
             for (let store in stores){
-                const objectStore = db.createObjectStore(store, stores[store].keys);
-                stores[store].index.forEach(item=>{
-                    objectStore.createIndex(item.name,item.name, item.options);
-                });
+                if (!db.objectStoreNames.contains(store)) {
+                    const objectStore = db.createObjectStore(store, stores[store].keys);
+                    stores[store].index.forEach(item=>{
+                        objectStore.createIndex(item.name,item.name, item.options);
+                    });
+                }
             }
             resolve(db);
         }

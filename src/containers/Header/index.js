@@ -50,6 +50,9 @@ function Header(props) {
                             <NavDropdown.Item as={"div"}>
                                 <Link to="/comments">Comments</Link>
                             </NavDropdown.Item>
+                            <NavDropdown.Item as={"div"}>
+                                <Link to="/utzJobTypes">UtzJobTypes</Link>
+                            </NavDropdown.Item>
                         </NavDropdown>
                     </header>
                 </Col>

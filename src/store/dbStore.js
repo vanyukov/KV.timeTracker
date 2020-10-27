@@ -38,6 +38,12 @@ class dbStore extends StoreClass{
 
     @action deleteComment=(key)=>indexedDB.del(this.db, 'comments', key)
 
+    @action loadUtzJobTypes=()=>indexedDB.getAllWithKeys(this.db, 'utzJobTypes')
+
+    @action saveUtzJobType=(value, key)=>indexedDB.put(this.db, 'utzJobTypes', value, key)
+
+    @action deleteUtzJobType=(key)=>indexedDB.del(this.db, 'utzJobTypes', key)
+
 }
 
 export default dbStore;

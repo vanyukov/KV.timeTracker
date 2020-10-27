@@ -17,4 +17,5 @@ stores.dbStore.open()
         stores.TracksStore.loadTracks();
         stores.Settings.loadSettings();
         stores.Comments.loadComments();
+        stores.UtzJobTypes.loadUtzJobTypes();
     });
