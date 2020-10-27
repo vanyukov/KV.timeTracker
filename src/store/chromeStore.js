@@ -250,6 +250,9 @@ class chromeStore extends StoreClass{
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.delete_comment').style.cssText = ''")
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.editable-input .fancy_textarea').value = '" + track.comment + "'")
 
+                //Внеурочка
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = '" + track.overtime + "'")
+
                 setTimeout(()=>{
                     // Тип работ
                     chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = 'Разработка проектных решений'")
