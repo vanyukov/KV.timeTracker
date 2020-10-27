@@ -87,6 +87,7 @@ function ItemLine(props) {
 
                 <Form.Group className={"ml-1 mb-0"}>
                     {props.showSaveJira && <Button
+                        variant={props.track.savedJira ? "outline-secondary" : "primary"}
                         onClick={props.saveJira}
                         className="ml-2"
                     >
@@ -99,6 +100,7 @@ function ItemLine(props) {
                         disabled/>}
 
                     {props.showSaveUTZ && <Button
+                        variant={props.track.savedUTZ ? "outline-secondary" : "primary"}
                         onClick={props.saveUTZ}
                         className="ml-2"
                     >
