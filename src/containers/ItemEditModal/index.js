@@ -71,9 +71,6 @@ function ItemEditModal(props){
         }
     }
 
-    //Date
-    const [startDate, setStartDate] = useState(new Date());
-
     return (
         <Modal show={props.showPopup} onHide={closePopup}>
             <Modal.Header closeButton>
@@ -107,7 +104,7 @@ function ItemEditModal(props){
                             <DatePicker
                                 dateFormat="yyyy-MM-dd"
                                 selected={props.trackEdit.date}
-                                onChange={date => setStartDate(date)}
+                                onChange={date => changeTrackEdit('date', date)}
                                 locale="ru"
                                 customInput={<Form.Control
                                     type="text"
