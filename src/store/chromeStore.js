@@ -248,7 +248,7 @@ class chromeStore extends StoreClass{
                 chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.editable-input .fancy_textarea').value = '" + track.comment + "'")
 
                 //Внеурочка
-                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = '" + track.overtime + "'")
+                chrome.runJS(this.currentTab, "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = " + track.overtime + ";")
 
                 // Тип работ
                 const typeUtz = this.rootStore.UtzJobTypes.items.find(item=>track.typeUTZ==item.key)
