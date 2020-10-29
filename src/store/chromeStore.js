@@ -172,7 +172,7 @@ class chromeStore extends StoreClass{
                 + "document.querySelector('rich-editor').innerHTML = '<p>" + track.comment + "</p>'; "
                 + "document.querySelector('#log-work #comment').value = '" + track.comment + "'; "
             );
-        }, 500)
+        }, 1000)
     }
 
     injectField(checkedField, query){
