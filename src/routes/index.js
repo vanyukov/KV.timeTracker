@@ -3,6 +3,7 @@ import Month from '~/containers/Month';
 import Settings from '~/containers/Settings';
 import Comments from '~/containers/Comments';
 import UtzJobTypes from '~/containers/UtzJobTypes';
+import DB from '~/containers/DB';
 import Reports from '~/containers/Reports';
 import ViewAll from '~/containers/Reports/ViewAll';
 
@@ -29,6 +30,12 @@ let routes = [
         name: 'comments',
         url: '/comments',
         component: Comments,
+        exact: true
+    },
+    {
+        name: 'db',
+        url: '/db',
+        component: DB,
         exact: true
     },
     {
