@@ -30,6 +30,8 @@ function Day(props) {
 
     },[props.stores.chromeStore.isUtzTab])
 
+    let lineNumber = 1;
+
     return(
         <Container>
             {props.stores.TracksStore.tracksOfDay(props.match.params)
@@ -37,6 +39,7 @@ function Day(props) {
                 .map(track=>{
                 return <ItemLine
                     key={track.date}
+                    lineNumber={lineNumber++}
                     track={track}
                     stop={()=>props.stores.TracksStore.stop(track.date)}
                     start={()=>props.stores.TracksStore.start(track)}
