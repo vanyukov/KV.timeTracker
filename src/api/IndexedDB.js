@@ -2,6 +2,7 @@ import tracks from "./db/tracks";
 import settings from "./db/settings";
 import comments from "./db/comments";
 import utzJobTypes from "./db/utzJobTypes";
+const IDBExportImport = require('indexeddb-export-import');
 
 const dbInfo = {
     name: 'TimeTracks',
@@ -174,5 +175,38 @@ export function clean(db, store) {
             console.error("Ошибка", request.error);
             reject(request.error);
         };
+    })
+}
+
+export function exportToJsonString(db){
+    return new Promise((resolve, reject)=> {
+        IDBExportImport.exportToJsonString(db, function (err, jsonString) {
+            if (err) {
+                console.error(err);
+            } else {
+                resolve(jsonString);
+            }
+        });
+    }).catch(function(e) {
+        console.error(e);
+    });
+}
+
+export function clearDatabase(db){
+    return new Promise((resolve, reject)=> {
+        IDBExportImport.clearDatabase(db, resolve);
+    })
+}
+
+export function importFromJsonString(db, jsonString){
+    return new Promise((resolve, reject)=> {
+        IDBExportImport.importFromJsonString(db, jsonString, function(err) {
+            if (err) {
+                console.error(err);
+                reject(false);
+            } else {
+                resolve(true);
+            }
+        });
     })
 }

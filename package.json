@@ -14,6 +14,7 @@
     "bootstrap": "^4.5.0",
     "date-fns": "^2.16.1",
     "html-react-parser": "^0.10.5",
+    "indexeddb-export-import": "^2.1.2",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "moment": "^2.29.1",
@@ -22,6 +23,7 @@
     "react-bootstrap": "^1.0.1",
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.13.1",
+    "react-file-input": "^0.2.5",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {

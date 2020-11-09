@@ -44,6 +44,12 @@ class dbStore extends StoreClass{
 
     @action deleteUtzJobType=(key)=>indexedDB.del(this.db, 'utzJobTypes', key)
 
+    @action exportToJsonString=()=>indexedDB.exportToJsonString(this.db)
+
+    @action clearDatabase=()=>indexedDB.clearDatabase(this.db)
+
+    @action importFromJsonString=(jsonString)=>indexedDB.importFromJsonString(this.db, jsonString)
+
 }
 
 export default dbStore;
