@@ -57,7 +57,7 @@ function DB(props) {
                             </Button>
                         </ButtonGroup>
                         <ButtonGroup className={"ml-2"}>
-                            {msgClear && <Alert variant='success' className={"m-0"}>
+                            {msgLoad.msg && <Alert variant='success' className={"m-0"}>
                                 {msgLoad.msg}
                             </Alert>}
                         </ButtonGroup>
