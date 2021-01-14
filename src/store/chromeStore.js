@@ -53,7 +53,7 @@ class chromeStore extends StoreClass{
             return  chrome.runJS(this.currentTab, 'document.querySelector("#summary-val").textContent')
 
         } else if (field == 'branch'){
-            return  chrome.runJS(this.currentTab, 'document.querySelector("[title=\'Ticket branch\']").parentElement.querySelector(\'strike\').textContent')
+            return  chrome.runJS(this.currentTab, 'document.querySelector(".property-list .issue-link").textContent')
 
         } else if (field == 'epic'){
             return  chrome.runJS(this.currentTab, 'document.querySelector("[data-fieldtype=\'gh-epic-link\'] a").href.split(\'/\').pop()')
