@@ -67,7 +67,7 @@ export default class Clients extends StoreClass {
   }
 
   @action loadClients() {
-    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
+    this.rootStore.dbStore.loadTableRowsWithKeys(this.table).then(data => {
       if (Array.isArray(data) && data.length) {
         data.forEach(item => this.items.push(item));
       } else {

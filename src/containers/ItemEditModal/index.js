@@ -5,6 +5,7 @@ import withStore from '~/hocs/withStore';
 import tracks from '~/api/db/tracks';
 import * as dateTime from '~/api/helpers/dateTime';
 import SelectTypeUtz from '~/components/selectTypeUtz';
+import SelectClient from '~/components/selectClient';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
@@ -144,6 +145,18 @@ function ItemEditModal(props) {
               />
             </Col>
           </Form.Group>
+          <Form.Group controlId='formClient' as={Row}>
+            <Form.Label column sm='3'>
+              Клиент
+            </Form.Label>
+            <Col sm='9'>
+              <SelectClient
+                client={props.trackEdit.client}
+                keyComment={''}
+                change={client => changeTrackEdit('client', client)}
+              />
+            </Col>
+          </Form.Group>
           <Form.Group controlId='formTicketTitle' as={Row}>
             <Form.Label column sm='3'>
               Задача
@@ -218,17 +231,19 @@ function ItemEditModal(props) {
               ))}
             </Col>
           </Form.Group>
-          <Form.Group controlId='formTypeUTZ'>
+          <Form.Group controlId='formTypeUTZ' as={Row}>
             <Form.Label column sm='3'>
               Тип УТЗ
             </Form.Label>
-            <SelectTypeUtz
-              typeUTZ={props.trackEdit.typeUTZ}
-              keyComment={''}
-              changeTypeUTZ={(keyComment, keyUtz) =>
-                changeTrackEdit('typeUTZ', keyUtz)
-              }
-            />
+            <Col sm='9'>
+              <SelectTypeUtz
+                typeUTZ={props.trackEdit.typeUTZ}
+                keyComment={''}
+                changeTypeUTZ={(keyComment, keyUtz) =>
+                  changeTrackEdit('typeUTZ', keyUtz)
+                }
+              />
+            </Col>
           </Form.Group>
           <Form.Group controlId='formCheckbox'>
             <Form.Check
