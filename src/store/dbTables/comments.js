@@ -1,41 +1,41 @@
-import { observable, action } from "mobx";
-import StoreClass from "../StoreClass";
-import comments from "~/api/db/comments";
+import { observable, action } from 'mobx';
+import StoreClass from '../StoreClass';
+import comments from '~/api/db/comments';
 
 export default class Comments extends StoreClass {
   @observable items = [];
 
   constructor(rootStore) {
     super(rootStore);
-    this.table = "comments";
+    this.table = 'comments';
     this.items = [];
     this.defaultComments = [
       {
-        text: "Разработчик. Реализация функциональности",
-        idUTZ: "",
-        preview: "Р.Реализация"
+        text: 'Разработчик. Реализация функциональности',
+        idUTZ: '',
+        preview: 'Р.Реализация'
       },
       {
-        text: "Разработчик. Анализ",
-        idUTZ: "",
-        preview: "Р.Анализ"
+        text: 'Разработчик. Анализ',
+        idUTZ: '',
+        preview: 'Р.Анализ'
       },
       {
-        text: "Разработчик. Внеурочно. Реализация функциональности",
-        idUTZ: "",
-        preview: "Р.Реализация Внеурочно"
+        text: 'Разработчик. Внеурочно. Реализация функциональности',
+        idUTZ: '',
+        preview: 'Р.Реализация Внеурочно'
       },
       {
-        text: "Разработчик. Консультации тестировщика",
-        idUTZ: "",
-        preview: "Р.Консультации тестировщика"
+        text: 'Разработчик. Консультации тестировщика',
+        idUTZ: '',
+        preview: 'Р.Консультации тестировщика'
       }
     ];
   }
 
   @action loadDefault() {
     this.defaultComments.forEach(item => {
-      this.rootStore.dbStore.loadTableRows(this.table, item);
+      this.rootStore.dbStore.saveTableRow(this.table, item);
       this.items.push(item);
     });
   }
@@ -51,7 +51,7 @@ export default class Comments extends StoreClass {
   }
 
   @action loadComments() {
-    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
+    this.rootStore.dbStore.loadTableRowsWithKeys(this.table).then(data => {
       if (Array.isArray(data) && data.length) {
         data.forEach(item => this.items.push(item));
       } else {

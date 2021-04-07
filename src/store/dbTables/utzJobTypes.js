@@ -1,26 +1,26 @@
-import { observable, computed, action } from "mobx";
-import StoreClass from "../StoreClass";
-import utzJobTypes from "~/api/db/utzJobTypes";
+import { observable, computed, action } from 'mobx';
+import StoreClass from '../StoreClass';
+import utzJobTypes from '~/api/db/utzJobTypes';
 
 export default class UtzJobTypes extends StoreClass {
   @observable items = [];
 
   constructor(rootStore) {
     super(rootStore);
-    this.table = "utzJobTypes";
+    this.table = 'utzJobTypes';
     this.items = [];
     this.defaultUtzJobTypes = [
       {
-        type: "Разработка проектных решений"
+        type: 'Разработка проектных решений'
       },
       {
-        type: "Консультация специалистов по задачам, помощь в решении задач"
+        type: 'Консультация специалистов по задачам, помощь в решении задач'
       },
       {
-        type: "Отладка функционала в рамках этапа тестирования и отладки задач"
+        type: 'Отладка функционала в рамках этапа тестирования и отладки задач'
       },
       {
-        type: "Решение задач в рамках Поддержки во внеурочное время"
+        type: 'Решение задач в рамках Поддержки во внеурочное время'
       }
     ];
   }
@@ -43,7 +43,7 @@ export default class UtzJobTypes extends StoreClass {
   }
 
   @action loadUtzJobTypes() {
-    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
+    this.rootStore.dbStore.loadTableRowsWithKeys(this.table).then(data => {
       if (Array.isArray(data) && data.length) {
         data.forEach(item => this.items.push(item));
       } else {
