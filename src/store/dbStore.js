@@ -1,6 +1,6 @@
-import { observable, action } from "mobx";
-import * as indexedDB from "~/api/IndexedDB";
-import StoreClass from "~/store/StoreClass";
+import { observable, action } from 'mobx';
+import * as indexedDB from '~/api/IndexedDB';
+import StoreClass from '~/store/StoreClass';
 
 class dbStore extends StoreClass {
   @observable db;
@@ -25,6 +25,9 @@ class dbStore extends StoreClass {
   @action deleteTableRow = (table, key) => indexedDB.del(this.db, table, key);
 
   @action loadTableRows = table => indexedDB.getAll(this.db, table);
+
+  @action loadTableRowsWithKeys = table =>
+    indexedDB.getAllWithKeys(this.db, table);
 
   @action getTableRow = (table, key) => indexedDB.get(this.db, table, key);
 
