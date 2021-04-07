@@ -7,6 +7,7 @@ export default class UtzJobTypes extends StoreClass {
 
   constructor(rootStore) {
     super(rootStore);
+    this.table = "utzJobTypes";
     this.items = [];
     this.defaultUtzJobTypes = [
       {
@@ -26,21 +27,23 @@ export default class UtzJobTypes extends StoreClass {
 
   @action loadDefault() {
     this.defaultUtzJobTypes.forEach(item => {
-      this.rootStore.dbStore.saveUtzJobType(item);
+      this.rootStore.dbStore.saveTableRow(this.table, item);
       this.items.push(item);
     });
   }
 
   @action newUtzJobType() {
-    this.rootStore.dbStore.saveUtzJobType(utzJobTypes.getNew()).then(res => {
-      const newItem = utzJobTypes.getNew();
-      newItem.key = res;
-      this.items.push(newItem);
-    });
+    this.rootStore.dbStore
+      .saveTableRow(this.table, utzJobTypes.getNew())
+      .then(res => {
+        const newItem = utzJobTypes.getNew();
+        newItem.key = res;
+        this.items.push(newItem);
+      });
   }
 
   @action loadUtzJobTypes() {
-    this.rootStore.dbStore.loadUtzJobTypes().then(data => {
+    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
       if (Array.isArray(data) && data.length) {
         data.forEach(item => this.items.push(item));
       } else {
@@ -54,11 +57,11 @@ export default class UtzJobTypes extends StoreClass {
   }
 
   @action saveUtzJobType(UtzJobType) {
-    this.rootStore.dbStore.saveUtzJobType(UtzJobType, UtzJobType.key);
+    this.rootStore.dbStore.saveTableRow(this.table, UtzJobType, UtzJobType.key);
   }
 
   @action deleteUtzJobType(UtzJobType) {
     this.items = this.items.filter(item => UtzJobType.key != item.key);
-    this.rootStore.dbStore.deleteUtzJobType(UtzJobType.key);
+    this.rootStore.dbStore.deleteTableRow(this.table, UtzJobType.key);
   }
 }

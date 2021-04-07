@@ -1,4 +1,4 @@
-import { observable, computed, action } from "mobx";
+import { observable, action } from "mobx";
 import StoreClass from "../StoreClass";
 import comments from "~/api/db/comments";
 
@@ -7,6 +7,7 @@ export default class Comments extends StoreClass {
 
   constructor(rootStore) {
     super(rootStore);
+    this.table = "comments";
     this.items = [];
     this.defaultComments = [
       {
@@ -34,21 +35,23 @@ export default class Comments extends StoreClass {
 
   @action loadDefault() {
     this.defaultComments.forEach(item => {
-      this.rootStore.dbStore.saveComment(item);
+      this.rootStore.dbStore.loadTableRows(this.table, item);
       this.items.push(item);
     });
   }
 
   @action newComment() {
-    this.rootStore.dbStore.saveComment(comments.getNew()).then(res => {
-      const newItem = comments.getNew();
-      newItem.key = res;
-      this.items.push(newItem);
-    });
+    this.rootStore.dbStore
+      .saveTableRow(this.table, comments.getNew())
+      .then(res => {
+        const newItem = comments.getNew();
+        newItem.key = res;
+        this.items.push(newItem);
+      });
   }
 
   @action loadComments() {
-    this.rootStore.dbStore.loadComments().then(data => {
+    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
       if (Array.isArray(data) && data.length) {
         data.forEach(item => this.items.push(item));
       } else {
@@ -62,11 +65,11 @@ export default class Comments extends StoreClass {
   }
 
   @action saveComment(comment) {
-    this.rootStore.dbStore.saveComment(comment, comment.key);
+    this.rootStore.dbStore.saveTableRow(this.table, comment, comment.key);
   }
 
   @action deleteComment(comment) {
     this.items = this.items.filter(item => comment.key != item.key);
-    this.rootStore.dbStore.deleteComment(comment.key);
+    this.rootStore.dbStore.deleteTableRow(this.table, comment.key);
   }
 }

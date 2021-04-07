@@ -6,6 +6,7 @@ export default class Settings extends StoreClass {
 
   constructor(rootStore) {
     super(rootStore);
+    this.table = "settings";
     this.items = [];
     this.defaultSettings = [
       {
@@ -31,7 +32,7 @@ export default class Settings extends StoreClass {
 
     const defaultSetting = this.defaultSettings.find(item => item.name == name);
     if (defaultSetting) {
-      this.rootStore.dbStore.saveSetting(defaultSetting);
+      this.rootStore.dbStore.saveTableRow(this.table, defaultSetting);
       return defaultSetting.value;
     }
   }
@@ -39,14 +40,14 @@ export default class Settings extends StoreClass {
   @action loadDefault() {
     this.items.length = 0;
     this.defaultSettings.forEach(item => {
-      this.rootStore.dbStore.saveSetting(item);
+      this.rootStore.dbStore.saveTableRow(this.table, item);
       this.items.push(item);
     });
   }
 
   @action loadSettings() {
     this.items = [];
-    this.rootStore.dbStore.loadSettings().then(data => {
+    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
       if (!Array.isArray(data)) {
         return null;
       }

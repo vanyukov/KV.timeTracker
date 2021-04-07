@@ -1,4 +1,4 @@
-import { observable, computed, action } from "mobx";
+import { observable, action } from "mobx";
 import StoreClass from "../StoreClass";
 import tracks from "~/api/db/tracks";
 import * as dateTime from "~/api/helpers/dateTime";
@@ -8,6 +8,7 @@ export default class TracksStore extends StoreClass {
 
   constructor(rootStore) {
     super(rootStore);
+    this.table = "tracks";
     this.api = this.rootStore.api.tracks;
     this.items = [];
   }
@@ -25,7 +26,7 @@ export default class TracksStore extends StoreClass {
     } else {
       this.items.push(track);
     }
-    return this.rootStore.dbStore.saveTrack(track);
+    return this.rootStore.dbStore.saveTableRow(this.table, track);
   };
 
   @action stop = date => {
@@ -34,18 +35,18 @@ export default class TracksStore extends StoreClass {
       .map(track => {
         track.active = false;
         track.elapsedTime += new Date() - track.startTime;
-        this.rootStore.dbStore.deleteTrack(date);
-        this.rootStore.dbStore.saveTrack(track);
+        this.rootStore.dbStore.deleteTableRow(this.table, date);
+        this.rootStore.dbStore.saveTableRow(this.table, track);
       });
   };
 
   @action delete = date => {
     this.items = this.items.filter(item => item.date != date);
-    this.rootStore.dbStore.deleteTrack(date);
+    this.rootStore.dbStore.deleteTableRow(this.table, date);
   };
 
   @action loadTracks = data => {
-    this.rootStore.dbStore.loadTracks().then(data => {
+    this.rootStore.dbStore.loadTableRows(this.table).then(data => {
       if (!Array.isArray(data)) {
         return null;
       }
@@ -65,8 +66,8 @@ export default class TracksStore extends StoreClass {
     for (let key in track) {
       itemStore[key] = track[key];
     }
-    this.rootStore.dbStore.deleteTrack(itemStore.date);
-    this.rootStore.dbStore.saveTrack(track);
+    this.rootStore.dbStore.deleteTableRow(this.table, itemStore.date);
+    this.rootStore.dbStore.saveTableRow(this.table, track);
   };
 
   @action fillNewTrack = track => {
