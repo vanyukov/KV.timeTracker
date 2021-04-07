@@ -253,118 +253,147 @@ class chromeStore extends StoreClass {
         }
       });
 
-    //set Клиент = mts
-    this.injectField(
-      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id')",
-      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').value = 19"
-    )
-      .then(result => {
-        return chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').dispatchEvent(new Event('change'))"
-        );
-      })
-      .then(result => {
-        //Код задачи
-        let id = 0;
-        if (track.ticket.match(/^IMO-/)) {
-          id = 1289;
-        } else if (track.ticket.match(/^IMD-/)) {
-          id = 1268;
-        } else if (track.ticket.match(/^IMSUPNEW-/)) {
-          id = 1258;
-        }
-
-        if (id) {
-          setTimeout(() => {
-            chrome
-              .runJS(
-                this.currentTab,
-                "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').value = '" +
-                  id +
-                  "'"
-              )
-              .then(result => {
-                return chrome.runJS(
-                  this.currentTab,
-                  "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').dispatchEvent(new Event(\"change\"))"
-                );
-              });
-          }, 1000);
-        }
-
-        // Тикет
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_issue').value = '" +
-            track.ticket +
-            "'"
-        );
-
-        // Номер эпика
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_epic_number').value = '" +
-            track.epic +
-            "'"
-        );
-
-        // Время (ч)
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" +
-            +elapsedTime.hours +
-            (+elapsedTime.minutes
-              ? '.' + Math.round((+elapsedTime.minutes * 100) / 60)
-              : '') +
-            "'"
-        );
-
-        //Комментарий
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_comment').value = '" +
-            track.comment +
-            "'"
-        );
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#comments').text = '" +
-            track.comment +
-            "'"
-        );
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.delete_comment').style.cssText = ''"
-        );
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.editable-input .fancy_textarea').value = '" +
-            track.comment +
-            "'"
-        );
-
-        //Внеурочка
-        chrome.runJS(
-          this.currentTab,
-          "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = " +
-            track.overtime +
-            ';'
-        );
-
-        // Тип работ
-        const typeUtz = this.rootStore.UtzJobTypes.items.find(
-          item => track.typeUTZ == item.key
-        );
-        setTimeout(() => {
-          chrome.runJS(
+    if (track.client) {
+      //Клиент
+      this.injectField(
+        "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id')",
+        "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').value = " +
+          track.client
+      )
+        .then(result => {
+          return chrome.runJS(
             this.currentTab,
-            "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = '" +
-              typeUtz.type +
-              "'"
+            "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_customer_id').dispatchEvent(new Event('change'))"
           );
+        })
+        //Код задачи
+        .then(result => {
+          let id = this.rootStore.Clients.items.find(
+            item => item.id === track.client
+          )?.taskCode;
+          //Код задачи для МТС
+          if (track.client === '19') {
+            if (track.ticket.match(/^IMO-/)) {
+              id = 1289;
+            } else if (track.ticket.match(/^IMD-/)) {
+              id = 1268;
+            } else if (track.ticket.match(/^IMSUPNEW-/)) {
+              id = 1258;
+            }
+          }
+          if (id) {
+            setTimeout(() => {
+              chrome
+                .runJS(
+                  this.currentTab,
+                  "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').value = '" +
+                    id +
+                    "'"
+                )
+                .then(result => {
+                  return chrome.runJS(
+                    this.currentTab,
+                    "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_code').dispatchEvent(new Event(\"change\"))"
+                  );
+                });
+            }, 1000);
+          }
+        });
+
+      // Задача по CR *
+      const idCr = this.rootStore.Clients.items.find(
+        item => item.id === track.client
+      )?.taskIdCr;
+      if (idCr) {
+        setTimeout(() => {
+          chrome
+            .runJS(
+              this.currentTab,
+              "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_id_chzn').value = '" +
+                idCr +
+                "'"
+            )
+            .then(result => {
+              return chrome.runJS(
+                this.currentTab,
+                "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_task_id_chzn').dispatchEvent(new Event(\"change\"))"
+              );
+            });
         }, 1000);
-      });
+      }
+    }
+
+    // Тикет
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_issue').value = '" +
+        track.ticket +
+        "'"
+    );
+
+    // Номер эпика
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_epic_number').value = '" +
+        track.epic +
+        "'"
+    );
+
+    // Время (ч)
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_time').value = '" +
+        +elapsedTime.hours +
+        (+elapsedTime.minutes
+          ? '.' + Math.round((+elapsedTime.minutes * 100) / 60)
+          : '') +
+        "'"
+    );
+
+    //Комментарий
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_comment').value = '" +
+        track.comment +
+        "'"
+    );
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#comments').text = '" +
+        track.comment +
+        "'"
+    );
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.delete_comment').style.cssText = ''"
+    );
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('.editable-input .fancy_textarea').value = '" +
+        track.comment +
+        "'"
+    );
+
+    //Внеурочка
+    chrome.runJS(
+      this.currentTab,
+      "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_vu').checked = " +
+        track.overtime +
+        ';'
+    );
+
+    // Тип работ
+    const typeUtz = this.rootStore.UtzJobTypes.items.find(
+      item => track.typeUTZ == item.key
+    );
+    setTimeout(() => {
+      chrome.runJS(
+        this.currentTab,
+        "document.getElementsByTagName('iframe')[0].contentWindow.document.querySelector('#ReportRow_work_type_1').value = '" +
+          typeUtz.type +
+          "'"
+      );
+    }, 1000);
   }
 }
 

@@ -13,7 +13,7 @@ function SelectClient(props) {
     >
       <option key={0} value={0}></option>
       {props.stores.Clients.items.map(item => (
-        <option key={item.key} value={item.key}>
+        <option key={item.key} value={item.id}>
           {item.title}
         </option>
       ))}
