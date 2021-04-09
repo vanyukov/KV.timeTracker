@@ -7,7 +7,7 @@ const IDBExportImport = require('indexeddb-export-import');
 
 const dbInfo = {
   name: 'TimeTracks',
-  version: 2
+  version: 3
 };
 const stores = {
   tracks,
