@@ -14,8 +14,8 @@ const tracks = {
       overtime: false,
       typeUTZ: 0,
       savedJira: false,
-      savedUTZ: false
-    };
+      savedUTZ: false,
+    }
   },
 
   keys: { keyPath: 'date' },
@@ -23,9 +23,9 @@ const tracks = {
   index: [
     {
       name: 'active',
-      options: { unique: false }
-    }
-  ]
-};
+      options: { unique: false },
+    },
+  ],
+}
 
-export default tracks;
+export default tracks
