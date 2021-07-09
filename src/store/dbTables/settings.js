@@ -11,7 +11,7 @@ export default class Settings extends StoreClass {
     this.defaultSettings = [
       {
         name: "jiraUrl",
-        value: "http://jira.mts.quantumart.ru"
+        value: "https://jira.mts.ru/"
       },
       {
         name: "utzUrl",
@@ -19,7 +19,7 @@ export default class Settings extends StoreClass {
       },
       {
         name: "gitRepositoryUrl",
-        value: "https://git.repo.services.lenvendo.ru/mts/mts"
+        value: "https://git.shop.mts.ru/shop/backend/site_bitrix"
       }
     ];
   }
