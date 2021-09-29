@@ -45,6 +45,12 @@ export default class Clients extends StoreClass {
         id: '35',
         taskCode: '1305',
         taskIdCr: '1305'
+      },
+      {
+        title: 'Фишер',
+        id: '37',
+        taskCode: '1434',
+        taskIdCr: '1434'
       }
     ];
   }
