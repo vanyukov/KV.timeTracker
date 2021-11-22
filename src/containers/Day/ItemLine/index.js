@@ -11,7 +11,8 @@ function ItemLine(props) {
     const [timeDelay, setTimeDelay] = useState(null);
     const [timeIdInterval, setIdInterval] = useState(0);
 
-    const jiraUrl = props.stores.Settings.getSetting('jiraUrl');
+    const client = props.stores.Clients.items.find(item=>(props.track.client === item.id));
+    const jiraUrl = client?.jira
     const gitRepositoryUrl = props.stores.Settings.getSetting('gitRepositoryUrl');
 
     useEffect(()=>{
@@ -57,7 +58,7 @@ function ItemLine(props) {
                 </Form.Group>
 
                 <span className={Style.jira+ " text-center"}>
-                    {props.track.ticket && <a href={jiraUrl + "/browse/" + props.track.ticket}
+                    {jiraUrl &&props.track.ticket && <a href={jiraUrl + "/browse/" + props.track.ticket}
                         target={'_blank'}
                     >
                         <img className={Style.jira_img} src="/img/jira-logo.png"/>

@@ -21,6 +21,7 @@ export default class Clients extends StoreClass {
         id: '19',
         taskCode: '',
         taskIdCr: '',
+        jira: 'https://jira.mts.ru'
       },
       {
         title: 'ЛЕНВЕНДО',
@@ -51,6 +52,7 @@ export default class Clients extends StoreClass {
         id: '37',
         taskCode: '1434',
         taskIdCr: '1434',
+        jira: 'https://lenvendo-ru.atlassian.net'
       },
     ]
   }

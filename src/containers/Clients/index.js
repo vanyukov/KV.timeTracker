@@ -29,7 +29,7 @@ function Clients(props) {
           <Col className={'mb-2'}>
             <Form.Control value={'Название'} type="text" disabled={true} />
           </Col>
-          <Col sm={2}>
+          <Col sm={1}>
             <Form.Control value={'id'} type="text" disabled={true} />
           </Col>
           <Col sm={2}>
@@ -38,7 +38,10 @@ function Clients(props) {
           <Col sm={2}>
             <Form.Control value={'taskIdCr'} type="text" disabled={true} />
           </Col>
-          <Col sm={3}> </Col>
+          <Col sm={2}>
+            <Form.Control value={'jira'} type="text" disabled={true} />
+          </Col>
+          <Col sm={2}> </Col>
         </Row>
         {props.stores.Clients.items.map((item) => {
           return (
@@ -51,7 +54,7 @@ function Clients(props) {
                   type="text"
                 />
               </Col>
-              <Col sm={2}>
+              <Col sm={1}>
                 <Form.Control value={item.id} onChange={() => {}} type="text" />
               </Col>
               <Col sm={2}>
@@ -68,7 +71,14 @@ function Clients(props) {
                   type="text"
                 />
               </Col>
-              <Col sm={3}>
+              <Col sm={2}>
+                <Form.Control
+                  value={item.jira}
+                  onChange={() => {}}
+                  type="text"
+                />
+              </Col>
+              <Col sm={2}>
                 <Button
                   variant="primary"
                   size="sm"

@@ -5,6 +5,7 @@ const clients = {
       id: '',
       taskCode: '',
       taskIdCr: '',
+      jira: '',
     }
   },
 
