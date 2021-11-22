@@ -14,7 +14,7 @@ function ItemLine(props) {
     (item) => props.track.client === item.id
   )
   const jiraUrl = client?.jira
-  const gitRepositoryUrl = props.stores.Settings.getSetting('gitRepositoryUrl')
+  const gitRepositoryUrl = client?.git
 
   useEffect(() => {
     if (props.track.active) {
@@ -87,9 +87,9 @@ function ItemLine(props) {
         </span>
 
         <span className={Style.commits + ' text-center'}>
-          {props.track.branch && (
+          {gitRepositoryUrl && props.track.branch && (
             <a
-              href={gitRepositoryUrl + '/commits/' + props.track.branch}
+              href={gitRepositoryUrl + '/-/commits/' + props.track.branch}
               target={'_blank'}
             >
               {gitLabLogo()}
@@ -100,7 +100,7 @@ function ItemLine(props) {
         </span>
 
         <span className={Style.branch + ' text-center'}>
-          {props.track.branch && (
+          {gitRepositoryUrl && props.track.branch && (
             <a
               href={gitRepositoryUrl + '/-/tree/' + props.track.branch}
               target={'_blank'}

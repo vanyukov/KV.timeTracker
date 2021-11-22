@@ -6,6 +6,7 @@ const clients = {
       taskCode: '',
       taskIdCr: '',
       jira: '',
+      git: '',
     }
   },
 

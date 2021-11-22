@@ -21,7 +21,8 @@ export default class Clients extends StoreClass {
         id: '19',
         taskCode: '',
         taskIdCr: '',
-        jira: 'https://jira.mts.ru'
+        jira: 'https://jira.mts.ru',
+        git: 'https://git.shop.mts.ru/shop/backend/site_bitrix',
       },
       {
         title: 'ЛЕНВЕНДО',
@@ -52,7 +53,8 @@ export default class Clients extends StoreClass {
         id: '37',
         taskCode: '1434',
         taskIdCr: '1434',
-        jira: 'https://lenvendo-ru.atlassian.net'
+        jira: 'https://lenvendo-ru.atlassian.net',
+        git: 'https://git.repo.services.lenvendo.ru/project/fischer/frontend',
       },
     ]
   }
