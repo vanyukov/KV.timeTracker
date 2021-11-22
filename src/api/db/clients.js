@@ -4,13 +4,13 @@ const clients = {
       title: '',
       id: '',
       taskCode: '',
-      taskIdCr: ''
-    };
+      taskIdCr: '',
+    }
   },
 
   keys: { autoIncrement: true },
 
-  index: []
-};
+  index: [],
+}
 
-export default clients;
+export default clients
