@@ -81,15 +81,13 @@ function ItemEditModal(props) {
           <Button variant='primary' className={'ml-3'} onClick={saveTrackEdit}>
             Save
           </Button>
-          {props.stores.chromeStore.isJiraTab && (
-            <Button
-              variant='outline-primary'
-              className={'ml-1'}
-              onClick={fillTrack}
-            >
-              fill
-            </Button>
-          )}
+          <Button
+            variant='outline-primary'
+            className={'ml-1'}
+            onClick={fillTrack}
+          >
+            fill
+          </Button>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

@@ -44,9 +44,6 @@ class chromeStore extends StoreClass {
     if (!this.isExtensionMode) {
       return Promise.resolve(field);
     }
-    if (!this.isJiraTab) {
-      return Promise.resolve(null);
-    }
 
     if (field == 'ticket') {
       return this.currentTab.url
@@ -57,7 +54,7 @@ class chromeStore extends StoreClass {
     } else if (field == 'title') {
       return chrome.runJS(
         this.currentTab,
-        'document.querySelector("#summary-val").textContent'
+        'document.querySelector("h1").textContent'
       );
     } else if (field == 'branch') {
       return chrome.runJS(
