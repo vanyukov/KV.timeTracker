@@ -44,6 +44,13 @@ export default class Clients extends StoreClass {
         taskIdCr: '1207',
       },
       {
+        title: 'Мвидео',
+        id: '23',
+        taskCode: '1311',
+        taskIdCr: '1311',
+        git: 'https://gitlab.goodsteam.tech/goods/customers-experience/marketing-team/advertiser-ui',
+      },
+      {
         title: 'МЕД-МАГАЗИН',
         id: '35',
         taskCode: '1305',
