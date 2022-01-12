@@ -48,6 +48,7 @@ export default class Clients extends StoreClass {
         id: '23',
         taskCode: '1311',
         taskIdCr: '1311',
+        jira: 'https://jira.goods.ru',
         git: 'https://gitlab.goodsteam.tech/goods/customers-experience/marketing-team/advertiser-ui',
       },
       {
