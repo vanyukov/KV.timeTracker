@@ -179,7 +179,7 @@ class chromeStore extends StoreClass {
     const time =
       dateStart.date +
       '/' +
-      dateTime.getFormat('MMM', track.date).substr(0, 3) +
+      dateTime.getFormat('MM', track.date).substr(0, 3) +
       '/' +
       dateTime.getFormat('YY hh:mm', track.date) +
       ' ' +
