@@ -11,7 +11,7 @@ export default class Settings extends StoreClass {
     this.defaultSettings = [
       {
         name: "jiraUrl",
-        value: "https://jira.mts.ru/"
+        value: "https://jira.goods.ru/"
       },
       {
         name: "utzUrl",
