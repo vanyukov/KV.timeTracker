@@ -11,7 +11,7 @@ function Comments(props) {
     }
 
     const loadDefault = ()=>props.stores.Comments.loadDefault()
-    const changeTypeUTZ = (keyComment, keyUtz) => props.stores.Comments.changeComment(keyComment, 'typeUTZ', keyUtz)
+    const changeTypeUTZ = (keyComment, keyUtz) => props.stores.Comments.changeComment(keyComment, 'idUTZ', keyUtz)
 
     return(
         <Container>
@@ -70,7 +70,7 @@ function Comments(props) {
                         </Col>
                         <Col sm={3}>
                             <SelectTypeUtz
-                                typeUTZ={item.typeUTZ}
+                                idUTZ={item.idUTZ}
                                 keyComment={item.key}
                                 changeTypeUTZ={changeTypeUTZ}
                             />

@@ -218,8 +218,8 @@ function ItemEditModal(props) {
                   className={'mr-2 mt-1'}
                   onClick={() => {
                     changeTrackEdit('comment', comment.text);
-                    if (comment.typeUTZ) {
-                      changeTrackEdit('typeUTZ', comment.typeUTZ);
+                    if (comment.idUTZ) {
+                      changeTrackEdit('idUTZ', comment.idUTZ);
                     }
                   }}
                   key={comment.key}
@@ -235,10 +235,10 @@ function ItemEditModal(props) {
             </Form.Label>
             <Col sm='9'>
               <SelectTypeUtz
-                typeUTZ={props.trackEdit.typeUTZ}
+                idUTZ={props.trackEdit.idUTZ}
                 keyComment={''}
                 changeTypeUTZ={(keyComment, keyUtz) =>
-                  changeTrackEdit('typeUTZ', keyUtz)
+                  changeTrackEdit('idUTZ', keyUtz)
                 }
               />
             </Col>

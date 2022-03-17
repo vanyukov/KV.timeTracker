@@ -6,12 +6,12 @@ function SelectTypeUtz (props){
     return(
         <Form.Control
             as="select"
-            value={props.typeUTZ}
+            value={props.idUTZ}
             onChange={ event =>{ props.changeTypeUTZ(props.keyComment, event.target.value ) }}
         >
             <option key={0} value={0}></option>
             {props.stores.UtzJobTypes.items.map(item=>
-                <option key={item.key} value={item.key}>{item.type}</option>
+                <option key={item.id} value={item.id}>{item.type}</option>
             )}
         </Form.Control>
 

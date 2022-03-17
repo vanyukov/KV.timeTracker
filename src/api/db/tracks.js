@@ -12,7 +12,7 @@ const tracks = {
       epic: '',
       comment: '',
       overtime: false,
-      typeUTZ: 0,
+      idUTZ: 0,
       savedJira: false,
       savedUTZ: false,
     }

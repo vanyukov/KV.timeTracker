@@ -12,22 +12,27 @@ export default class Comments extends StoreClass {
     this.defaultComments = [
       {
         text: 'Разработчик. Реализация функциональности',
-        idUTZ: '',
+        idUTZ: '1',
         preview: 'Р.Реализация'
       },
       {
+        text: 'Созвон',
+        idUTZ: '1',
+        preview: 'Созвон'
+      },
+      {
         text: 'Разработчик. Анализ',
-        idUTZ: '',
+        idUTZ: '1',
         preview: 'Р.Анализ'
       },
       {
         text: 'Разработчик. Внеурочно. Реализация функциональности',
-        idUTZ: '',
+        idUTZ: '1',
         preview: 'Р.Реализация Внеурочно'
       },
       {
         text: 'Разработчик. Консультации тестировщика',
-        idUTZ: '',
+        idUTZ: '2',
         preview: 'Р.Консультации тестировщика'
       }
     ];

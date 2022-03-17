@@ -21,6 +21,10 @@ export default class Settings extends StoreClass {
         name: 'gitRepositoryUrl',
         value: 'https://git.shop.mts.ru/shop/backend/site_bitrix',
       },
+      {
+        name: 'defaultComment',
+        value: '1',
+      },
     ]
   }
 

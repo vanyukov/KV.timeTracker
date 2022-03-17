@@ -31,6 +31,13 @@ function UtzJobTypes(props) {
                             disabled={true}
                         />
                     </Col>
+                    <Col sm={2}>
+                    <Form.Control
+                            value={'id'}
+                            type="text"
+                            disabled={true}
+                        />
+                    </Col>
                     <Col sm={3}>
                     </Col>
                 </Row>
@@ -42,6 +49,13 @@ function UtzJobTypes(props) {
                                 value={item.type}
                                 as={"textarea"}
                                 onChange={(event)=>{props.stores.UtzJobTypes.changeUtzJobType(item.key, 'type', event.target.value)}}
+                                type="text"
+                            />
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Control
+                                value={item.id}
+                                onChange={(event)=>{props.stores.UtzJobTypes.changeUtzJobType(item.key, 'id', event.target.value)}}
                                 type="text"
                             />
                         </Col>
