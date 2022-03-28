@@ -371,8 +371,12 @@ class chromeStore extends StoreClass {
 
     // Тип работ
     const typeUtz = this.rootStore.UtzJobTypes.items.find(
-      (item) => track.idUTZ == item.key
+      (item) => track.idUTZ == item.id
     )
+    if(!typeUtz?.type){
+      console.error('Не найден тип утз', track.idUTZ)
+      return null;
+    }
     setTimeout(() => {
       chrome.runJS(
         this.currentTab,

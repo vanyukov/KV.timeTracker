@@ -29,6 +29,12 @@ export default class UtzJobTypes extends StoreClass {
     ]
   }
 
+  getById(id) {
+    console.log("🚀 -> file: utzJobTypes.js -> line 33 -> getById -> id", id)
+    console.log("🚀 -> file: utzJobTypes.js -> line 35 -> getById -> this.items", this.items)
+    return this.items.find(item => item.id === id)
+  }
+
   @action loadDefault() {
     this.defaultUtzJobTypes.forEach((item) => {
       this.rootStore.dbStore.saveTableRow(this.table, item)
