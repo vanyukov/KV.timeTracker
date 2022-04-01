@@ -3,24 +3,24 @@ import StoreClass from '../StoreClass'
 import clientSites from '~/api/db/clientSites'
 
 export default class Clients extends StoreClass {
-  @observable items = []
-
   constructor(rootStore) {
     super(rootStore)
     this.table = 'clientSites'
-    this.items = []
     this.defaultClientSites = [
       {
+        id: 1,
         clientId: 5,
         url: 'redmine.gpbdev.ru',
         title: 'redmine',
       },
       {
+        id: 2,
         clientId: 5,
         url: 'lv-kv.site.dev.gazprombank.ru',
         title: 'sandbox',
       },
       {
+        id: 3,
         clientId: 5,
         url: 'gazprombank.ru',
         title: 'Прод',

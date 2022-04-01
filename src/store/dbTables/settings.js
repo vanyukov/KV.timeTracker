@@ -2,30 +2,32 @@ import { observable, computed, action } from 'mobx'
 import StoreClass from '../StoreClass'
 
 export default class Settings extends StoreClass {
-  @observable items
-
   constructor(rootStore) {
     super(rootStore)
     this.table = 'settings'
-    this.items = []
     this.defaultSettings = [
       {
+        id: 1,
         name: 'jiraUrl',
         value: 'https://jira.goods.ru/',
       },
       {
+        id: 2,
         name: 'utzUrl',
         value: 'http://timesheet.services.lenvendo.ru',
       },
       {
+        id: 3,
         name: 'gitRepositoryUrl',
         value: 'https://git.shop.mts.ru/shop/backend/site_bitrix',
       },
       {
+        id: 4,
         name: 'defaultClient',
         value: '23',
       },
       {
+        id: 5,
         name: 'defaultComment',
         value: 1,
       },

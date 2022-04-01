@@ -4,13 +4,10 @@ import tracks from "~/api/db/tracks";
 import * as dateTime from "~/api/helpers/dateTime";
 
 export default class TracksStore extends StoreClass {
-  @observable items;
-
   constructor(rootStore) {
     super(rootStore);
     this.table = "tracks";
     this.api = this.rootStore.api.tracks;
-    this.items = [];
   }
 
   @action start = (track = tracks.getNew()) => {

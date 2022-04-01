@@ -3,12 +3,9 @@ import StoreClass from '../StoreClass'
 import utzJobTypes from '~/api/db/utzJobTypes'
 
 export default class UtzJobTypes extends StoreClass {
-  @observable items = []
-
   constructor(rootStore) {
     super(rootStore)
     this.table = 'utzJobTypes'
-    this.items = []
     this.defaultUtzJobTypes = [
       {
         id: 1,
@@ -27,12 +24,6 @@ export default class UtzJobTypes extends StoreClass {
         type: 'Решение задач в рамках Поддержки во внеурочное время',
       },
     ]
-  }
-
-  getById(id) {
-    console.log("🚀 -> file: utzJobTypes.js -> line 33 -> getById -> id", id)
-    console.log("🚀 -> file: utzJobTypes.js -> line 35 -> getById -> this.items", this.items)
-    return this.items.find(item => item.id === id)
   }
 
   @action loadDefault() {

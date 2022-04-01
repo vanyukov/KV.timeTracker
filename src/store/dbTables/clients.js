@@ -3,12 +3,9 @@ import StoreClass from '../StoreClass'
 import clients from '~/api/db/clients'
 
 export default class Clients extends StoreClass {
-  @observable items = []
-
   constructor(rootStore) {
     super(rootStore)
     this.table = 'clients'
-    this.items = []
     this.defaultClients = [
       {
         title: 'ОАО «Газпромбанк»',

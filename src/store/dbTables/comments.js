@@ -3,12 +3,9 @@ import StoreClass from '../StoreClass';
 import comments from '~/api/db/comments';
 
 export default class Comments extends StoreClass {
-  @observable items = [];
-
   constructor(rootStore) {
     super(rootStore);
     this.table = 'comments';
-    this.items = [];
     this.defaultComments = [
       {
         id: 1,
