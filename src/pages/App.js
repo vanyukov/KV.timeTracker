@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import withStore from '~/hocs/withStore';
 import routes, { routesMap } from '~/routes';
-import Header from '~/containers/Header'
+import Header from '~/pages/Header'
 
 class App extends React.Component{
 

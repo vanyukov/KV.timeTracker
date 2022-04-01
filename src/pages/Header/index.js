@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { Button, Container, NavDropdown, Row, Col } from 'react-bootstrap'
 import withStore from '~/hocs/withStore'
 import { getDatePresentation } from '~/api/helpers/dateTime'
-import ItemEditModal from '~/containers/ItemEditModal'
+import ItemEditModal from '~/pages/ItemEditModal'
 import tracks from '~/api/db/tracks'
 import { Link, withRouter } from 'react-router-dom'
 import Style from './Header.module.css'
-import WeekNav from '~/containers/Header/WeekNav'
+import WeekNav from '~/pages/Header/WeekNav'
 import * as navigation from '~/api/helpers/navigation'
 
 function Header(props) {

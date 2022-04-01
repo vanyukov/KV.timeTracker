@@ -6,7 +6,7 @@ import GoBack from "~/components/btn/GoBack";
 import * as dateTime from "~/api/helpers/dateTime";
 import Style from "./ViewAll.module.css"
 import tracks from "~/api/db/tracks";
-import ItemEditModal from "~/containers/ItemEditModal";
+import ItemEditModal from "~/pages/ItemEditModal";
 import Button from "react-bootstrap/Button";
 
 function ViewAll(props){

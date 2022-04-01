@@ -2,7 +2,7 @@ import React from "react";
 import withStore from "~/hocs/withStore";
 import {Nav} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
-import Style from "~/containers/Header/WeekNav/WeekNav.module.css";
+import Style from "~/pages/Header/WeekNav/WeekNav.module.css";
 import * as dateTime from "~/api/helpers/dateTime";
 import * as navigation from "~/api/helpers/navigation"
 

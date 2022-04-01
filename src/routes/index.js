@@ -1,13 +1,13 @@
-import Day from '~/containers/Day'
-import Month from '~/containers/Month'
-import Settings from '~/containers/Settings'
-import Comments from '~/containers/Comments'
-import Clients from '~/containers/Clients'
-import ClientSites from '~/containers/ClientSites'
-import UtzJobTypes from '~/containers/UtzJobTypes'
-import DB from '~/containers/DB'
-import Reports from '~/containers/Reports'
-import ViewAll from '~/containers/Reports/ViewAll'
+import Day from '~/pages/Day'
+import Month from '~/pages/Month'
+import Settings from '~/pages/Settings'
+import Comments from '~/pages/Comments'
+import Clients from '~/pages/Clients'
+import ClientSites from '~/pages/ClientSites'
+import UtzJobTypes from '~/pages/UtzJobTypes'
+import DB from '~/pages/DB'
+import Reports from '~/pages/Reports'
+import ViewAll from '~/pages/Reports/ViewAll'
 
 let routes = [
   {
