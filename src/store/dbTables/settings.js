@@ -25,6 +25,10 @@ export default class Settings extends StoreClass {
         name: 'defaultClient',
         value: '23',
       },
+      {
+        name: 'defaultComment',
+        value: 1,
+      },
     ]
   }
 

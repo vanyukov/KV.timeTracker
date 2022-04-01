@@ -92,6 +92,10 @@ export default class TracksStore extends StoreClass {
         track.epic = results[3];
       }
       track.client = this.rootStore.Settings.getSetting('defaultClient');
+      const defaultCommentId = this.rootStore.Settings.getSetting('defaultComment');
+      const defaultComment = this.rootStore.Comments.items.find(item=>item.id===defaultCommentId);
+      track.comment = defaultComment.text
+      track.idUTZ = defaultComment.idUTZ;
       return track;
     });
   };
