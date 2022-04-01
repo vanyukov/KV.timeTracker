@@ -10,6 +10,7 @@ function SelectClient(props) {
       onChange={event => {
         props.change(event.target.value);
       }}
+      disabled={props.disabled}
     >
       <option key={0} value={0}></option>
       {props.stores.Clients.items.map(item => (

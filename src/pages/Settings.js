@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
+import {Container, Row, Col, Button, Form} from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import withStore from "~/hocs/withStore";
-import {Container, Row, Col, Button, Form} from "react-bootstrap";
+import SelectClient from "~/components/selectClient";
 
 function Settings(props) {
     const history = useHistory();
@@ -33,20 +34,28 @@ function Settings(props) {
                 >go back</Button>
             </h1>
             <Form className={"mb-2"}>
-                {props.stores.Settings.items.map(item=>{
-                    return <Form.Group as={Row} controlId="formHorizontalEmail" key={item.name}>
+                {props.stores.Settings.items.map(item=> <Form.Group as={Row} controlId="formHorizontalEmail" key={item.name}>
                         <Form.Label column sm={2}>
                             {item.name}
                         </Form.Label>
                         <Col sm={10}>
+                            {item.name === 'defaultClient'? 
+                            <SelectClient
+                                client={item.value}
+                                keyComment={''}
+                                change={event => changeSetting(item.name,  event.target.value)}
+                                disabled
+                            /> :
                             <Form.Control
                                 value={item.value}
                                 onChange={(event)=>{changeSetting(item.name,  event.target.value)}}
                                 type="text"
+                                disabled
                             />
+                            }
                         </Col>
                     </Form.Group>
-                })}
+                )}
                 <Button
                     variant="outline-secondary"
                     size="sm"

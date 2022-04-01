@@ -13,7 +13,7 @@
     min-width: 40px;
     padding-left: 4px;
 }
-.row__816ba82{
+.row__a70e93d{
     padding-top: 2px;
     padding-bottom: 2px;
     margin-bottom: 2px;
@@ -21,15 +21,15 @@
     border-radius: 4px;
 }
 
-.row_active__5ac76c7{
+.row_active__4cd8019{
     background-color: #28a74524;
 }
 
-.row_current__63a74f1{
+.row_current__7ca966b{
     background-color: #007bff21;
 }
 
-.ticket__538b07e{
+.ticket__5d9923c{
     width: 140px;
     font-weight: bold;
     white-space: nowrap;
@@ -37,20 +37,20 @@
     text-overflow: ellipsis;
 }
 
-.jira_img__8b8c910,
-.git_img__f412cc6{
+.jira_img__c9baad8,
+.git_img__0e34c27{
     height: 23px;
 }
 
-.branch__949f1b7{
+.branch__1440d5e{
     width: 60px;
 }
 
-.commits__a837e17{
+.commits__13abb88{
     width: 70px;
 }
 
-.jira__2405bfc{
+.jira__deb3edb{
     width: 70px;
 }
 
@@ -881,27 +881,27 @@
   cursor: default;
 }
 
-.day__768f7a9{
+.day__76ecb03{
     width: 50px;
 }
-.time__1aeb7e7  {
+.time__67abed2  {
     width: 90px;
 }
 
-.ticket__74b8b9f  {
+.ticket__2e80ad7  {
     width: 120px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.logo_img__ea69080{
+.logo_img__be244a0{
     max-height: 37px;
 }
-.nav_link__d5e43bf{
+.nav_link__b3b39eb{
 }
 
-.nav_link_today__e7c4754{
+.nav_link_today__efd85df{
     font-weight: 900;
 }
 

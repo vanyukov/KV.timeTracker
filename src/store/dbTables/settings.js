@@ -22,8 +22,8 @@ export default class Settings extends StoreClass {
         value: 'https://git.shop.mts.ru/shop/backend/site_bitrix',
       },
       {
-        name: 'defaultComment',
-        value: '1',
+        name: 'defaultClient',
+        value: '23',
       },
     ]
   }

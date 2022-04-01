@@ -75,7 +75,7 @@ export default class TracksStore extends StoreClass {
       this.rootStore.chromeStore.getFieldFromJira("ticket"),
       this.rootStore.chromeStore.getFieldFromJira("title"),
       this.rootStore.chromeStore.getFieldFromJira("branch"),
-      this.rootStore.chromeStore.getFieldFromJira("epic")
+      this.rootStore.chromeStore.getFieldFromJira("epic"),
     ]).then(results => {
       if (results[0]) {
         track.ticket = results[0];
@@ -91,6 +91,7 @@ export default class TracksStore extends StoreClass {
       if (results[3]) {
         track.epic = results[3];
       }
+      track.client = this.rootStore.Settings.getSetting('defaultClient');
       return track;
     });
   };
