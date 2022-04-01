@@ -5,7 +5,7 @@ export default class Settings extends StoreClass {
   constructor(rootStore) {
     super(rootStore)
     this.table = 'settings'
-    this.defaultSettings = [
+    this.defaultItems = [
       {
         id: 1,
         name: 'jiraUrl',
@@ -40,21 +40,13 @@ export default class Settings extends StoreClass {
       return setting.value
     }
 
-    const defaultSetting = this.defaultSettings.find(
+    const defaultItems = this.defaultItems.find(
       (item) => item.name == name
     )
-    if (defaultSetting) {
-      this.rootStore.dbStore.saveTableRow(this.table, defaultSetting)
-      return defaultSetting.value
+    if (defaultItems) {
+      this.rootStore.dbStore.saveTableRow(this.table, defaultItems)
+      return defaultItems.value
     }
-  }
-
-  @action loadDefault() {
-    this.items.length = 0
-    this.defaultSettings.forEach((item) => {
-      this.rootStore.dbStore.saveTableRow(this.table, item)
-      this.items.push(item)
-    })
   }
 
   @action loadSettings() {

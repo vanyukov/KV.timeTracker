@@ -6,7 +6,7 @@ export default class Clients extends StoreClass {
   constructor(rootStore) {
     super(rootStore)
     this.table = 'clientSites'
-    this.defaultClientSites = [
+    this.defaultItems = [
       {
         id: 1,
         clientId: 5,
@@ -26,13 +26,6 @@ export default class Clients extends StoreClass {
         title: 'Прод',
       },
     ]
-  }
-
-  @action loadDefault() {
-    this.defaultClientSites.forEach((item) => {
-      this.rootStore.dbStore.saveTableRow(this.table, item)
-      this.items.push(item)
-    })
   }
 
   @action newClientSite() {

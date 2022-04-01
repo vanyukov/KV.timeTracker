@@ -6,7 +6,7 @@ export default class UtzJobTypes extends StoreClass {
   constructor(rootStore) {
     super(rootStore)
     this.table = 'utzJobTypes'
-    this.defaultUtzJobTypes = [
+    this.defaultItems = [
       {
         id: 1,
         type: 'Разработка проектных решений',
@@ -24,13 +24,6 @@ export default class UtzJobTypes extends StoreClass {
         type: 'Решение задач в рамках Поддержки во внеурочное время',
       },
     ]
-  }
-
-  @action loadDefault() {
-    this.defaultUtzJobTypes.forEach((item) => {
-      this.rootStore.dbStore.saveTableRow(this.table, item)
-      this.items.push(item)
-    })
   }
 
   @action newUtzJobType() {

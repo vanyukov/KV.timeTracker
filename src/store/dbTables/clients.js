@@ -6,7 +6,7 @@ export default class Clients extends StoreClass {
   constructor(rootStore) {
     super(rootStore)
     this.table = 'clients'
-    this.defaultClients = [
+    this.defaultItems = [
       {
         title: 'ОАО «Газпромбанк»',
         id: '5',
@@ -63,13 +63,6 @@ export default class Clients extends StoreClass {
         git: 'https://git.repo.services.lenvendo.ru/project/fischer/frontend',
       },
     ]
-  }
-
-  @action loadDefault() {
-    this.defaultClients.forEach((item) => {
-      this.rootStore.dbStore.saveTableRow(this.table, item)
-      this.items.push(item)
-    })
   }
 
   @action newClient() {

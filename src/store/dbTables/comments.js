@@ -6,7 +6,7 @@ export default class Comments extends StoreClass {
   constructor(rootStore) {
     super(rootStore);
     this.table = 'comments';
-    this.defaultComments = [
+    this.defaultItems = [
       {
         id: 1,
         text: 'Разработчик. Реализация функциональности',
@@ -38,13 +38,6 @@ export default class Comments extends StoreClass {
         preview: 'Р.Консультации тестировщика'
       }
     ];
-  }
-
-  @action loadDefault() {
-    this.defaultComments.forEach(item => {
-      this.rootStore.dbStore.saveTableRow(this.table, item);
-      this.items.push(item);
-    });
   }
 
   @action newComment() {
