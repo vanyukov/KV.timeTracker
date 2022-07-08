@@ -17,7 +17,7 @@
     "indexeddb-export-import": "^2.1.2",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
