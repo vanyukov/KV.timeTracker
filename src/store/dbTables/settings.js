@@ -9,7 +9,7 @@ export default class Settings extends StoreClass {
       {
         id: 1,
         name: 'jiraUrl',
-        value: 'https://jira.goods.ru/',
+        value: 'https://lenvendo-ru.atlassian.net/',
       },
       {
         id: 2,
