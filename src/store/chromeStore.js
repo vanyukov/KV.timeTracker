@@ -51,7 +51,16 @@ class chromeStore extends StoreClass {
       return chrome.runJS(
         this.currentTab,
         'document.querySelector("main .aui-page-header-inner h1").textContent'
-      )
+      ).then((result)=>{
+        if (result) {
+          return Promise.resolve(result)
+        }
+
+        return chrome.runJS(
+          this.currentTab,
+          'document.querySelector("h1").textContent'
+        )
+    })
     } else if (field == 'branch') {
       return chrome.runJS(
         this.currentTab,
