@@ -26,7 +26,7 @@ export default class Clients extends StoreClass {
         id: '4',
         taskCode: '1080',
         taskIdCr: '1080',
-        jira: 'https://lenvendo-ru.atlassian.net/',
+        jira: 'https://lenvendo.atlassian.net/',
       },
       {
         title: 'ООО "Эльдорадо"',
