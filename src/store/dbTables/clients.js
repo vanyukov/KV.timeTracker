@@ -8,6 +8,20 @@ export default class Clients extends StoreClass {
     this.table = 'clients'
     this.defaultItems = [
       {
+        title: 'ЛЕНВЕНДО',
+        id: '4',
+        taskCode: '1451',
+        taskIdCr: '1451',
+        jira: 'https://lenvendo.atlassian.net/',
+      },
+      {
+        title: 'Камаз',
+        id: '38',
+        taskCode: '1435',
+        taskIdCr: '1435',
+        jira: 'https://lenvendo.atlassian.net/',
+      },
+      {
         title: 'ОАО «Газпромбанк»',
         id: '5',
         taskCode: '1310',
@@ -20,13 +34,6 @@ export default class Clients extends StoreClass {
         taskIdCr: '',
         jira: 'https://jira.mts.ru',
         git: 'https://git.shop.mts.ru/shop/backend/site_bitrix',
-      },
-      {
-        title: 'ЛЕНВЕНДО',
-        id: '4',
-        taskCode: '1451',
-        taskIdCr: '1451',
-        jira: 'https://lenvendo.atlassian.net/',
       },
       {
         title: 'ООО "Эльдорадо"',
