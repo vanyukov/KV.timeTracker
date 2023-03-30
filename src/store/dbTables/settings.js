@@ -14,7 +14,7 @@ export default class Settings extends StoreClass {
       {
         id: 2,
         name: 'utzUrl',
-        value: 'http://timesheet.services.lenvendo.ru',
+        value: 'https://timesheet.services.lenvendo.ru',
       },
       {
         id: 3,
