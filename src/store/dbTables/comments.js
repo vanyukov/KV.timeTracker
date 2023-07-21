@@ -36,6 +36,12 @@ export default class Comments extends StoreClass {
         text: 'Разработчик. Консультации тестировщика',
         idUTZ: '2',
         preview: 'Р.Консультации тестировщика'
+      },
+      {
+        id: 6,
+        text: 'Код-ревью',
+        idUTZ: '2',
+        preview: 'Код-ревью'
       }
     ];
   }

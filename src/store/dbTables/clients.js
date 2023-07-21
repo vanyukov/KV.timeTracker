@@ -66,8 +66,16 @@ export default class Clients extends StoreClass {
         id: '37',
         taskCode: '1434',
         taskIdCr: '1434',
-        jira: 'https://lenvendo-ru.atlassian.net',
+        jira: 'https://lenvendo.atlassian.net/',
         git: 'https://git.repo.services.lenvendo.ru/project/fischer/frontend',
+      },
+      {
+        title: 'DoorHan',
+        id: '42',
+        taskCode: '1490',
+        taskIdCr: '1490',
+        jira: 'https://lenvendo.atlassian.net/',
+        git: 'https://gitlab.lenvendo.ru/project/doorhan/personal-frontend',
       },
     ]
   }

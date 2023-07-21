@@ -24,7 +24,7 @@ export default class Settings extends StoreClass {
       {
         id: 4,
         name: 'defaultClient',
-        value: '4',
+        value: '42',
       },
       {
         id: 5,
