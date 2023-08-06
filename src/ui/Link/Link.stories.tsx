@@ -9,5 +9,5 @@ export default meta
 type Story = StoryObj<typeof LinkComponent>
 
 export const Link: Story = {
-  render: props => <LinkComponent {...props} />,
+  render: props => <LinkComponent {...props}>Link</LinkComponent>,
 }
