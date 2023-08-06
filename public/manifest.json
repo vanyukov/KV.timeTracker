@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "LV Time Tracker",
-  "description": "Time Tracker интегрированный с Jira",
-  "version": "1.0",
+  "name": "KV Time Tracker",
+  "description": "Time Tracker connected with Jira",
+  "version": "2.0",
 
   "background": {
     "scripts": ["background.js"]
