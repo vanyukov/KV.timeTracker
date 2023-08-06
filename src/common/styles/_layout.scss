@@ -1,0 +1,23 @@
+html,
+body {
+  margin: 0;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  padding: 0 24px;
+}
+
+.flex {
+  display: flex;
+}
+
+.pt12 {
+  padding-top: 12px;
+}
+
+.pb12 {
+  padding-bottom: 12px;
+}
