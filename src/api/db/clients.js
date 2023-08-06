@@ -1,12 +1,12 @@
 const clients = {
   getNew() {
     return {
-      title: '',
-      id: '',
-      taskCode: '',
-      taskIdCr: '',
-      jira: '',
-      git: '',
+      title: "",
+      id: "",
+      taskCode: "",
+      taskIdCr: "",
+      jira: "",
+      git: "",
     }
   },
 

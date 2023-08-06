@@ -1,9 +1,9 @@
 const clientSites = {
   getNew() {
     return {
-      clientId: '',
-      url: '',
-      title: '',
+      clientId: "",
+      url: "",
+      title: "",
     }
   },
 

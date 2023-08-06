@@ -1,13 +1,13 @@
-import tracks from './db/tracks'
-import settings from './db/settings'
-import comments from './db/comments'
-import clients from './db/clients'
-import clientSites from './db/clientSites'
-import utzJobTypes from './db/utzJobTypes'
-const IDBExportImport = require('indexeddb-export-import')
+import tracks from "./db/tracks"
+import settings from "./db/settings"
+import comments from "./db/comments"
+import clients from "./db/clients"
+import clientSites from "./db/clientSites"
+import utzJobTypes from "./db/utzJobTypes"
+const IDBExportImport = require("indexeddb-export-import")
 
 const dbInfo = {
-  name: 'TimeTracks',
+  name: "TimeTracks",
   version: 3,
 }
 const stores = {
@@ -22,12 +22,12 @@ const stores = {
 export function openDB() {
   return new Promise((resolve, reject) => {
     const dbReq = indexedDB.open(dbInfo.name, dbInfo.version)
-    dbReq.onupgradeneeded = (event) => {
+    dbReq.onupgradeneeded = event => {
       const db = event.target.result
       for (let store in stores) {
         if (!db.objectStoreNames.contains(store)) {
           const objectStore = db.createObjectStore(store, stores[store].keys)
-          stores[store].index.forEach((item) => {
+          stores[store].index.forEach(item => {
             objectStore.createIndex(item.name, item.name, item.options)
           })
         }
@@ -46,7 +46,7 @@ export function put(db, store, value, key) {
       resolve(null)
     }
 
-    const transaction = db.transaction(store, 'readwrite')
+    const transaction = db.transaction(store, "readwrite")
     const dbStore = transaction.objectStore(store)
     let request = dbStore.put({ ...value }, key)
 
@@ -55,7 +55,7 @@ export function put(db, store, value, key) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })
@@ -67,7 +67,7 @@ export function del(db, store, key) {
       resolve(null)
     }
 
-    const transaction = db.transaction([store], 'readwrite')
+    const transaction = db.transaction([store], "readwrite")
     const dbStore = transaction.objectStore(store)
     const request = dbStore.delete(key)
 
@@ -76,7 +76,7 @@ export function del(db, store, key) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })
@@ -88,7 +88,7 @@ export function get(db, store, key) {
       resolve(null)
     }
 
-    const transaction = db.transaction(store, 'readonly')
+    const transaction = db.transaction(store, "readonly")
     const dbStore = transaction.objectStore(store)
     const request = dbStore.get(key)
 
@@ -97,7 +97,7 @@ export function get(db, store, key) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })
@@ -109,7 +109,7 @@ export function getAll(db, store) {
       resolve(null)
     }
 
-    const transaction = db.transaction(store, 'readonly')
+    const transaction = db.transaction(store, "readonly")
     const dbStore = transaction.objectStore(store)
     const request = dbStore.getAll()
 
@@ -118,7 +118,7 @@ export function getAll(db, store) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })
@@ -130,7 +130,7 @@ export function getAllWithKeys(db, store) {
       resolve(null)
     }
 
-    const transaction = db.transaction(store, 'readonly')
+    const transaction = db.transaction(store, "readonly")
     const dbStore = transaction.objectStore(store)
     const request = dbStore.openCursor()
     const result = []
@@ -149,7 +149,7 @@ export function getAllWithKeys(db, store) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })
@@ -161,7 +161,7 @@ export function clean(db, store) {
       resolve(null)
     }
 
-    const transaction = db.transaction(store, 'readwrite')
+    const transaction = db.transaction(store, "readwrite")
     const dbStore = transaction.objectStore(store)
     const request = dbStore.delete(IDBKeyRange.lowerBound(1, true))
 
@@ -170,7 +170,7 @@ export function clean(db, store) {
     }
 
     request.onerror = function () {
-      console.error('Ошибка', request.error)
+      console.error("Ошибка", request.error)
       reject(request.error)
     }
   })

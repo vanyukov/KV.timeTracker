@@ -3,14 +3,14 @@ const tracks = {
     return {
       active: true,
       startTime: new Date(),
-      client: '',
+      client: "",
       elapsedTime: 0,
       date: new Date(),
-      ticket: '',
-      ticketTitle: '',
-      branch: '',
-      epic: '',
-      comment: '',
+      ticket: "",
+      ticketTitle: "",
+      branch: "",
+      epic: "",
+      comment: "",
       overtime: false,
       idUTZ: 0,
       savedJira: false,
@@ -18,11 +18,11 @@ const tracks = {
     }
   },
 
-  keys: { keyPath: 'date' },
+  keys: { keyPath: "date" },
 
   index: [
     {
-      name: 'active',
+      name: "active",
       options: { unique: false },
     },
   ],

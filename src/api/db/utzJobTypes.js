@@ -1,13 +1,13 @@
 const UtzJobTypes = {
-    getNew(){
-        return {
-            type: '',
-        }
-    },
+  getNew() {
+    return {
+      type: "",
+    }
+  },
 
-    keys: {autoIncrement: true },
+  keys: { autoIncrement: true },
 
-    index: [],
+  index: [],
 }
 
-export default UtzJobTypes;
+export default UtzJobTypes

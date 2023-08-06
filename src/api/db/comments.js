@@ -1,15 +1,15 @@
 const comments = {
-    getNew(){
-        return {
-            text: '',
-            idUTZ: '',
-            preview: '',
-        }
-    },
+  getNew() {
+    return {
+      text: "",
+      idUTZ: "",
+      preview: "",
+    }
+  },
 
-    keys: {autoIncrement: true },
+  keys: { autoIncrement: true },
 
-    index: [],
+  index: [],
 }
 
-export default comments;
+export default comments

@@ -1,14 +1,14 @@
 const settings = {
-    getNew(){
-        return {
-            name: '',
-            value: '',
-        }
-    },
+  getNew() {
+    return {
+      name: "",
+      value: "",
+    }
+  },
 
-    keys: {keyPath: "name"},
+  keys: { keyPath: "name" },
 
-    index: [],
+  index: [],
 }
 
-export default settings;
+export default settings
