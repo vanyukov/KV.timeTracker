@@ -1,10 +1,6 @@
 import { MainLayout } from "layout"
 
-export type MainPageProps = {
-  className?: string
-}
-
-export const MainPage = ({ className }: MainPageProps) => {
+export function MainPage() {
   return (
     <MainLayout>
       <div className="container">
@@ -12,8 +8,4 @@ export const MainPage = ({ className }: MainPageProps) => {
       </div>
     </MainLayout>
   )
-}
-
-MainPage.defaultProps = {
-  className: "",
 }

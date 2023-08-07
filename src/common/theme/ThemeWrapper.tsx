@@ -1,7 +1,7 @@
-import { MantineProvider } from "@mantine/core";
-import { theme } from "./theme";
+import { MantineProvider } from "@mantine/core"
+import { theme } from "./theme"
 
-export function ThemeWrapper(props: { children: React.ReactNode }) {
+export function ThemeWrapper({ children }: { children: React.ReactNode }) {
   return (
     <MantineProvider
       withGlobalStyles
@@ -9,7 +9,7 @@ export function ThemeWrapper(props: { children: React.ReactNode }) {
       withCSSVariables
       theme={theme}
     >
-      {props.children}
+      {children}
     </MantineProvider>
   )
 }

@@ -9,5 +9,5 @@ export default meta
 type Story = StoryObj<typeof NotFoundComponent>
 
 export const NotFound: Story = {
-  render: props => (<NotFoundComponent />),
+  render: () => (<NotFoundComponent />),
 }

@@ -1,4 +1,4 @@
-import { ClientType } from "./types"
+import { type ClientType } from "./types"
 
 export const clientsMock: ClientType[] = [
   {

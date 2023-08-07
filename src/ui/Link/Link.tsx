@@ -1,6 +1,6 @@
 import {
   Link as LinkRouter,
-  LinkProps as LinkRouterProps,
+  type LinkProps as LinkRouterProps,
 } from "react-router-dom"
 
 export type LinkProps = LinkRouterProps

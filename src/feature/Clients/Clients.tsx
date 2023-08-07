@@ -5,12 +5,12 @@ export type ClientsProps = {
   className?: string
 }
 
-export const Clients = ({className}: ClientsProps) => {    
-    return (
-        <div className={classNames(className, style.wrap)}>
-           Clients
-        </div>
-    )
+export function Clients({ className }: ClientsProps) {
+  return (
+    <div className={classNames(className, style.wrap)}>
+      Clients
+    </div>
+  )
 }
 
 Clients.defaultProps = {

@@ -1,8 +1,9 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
-import { ClientType } from "./types"
+import { type ClientType } from "./types"
 
-export interface ClientsState {
+export type ClientsState = {
   items: ClientType[]
 }
 
