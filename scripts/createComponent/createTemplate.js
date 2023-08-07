@@ -14,7 +14,7 @@ module.exports = async (layer, componentName) => {
     return
   }
 
-  if (["components", "feature", "pages"].includes(layer)) {
+  if (["widget", "feature", "pages"].includes(layer)) {
     await createComponent(layer, componentName, path, pathLayer)
   }
 

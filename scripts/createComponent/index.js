@@ -2,7 +2,7 @@ require('console-error')
 const firstCharUpperCase = require('./helpers/firstCharUpperCase')
 const createTemplate = require('./createTemplate')
 
-const availableLayers = ['ui', 'modules', 'feature', 'pages']
+const availableLayers = ['ui', 'widget', 'feature', 'pages']
 
 if (!process.argv[2]) {
   console.error(
