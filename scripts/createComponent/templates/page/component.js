@@ -1,4 +1,4 @@
-module.exports = (componentName) => `import { MainLayout } from "layouts"
+module.exports = (componentName) => `import { MainLayout } from "layout"
 
 export function ${componentName}() {
   return (
