@@ -1,6 +1,6 @@
 # Script for creating components by template
 
-Components type: "ui", "components", "feature", "pages"
+Layer type: "ui", "widget", "feature", "pages"
 
 ## Prepare
 
@@ -8,4 +8,4 @@ Components type: "ui", "components", "feature", "pages"
 
 ## Run
 
-`node ./scripts/createComponent components/newComponent`
+`node ./scripts/createComponent layer/newComponent`
