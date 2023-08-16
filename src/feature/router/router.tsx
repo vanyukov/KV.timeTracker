@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom"
-import { MainPage, NotFound } from "pages"
+import { DayPage, MainPage, NotFound } from "pages"
 
 export const router = createBrowserRouter([
   {
@@ -9,6 +9,10 @@ export const router = createBrowserRouter([
   {
     path: "/index.html",
     element: <MainPage />,
+  },
+  {
+    path: "/day/:year/:month/:day",
+    element: <DayPage />,
   },
   {
     path: "*",
