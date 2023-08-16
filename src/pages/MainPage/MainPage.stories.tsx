@@ -9,5 +9,5 @@ export default meta
 type Story = StoryObj<typeof MainPageComponent>
 
 export const MainPage: Story = {
-  render: props => (<MainPageComponent {...props} />),
+  render: () => <MainPageComponent />,
 }
