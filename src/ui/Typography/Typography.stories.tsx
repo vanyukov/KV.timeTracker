@@ -15,7 +15,7 @@ export const Typography: Story = {
     noWrap: false,
   },
   render: props => (
-    <div className="w100">
+    <>
       <TypographyComponent variant="h1" {...props}>
         h1. Heading
       </TypographyComponent>
@@ -63,6 +63,6 @@ export const Typography: Story = {
       <TypographyComponent variant="overline" display="block" {...props}>
         overline text
       </TypographyComponent>
-    </div>
+    </>
   ),
 }

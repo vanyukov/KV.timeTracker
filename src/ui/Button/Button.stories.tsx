@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import ChevronRightRounded from "@mui/icons-material/ChevronRightRounded"
+import { StoryWrap } from "common/story"
 import { Button as UiButton } from "./Button"
 
 const meta: Meta<typeof UiButton> = {
   component: UiButton,
+  decorators: [StoryWrap],
 }
 
 export default meta
@@ -45,7 +47,11 @@ export const Button: Story = {
       >
         Button
       </UiButton>
-      <UiButton variant="contained" {...props} endIcon={<ChevronRightRounded />}>
+      <UiButton
+        variant="contained"
+        {...props}
+        endIcon={<ChevronRightRounded />}
+      >
         Button
       </UiButton>
     </>

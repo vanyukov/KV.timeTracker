@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { StoryWrap } from "common/story"
 import { Link as LinkComponent } from "./Link"
 
 const meta: Meta<typeof LinkComponent> = {
   component: LinkComponent,
+  decorators: [StoryWrap],
 }
 
 export default meta
@@ -18,7 +20,6 @@ export const Link: Story = {
       <LinkComponent {...props} color="secondary">
         Link
       </LinkComponent>
-      <div className="w100" />
     </>
   ),
 }
