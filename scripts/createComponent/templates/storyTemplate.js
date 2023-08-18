@@ -9,6 +9,7 @@ export default meta
 type Story = StoryObj<typeof ${componentName}Component>
 
 export const ${componentName}: Story = {
+  args: {},
   render: props => (<${componentName}Component {...props} />),
 }
 `;
