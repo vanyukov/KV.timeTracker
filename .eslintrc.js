@@ -35,6 +35,7 @@ module.exports = {
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/semi": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "arrow-parens": "off",
