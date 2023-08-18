@@ -17,7 +17,7 @@ export function WeekNav({ className }: WeekNavProps) {
         const currentDay = startWeek.add(item.number, "day")
         return (
           <Link
-            to={`/day/${currentDay.year()}/${currentDay.month()}/${currentDay.date()}`}
+            href={`/day/${currentDay.year()}/${currentDay.month()}/${currentDay.date()}`}
           >
             {item.title}
           </Link>

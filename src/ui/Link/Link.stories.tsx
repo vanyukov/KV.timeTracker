@@ -9,5 +9,16 @@ export default meta
 type Story = StoryObj<typeof LinkComponent>
 
 export const Link: Story = {
-  render: props => <LinkComponent {...props}>Link</LinkComponent>,
+  args: { underline: "hover", href: "/link" },
+  render: props => (
+    <>
+      <LinkComponent {...props} color="primary">
+        Link
+      </LinkComponent>
+      <LinkComponent {...props} color="secondary">
+        Link
+      </LinkComponent>
+      <div className="w100" />
+    </>
+  ),
 }

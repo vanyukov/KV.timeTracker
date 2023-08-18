@@ -1,15 +1,13 @@
-import { MantineProvider } from "@mantine/core"
+import { CssBaseline, ThemeProvider } from "@mui/material"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/700.css"
 import { theme } from "./theme"
 
 export function ThemeWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      withCSSVariables
-      theme={theme}
-    >
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       {children}
-    </MantineProvider>
+    </ThemeProvider>
   )
 }
