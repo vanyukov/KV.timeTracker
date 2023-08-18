@@ -10,6 +10,18 @@ export const decorators = [
   story => <ThemeWrapper>{story()}</ThemeWrapper>,
   story => <Provider store={store}>{story()}</Provider>,
   withRouter,
+  Story => (
+    <div
+      style={{
+        display: "flex",
+        gap: "8px",
+        maxWidth: "100%",
+        flexWrap: "wrap",
+      }}
+    >
+      <Story />
+    </div>
+  ),
 ]
 
 const preview: Preview = {
