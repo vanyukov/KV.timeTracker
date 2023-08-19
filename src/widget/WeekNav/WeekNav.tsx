@@ -22,6 +22,7 @@ export function WeekNav({ className }: WeekNavProps) {
         if (activeDay === currentDay.format("D M YYYY")) {
           return (
             <Typography
+              key={item}
               variant="button"
               className={classNames("flex", style.link)}
             >
