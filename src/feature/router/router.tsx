@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router-dom"
-import { DayPage, MainPage, NotFound } from "pages"
+import { DayPage, NotFound } from "pages"
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainPage />,
+    element: <DayPage />,
   },
   {
     path: "/index.html",
-    element: <MainPage />,
+    element: <DayPage />,
   },
   {
     path: "/day/:year/:month/:day",
