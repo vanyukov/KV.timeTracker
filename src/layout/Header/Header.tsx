@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import dayjs from "dayjs"
-import { Button, Link, Typography } from "ui"
+import { Link, Typography } from "ui"
+import { BtnAddTrack } from "feature/Tracks"
 import style from "./Header.module.scss"
 
 export function Header() {
@@ -22,7 +23,7 @@ export function Header() {
             width={37}
           />
         </Link>
-        <Button color="success">Add Track</Button>
+        <BtnAddTrack />
         <Typography variant="h5" component="p">
           {dayjs(day).format("DD MMMM YYYY, dddd")}
         </Typography>
