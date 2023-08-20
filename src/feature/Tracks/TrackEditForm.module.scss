@@ -1,0 +1,16 @@
+.wrap {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+.row {
+	display: flex;
+	gap: 12px;
+	width: 100%;
+
+	&>div {
+		flex-grow: 1;
+	}
+}

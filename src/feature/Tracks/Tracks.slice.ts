@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { type TStoreStatus, dbStore } from "store"
-import { tracksDB } from "./tracksDB"
 import { type TTrack } from "./types"
 
 export type TracksType = {
@@ -17,8 +16,7 @@ const storeName = "tracks"
 
 export const tracksAddNew = createAsyncThunk(
   `${storeName}/tracksAddNew`,
-  async () => {
-    const track = tracksDB.getNew()
+  async (track: TTrack) => {
     await dbStore.addRow(storeName, track)
     return track
   },

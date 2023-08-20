@@ -8,3 +8,4 @@ export {
 export type { TTrack } from "./types"
 export { tracksDB } from "./tracksDB"
 export { BtnAddTrack } from "./BtnAddTrack"
+export { TrackEditForm } from "./TrackEditForm"
