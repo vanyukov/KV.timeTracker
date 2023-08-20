@@ -1,17 +1,9 @@
-import { useAppDispatch } from "store"
-import { Button } from "ui"
-import { tracksAddNew } from "./Tracks.slice"
+import { Button, Link } from "ui"
 
 export function BtnAddTrack() {
-  const dispatch = useAppDispatch()
-
-  const handlerAddNew = () => {
-    void dispatch(tracksAddNew())
-  }
-
   return (
-    <Button color="success" onClick={handlerAddNew}>
-      Add Track
-    </Button>
+    <Link color="success" variant="button" href="/track/new">
+      <Button color="success">Add Track</Button>
+    </Link>
   )
 }
