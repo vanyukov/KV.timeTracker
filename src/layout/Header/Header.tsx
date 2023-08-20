@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import dayjs from "dayjs"
+import { dateLib } from "common/dateTime"
 import { Link, Typography } from "ui"
 import { BtnAddTrack } from "feature/Tracks"
 import style from "./Header.module.scss"
@@ -14,7 +14,7 @@ export function Header() {
 
   return (
     <div className="container">
-      <header className="flex g8 pt12 pb12">
+      <header className="flex align-center g8 pt12 pb12">
         <Link href="/" className={style.logoLink}>
           <img
             src="/img/logo.png"
@@ -25,7 +25,7 @@ export function Header() {
         </Link>
         <BtnAddTrack />
         <Typography variant="h5" component="p">
-          {dayjs(day).format("DD MMMM YYYY, dddd")}
+          {dateLib(day).format("DD MMMM YYYY, dddd")}
         </Typography>
       </header>
     </div>

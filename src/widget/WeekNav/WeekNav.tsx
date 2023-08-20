@@ -1,7 +1,7 @@
 import classNames from "classnames"
-import dayjs from "dayjs"
 import { Link, Typography } from "ui"
 import { useActiveDay } from "common/helpers"
+import { dateLib, makeDayLink } from "common/dateTime"
 import { weekDays } from "./weekDays"
 import style from "./WeekNav.module.scss"
 
@@ -10,9 +10,9 @@ export type WeekNavProps = {
 }
 
 export function WeekNav({ className }: WeekNavProps) {
-  const startWeek = dayjs().startOf("week")
+  const startWeek = dateLib().startOf("week")
   const activeDay = useActiveDay()
-  const today = dayjs().format("D M YYYY")
+  const today = dateLib().format("D M YYYY")
 
   return (
     <div className={classNames("flex g12", className)}>
@@ -34,7 +34,7 @@ export function WeekNav({ className }: WeekNavProps) {
 
         const link = today === currentDay.format("D M YYYY")
           ? "/"
-          : `/day/${currentDay.format("YYYY/M/D")}`
+          : makeDayLink(currentDay)
 
         return (
           <Link

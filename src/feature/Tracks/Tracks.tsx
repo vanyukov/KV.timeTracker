@@ -1,9 +1,10 @@
 import { useEffect } from "react"
 import { CircularProgress, Typography } from "ui"
+import { dateLib } from "common/dateTime"
 import { useAppDispatch } from "store"
-import style from "./Tracks.module.scss"
 import { useTrackList, useTrackListStatus } from "./Track.hooks"
 import { tracksGetAll } from "./Tracks.slice"
+import style from "./Tracks.module.scss"
 
 export type TracksProps = {
   className?: string
@@ -37,7 +38,7 @@ export function Tracks({ className }: TracksProps) {
     <div className={className}>
       {list.map(item => (
         <div className="" key={item.id}>
-          {`${item.date} ${item.id}`}
+          {`${dateLib(item.date).format("DD MM")} - ${item.ticket} - ${item.id}`}
         </div>
       ))}
     </div>
