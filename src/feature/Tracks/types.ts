@@ -8,5 +8,4 @@ export type TTrack = {
   ticketTitle: string
   epic: string
   comment: string
-  savedJira: boolean
 }

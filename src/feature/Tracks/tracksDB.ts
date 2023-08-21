@@ -27,7 +27,6 @@ export const tracksDB = {
       ticketTitle: "",
       epic: "",
       comment: "",
-      savedJira: false,
     }
   },
 }

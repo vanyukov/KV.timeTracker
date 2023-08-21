@@ -36,21 +36,6 @@ export function TrackEditForm({
               />
             )}
           />
-          <FormControlLabel
-            label="savedJira"
-            labelPlacement="top"
-            control={(
-              <Switch
-                checked={editTrack.savedJira}
-                onChange={() => {
-                  setEditTrack({
-                    ...editTrack,
-                    savedJira: !editTrack.savedJira,
-                  })
-                }}
-              />
-            )}
-          />
         </div>
         <TextField value={track.id} disabled label="id" />
       </div>
