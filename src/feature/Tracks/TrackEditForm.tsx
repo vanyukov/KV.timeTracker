@@ -23,30 +23,35 @@ export function TrackEditForm({
   return (
     <div className={classNames(className, style.wrap)}>
       <div className={style.row}>
-        <FormControlLabel
-          label="active"
-          labelPlacement="top"
-          control={(
-            <Switch
-              checked={editTrack.active}
-              onChange={() => {
-                setEditTrack({ ...editTrack, active: !editTrack.active })
-              }}
-            />
-          )}
-        />
-        <FormControlLabel
-          label="savedJira"
-          labelPlacement="top"
-          control={(
-            <Switch
-              checked={editTrack.savedJira}
-              onChange={() => {
-                setEditTrack({ ...editTrack, savedJira: !editTrack.savedJira })
-              }}
-            />
-          )}
-        />
+        <div className={style.row}>
+          <FormControlLabel
+            label="active"
+            labelPlacement="top"
+            control={(
+              <Switch
+                checked={editTrack.active}
+                onChange={() => {
+                  setEditTrack({ ...editTrack, active: !editTrack.active })
+                }}
+              />
+            )}
+          />
+          <FormControlLabel
+            label="savedJira"
+            labelPlacement="top"
+            control={(
+              <Switch
+                checked={editTrack.savedJira}
+                onChange={() => {
+                  setEditTrack({
+                    ...editTrack,
+                    savedJira: !editTrack.savedJira,
+                  })
+                }}
+              />
+            )}
+          />
+        </div>
         <TextField value={track.id} disabled label="id" />
       </div>
       <div className={style.row}>
