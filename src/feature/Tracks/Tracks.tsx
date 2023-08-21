@@ -1,31 +1,53 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { CircularProgress, Typography } from "ui"
-import { type TdateLib, dateLib } from "common/dateTime"
+import {
+  CircularProgress,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "ui"
+import { dateLib, timeDiffSplitted } from "common/dateTime"
 import { useAppDispatch } from "store"
 import { useTrackList, useTrackListStatus } from "./Tracks.hooks"
 import { tracksGetAll } from "./Tracks.slice"
+import { type TTrack } from "./types"
 import style from "./Tracks.module.scss"
 
 export type TracksProps = {
   className?: string
 }
 
+const getElapsedTimeFormat = (track: TTrack) => {
+  const elapsedTime = timeDiffSplitted(
+    dateLib(track.startTime).valueOf(),
+    track.active ? dateLib().valueOf() : 0,
+    track.elapsedTime,
+  )
+  return `${elapsedTime.hours}:${elapsedTime.minutes}`
+}
+
 export function Tracks({ className }: TracksProps) {
   const params = useParams()
-  let dateStart: TdateLib
+  let dateStart: string
   if (!params.day || !params.month || !params.year) {
-    dateStart = dateLib().startOf("day")
+    dateStart = dateLib().startOf("day").toISOString()
   } else {
-    dateStart = dateLib(`${params.year}-${params.month}-${params.day}`)
+    dateStart = dateLib(
+      `${params.year}-${params.month}-${params.day}`,
+    ).toISOString()
   }
 
   const dispatch = useAppDispatch()
   useEffect(() => {
     void dispatch(
       tracksGetAll({
-        dateStart: dateStart.toISOString(),
-        dateEnd: dateStart.endOf("day").toISOString(),
+        dateStart,
+        dateEnd: dateLib(dateStart).endOf("day").toISOString(),
       }),
     )
   }, [dateStart, dispatch])
@@ -50,11 +72,28 @@ export function Tracks({ className }: TracksProps) {
   }
   return (
     <div className={className}>
-      {list.map(item => (
-        <div className="" key={item.id}>
-          {`${dateLib(item.date).format("DD MM")} - ${item.ticket} - ${item.id}`}
-        </div>
-      ))}
+      <TableContainer component={Paper}>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>ticket</TableCell>
+              <TableCell>ticket title</TableCell>
+              <TableCell>elapsed time</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {list.map(row => (
+              <TableRow key={row.id}>
+                <TableCell>
+                  <span>{row.ticket}</span>
+                </TableCell>
+                <TableCell>{row.ticketTitle}</TableCell>
+                <TableCell>{getElapsedTimeFormat(row)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
   )
 }
