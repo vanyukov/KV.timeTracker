@@ -19,11 +19,16 @@ class DBStore {
     return dbPut(this.db!, storeName, value, key)
   }
 
-  async getAll(storeName: string) {
+  async getAll(
+    storeName: string,
+    key?: IDBValidKey | IDBKeyRange | null,
+    index?: string,
+    count?: number,
+  ) {
     if (!this.db) {
       await this.init()
     }
-    return dbGetAll(this.db!, storeName)
+    return dbGetAll(this.db!, storeName, key, index, count)
   }
 
   async deleteRow(storeName: string, key: IDBValidKey | IDBKeyRange) {

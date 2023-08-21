@@ -4,13 +4,17 @@ export async function dbGetAll(
   db: IDBDatabase,
   storeName: string,
   key?: IDBValidKey | IDBKeyRange | null | undefined,
+  index?: string,
   count?: number | undefined,
 ): Promise<TTrack[]> {
   return new Promise((resolve, reject) => {
-    const request = db
+    const objectStore = db
       .transaction(storeName, "readonly")
       .objectStore(storeName)
-      .getAll(key, count)
+
+    const request = (
+      index ? objectStore.index(index ?? "") : objectStore
+    ).getAll(key, count)
 
     request.onsuccess = () => {
       resolve(request.result)

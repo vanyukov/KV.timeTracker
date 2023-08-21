@@ -24,8 +24,9 @@ export const tracksAddNew = createAsyncThunk(
 
 export const tracksGetAll = createAsyncThunk(
   `${storeName}/dbGetAll`,
-  async () => {
-    const list = await dbStore.getAll(storeName)
+  async ({ dateStart, dateEnd }: { dateStart: string, dateEnd: string }) => {
+    const keyRangeValue = IDBKeyRange.bound(dateStart, dateEnd)
+    const list = await dbStore.getAll(storeName, keyRangeValue, "date")
     return list
   },
 )
