@@ -10,20 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "ui"
-import { dateLib, timeDiffSplitted } from "common/dateTime"
+import { getElapsedTimeFormat } from "common/dateTime"
 import { type TTrack } from "./types"
 
 export type TracksTableProps = {
   list: TTrack[]
-}
-
-const getElapsedTimeFormat = (track: TTrack) => {
-  const elapsedTime = timeDiffSplitted(
-    dateLib(track.startTime).valueOf(),
-    track.active ? dateLib().valueOf() : 0,
-    track.elapsedTime,
-  )
-  return `${elapsedTime.hours}:${elapsedTime.minutes}`
 }
 
 export function TracksTable({ list }: TracksTableProps) {
@@ -40,7 +31,7 @@ export function TracksTable({ list }: TracksTableProps) {
         </TableHead>
         <TableBody>
           {list.map(track => (
-            <TableRow key={track.id}>
+            <TableRow key={track.id} selected={track.active}>
               <TableCell>
                 <span>{track.ticket}</span>
               </TableCell>

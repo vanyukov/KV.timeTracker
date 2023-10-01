@@ -1,9 +1,14 @@
 import { useState } from "react"
 import classNames from "classnames"
 import {
-  Button, DatePicker, FormControlLabel, Switch, TextField,
+  Button,
+  DatePicker,
+  FormControlLabel,
+  Switch,
+  TextField,
+  TimeMaskInput,
 } from "ui"
-import { type TdateLib, dateLib } from "common/dateTime"
+import { type TdateLib, dateLib, getElapsedTimeFormat } from "common/dateTime"
 import { type TTrack } from "./types"
 import style from "./TrackEditForm.module.scss"
 
@@ -13,6 +18,10 @@ type TrackEditFormProps = {
   className?: string
 }
 
+function revertFromMaskToTime(value: string) {
+  const time = value.split(":")
+  return (+time[0] * 60 + (+time[1] || 0)) * 60 * 1000
+}
 export function TrackEditForm({
   track,
   handleSave,
@@ -40,13 +49,21 @@ export function TrackEditForm({
         <TextField value={track.id} disabled label="id" />
       </div>
       <div className={style.row}>
-        <TextField
-          value={editTrack.elapsedTime}
-          onChange={event => {
-            setEditTrack({ ...editTrack, elapsedTime: +event.target.value })
-          }}
-          type="number"
+        <TimeMaskInput
           label="elapsedTime"
+          value={getElapsedTimeFormat(editTrack)}
+          onUpdate={val => {
+            const elapsedTime = revertFromMaskToTime(val)
+            if (editTrack.active) {
+              setEditTrack({
+                ...editTrack,
+                startTime: new Date(Date.now() - elapsedTime).toISOString(),
+                elapsedTime: 0,
+              })
+            } else {
+              setEditTrack({ ...editTrack, elapsedTime })
+            }
+          }}
         />
         <DatePicker
           value={dateLib(editTrack.date)}
