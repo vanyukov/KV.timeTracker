@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
-import { DayPage, NewTrackPage, NotFound } from "pages"
+import {
+  DayPage, EditTrackPage, NewTrackPage, NotFound,
+} from "pages"
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ export const router = createBrowserRouter([
   {
     path: "/track/new",
     element: <NewTrackPage />,
+  },
+  {
+    path: "/track/:id",
+    element: <EditTrackPage />,
   },
   {
     path: "*",
