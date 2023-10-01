@@ -12,7 +12,7 @@ class DBStore {
     })
   }
 
-  async addRow(storeName: string, value: any, key?: IDBValidKey) {
+  async put(storeName: string, value: any, key?: IDBValidKey) {
     if (!this.db) {
       await this.init()
     }

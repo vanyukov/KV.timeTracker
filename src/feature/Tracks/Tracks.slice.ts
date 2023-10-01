@@ -17,7 +17,7 @@ const storeName = "tracks"
 export const tracksAddNew = createAsyncThunk(
   `${storeName}/tracksAddNew`,
   async (track: TTrack) => {
-    await dbStore.addRow(storeName, track)
+    await dbStore.put(storeName, track)
     return track
   },
 )
