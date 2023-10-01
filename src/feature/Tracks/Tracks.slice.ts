@@ -1,21 +1,24 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+} from "@reduxjs/toolkit"
 import { type TStoreStatus, dbStore } from "store"
+import { type RootState } from "store/redux/store"
 import { type TTrack } from "./types"
-
-export type TracksType = {
-  items: TTrack[]
-  status: TStoreStatus
-}
-
-const initialState: TracksType = {
-  items: [],
-  status: "idle",
-}
 
 const storeName = "tracks"
 
 export const tracksAddNew = createAsyncThunk(
   `${storeName}/tracksAddNew`,
+  async (track: TTrack) => {
+    await dbStore.put(storeName, track)
+    return track
+  },
+)
+
+export const tracksEdit = createAsyncThunk(
+  `${storeName}/tracksEdit`,
   async (track: TTrack) => {
     await dbStore.put(storeName, track)
     return track
@@ -31,6 +34,14 @@ export const tracksGetAll = createAsyncThunk(
   },
 )
 
+export const trackAdapter = createEntityAdapter<TTrack>()
+const extraFields: {
+  status: TStoreStatus
+} = {
+  status: "idle",
+}
+const initialState = trackAdapter.getInitialState(extraFields)
+
 export const TracksSlice = createSlice({
   name: storeName,
   initialState,
@@ -42,7 +53,7 @@ export const TracksSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(tracksAddNew.fulfilled, (state, action) => {
-        state.items.push(action.payload)
+        trackAdapter.addOne(state, action.payload)
       })
       .addCase(tracksGetAll.pending, state => {
         if (state.status === "idle") {
@@ -50,7 +61,7 @@ export const TracksSlice = createSlice({
         }
       })
     builder.addCase(tracksGetAll.fulfilled, (state, action) => {
-      state.items = action.payload || []
+      trackAdapter.setAll(state, action.payload)
       state.status = "succeeded"
     })
   },
@@ -58,3 +69,11 @@ export const TracksSlice = createSlice({
 
 export const TracksActions = TracksSlice.actions
 export const TracksReducer = TracksSlice.reducer
+
+export const {
+  selectById: selectTrackById,
+  selectIds: selectTrackIds,
+  selectEntities: selectTrackEntities,
+  selectAll: selectAllTracks,
+  selectTotal: selectTotalTracks,
+} = trackAdapter.getSelectors<RootState>((state) => state.tracks)
