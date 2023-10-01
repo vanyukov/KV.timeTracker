@@ -1,34 +1,15 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import {
-  CircularProgress,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "ui"
-import { dateLib, timeDiffSplitted } from "common/dateTime"
+import { CircularProgress, Typography } from "ui"
+import { dateLib } from "common/dateTime"
 import { useAppDispatch } from "store"
 import { useTrackList, useTrackListStatus } from "./Tracks.hooks"
 import { tracksGetAll } from "./Tracks.slice"
-import { type TTrack } from "./types"
+import { TracksTable } from "./TracksTable"
 import style from "./Tracks.module.scss"
 
 export type TracksProps = {
   className?: string
-}
-
-const getElapsedTimeFormat = (track: TTrack) => {
-  const elapsedTime = timeDiffSplitted(
-    dateLib(track.startTime).valueOf(),
-    track.active ? dateLib().valueOf() : 0,
-    track.elapsedTime,
-  )
-  return `${elapsedTime.hours}:${elapsedTime.minutes}`
 }
 
 export function Tracks({ className }: TracksProps) {
@@ -72,28 +53,7 @@ export function Tracks({ className }: TracksProps) {
   }
   return (
     <div className={className}>
-      <TableContainer component={Paper}>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>ticket</TableCell>
-              <TableCell>ticket title</TableCell>
-              <TableCell>elapsed time</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {list.map(row => (
-              <TableRow key={row.id}>
-                <TableCell>
-                  <span>{row.ticket}</span>
-                </TableCell>
-                <TableCell>{row.ticketTitle}</TableCell>
-                <TableCell>{getElapsedTimeFormat(row)}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <TracksTable list={list} />
     </div>
   )
 }
