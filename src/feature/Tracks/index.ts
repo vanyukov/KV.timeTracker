@@ -4,6 +4,7 @@ export {
   TracksReducer,
   tracksAddNew,
   tracksEdit,
+  trackDelete,
   tracksGetAll,
 } from "./Tracks.slice"
 export type { TTrack } from "./types"

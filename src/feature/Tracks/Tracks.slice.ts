@@ -25,6 +25,14 @@ export const tracksEdit = createAsyncThunk(
   },
 )
 
+export const trackDelete = createAsyncThunk(
+  `${storeName}/trackDelete`,
+  async (id: string) => {
+    await dbStore.delete(storeName, id)
+    return id
+  },
+)
+
 export const tracksGetAll = createAsyncThunk(
   `${storeName}/dbGetAll`,
   async ({ dateStart, dateEnd }: { dateStart: string, dateEnd: string }) => {
@@ -62,6 +70,10 @@ export const TracksSlice = createSlice({
       })
     builder.addCase(tracksGetAll.fulfilled, (state, action) => {
       trackAdapter.setAll(state, action.payload)
+      state.status = "succeeded"
+    })
+    builder.addCase(trackDelete.fulfilled, (state, action) => {
+      trackAdapter.removeOne(state, action.payload)
       state.status = "succeeded"
     })
   },

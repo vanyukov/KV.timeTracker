@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import classNames from "classnames"
 import {
   Button,
@@ -11,6 +12,7 @@ import {
 import { type TdateLib, dateLib, getElapsedTimeFormat } from "common/dateTime"
 import { type TTrack } from "./types"
 import style from "./TrackEditForm.module.scss"
+import { TrackSubMenu } from "./TrackSubMenu"
 
 type TrackEditFormProps = {
   track: TTrack
@@ -28,6 +30,7 @@ export function TrackEditForm({
   className,
 }: TrackEditFormProps) {
   const [editTrack, setEditTrack] = useState({ ...track })
+  const navigate = useNavigate()
 
   return (
     <div className={classNames(className, style.wrap)}>
@@ -104,14 +107,23 @@ export function TrackEditForm({
         multiline
         label="comment"
       />
-      <Button
-        variant="contained"
-        onClick={() => {
-          handleSave(editTrack)
-        }}
-      >
-        Save
-      </Button>
+      <div className="flex">
+        <Button
+          variant="contained"
+          className="w100"
+          onClick={() => {
+            handleSave(editTrack)
+          }}
+        >
+          Save
+        </Button>
+        <TrackSubMenu
+          id={track.id}
+          onDelete={() => {
+            navigate(-1)
+          }}
+        />
+      </div>
     </div>
   )
 }

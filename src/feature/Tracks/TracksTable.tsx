@@ -12,6 +12,7 @@ import {
 } from "ui"
 import { getElapsedTimeFormat } from "common/dateTime"
 import { type TTrack } from "./types"
+import { TrackSubMenu } from "./TrackSubMenu"
 
 export type TracksTableProps = {
   list: TTrack[]
@@ -38,11 +39,14 @@ export function TracksTable({ list }: TracksTableProps) {
               <TableCell>{track.ticketTitle}</TableCell>
               <TableCell>{getElapsedTimeFormat(track)}</TableCell>
               <TableCell>
-                <Link href={`/track/${track.id}`}>
-                  <Button color="secondary" size="small" variant="text">
-                    <EditIcon />
-                  </Button>
-                </Link>
+                <div className="flex">
+                  <Link href={`/track/${track.id}`}>
+                    <Button color="secondary" size="small" variant="text">
+                      <EditIcon />
+                    </Button>
+                  </Link>
+                  <TrackSubMenu id={track.id} />
+                </div>
               </TableCell>
             </TableRow>
           ))}
