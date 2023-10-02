@@ -31,7 +31,7 @@ class DBStore {
     return dbGetAll(this.db!, storeName, key, index, count)
   }
 
-  async deleteRow(storeName: string, key: IDBValidKey | IDBKeyRange) {
+  async delete(storeName: string, key: IDBValidKey | IDBKeyRange) {
     if (!this.db) {
       await this.init()
     }
