@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
-  dbDelete, dbGetAll, dbOpen, dbPut,
+  dbDelete, dbGet, dbGetAll, dbOpen, dbPut,
 } from "api/IndexedDB"
 
 class DBStore {
@@ -17,6 +17,16 @@ class DBStore {
       await this.init()
     }
     return dbPut(this.db!, storeName, value, key)
+  }
+
+  async get(
+    storeName: string,
+    key: IDBValidKey | IDBKeyRange,
+  ) {
+    if (!this.db) {
+      await this.init()
+    }
+    return dbGet(this.db!, storeName, key)
   }
 
   async getAll(
