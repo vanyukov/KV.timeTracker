@@ -7,9 +7,9 @@ import {
   FormControlLabel,
   Switch,
   TextField,
-  TimeMaskInput,
+  TimePicker,
 } from "ui"
-import { type TdateLib, dateLib, getElapsedTimeFormat } from "common/dateTime"
+import { type TdateLib, dateLib } from "common/dateTime"
 import { type TTrack } from "./types"
 import style from "./TrackEditForm.module.scss"
 import { TrackSubMenu } from "./TrackSubMenu"
@@ -20,9 +20,15 @@ type TrackEditFormProps = {
   className?: string
 }
 
-function revertFromMaskToTime(value: string) {
-  const time = value.split(":")
-  return (+time[0] * 60 + (+time[1] || 0)) * 60 * 1000
+function getTrackElapsedTime(track: TTrack) {
+  if (track.active) {
+    return dateLib(
+      dateLib().valueOf()
+        - dateLib(track.startTime).valueOf()
+        + track.elapsedTime,
+    ).utc()
+  }
+  return dateLib(track.elapsedTime).utc()
 }
 export function TrackEditForm({
   track,
@@ -43,6 +49,13 @@ export function TrackEditForm({
               <Switch
                 checked={editTrack.active}
                 onChange={() => {
+                  if (editTrack.active) {
+                    // switch to unactive
+                    editTrack.elapsedTime += +new Date() - (+new Date(editTrack.startTime));
+                  } else {
+                    // switch to active
+                    editTrack.startTime = new Date().toISOString()
+                  }
                   setEditTrack({ ...editTrack, active: !editTrack.active })
                 }}
               />
@@ -52,19 +65,23 @@ export function TrackEditForm({
         <TextField value={track.id} disabled label="id" />
       </div>
       <div className={style.row}>
-        <TimeMaskInput
+        <TimePicker
           label="elapsedTime"
-          value={getElapsedTimeFormat(editTrack)}
-          onUpdate={val => {
-            const elapsedTime = revertFromMaskToTime(val)
+          views={["hours", "minutes"]}
+          ampm={false}
+          value={getTrackElapsedTime(editTrack)}
+          onChange={(newValue: TdateLib | null) => {
+            if (!newValue) {
+              return
+            }
             if (editTrack.active) {
               setEditTrack({
                 ...editTrack,
-                startTime: new Date(Date.now() - elapsedTime).toISOString(),
+                startTime: dateLib(dateLib().valueOf() - newValue.valueOf()).utc().toISOString(),
                 elapsedTime: 0,
               })
             } else {
-              setEditTrack({ ...editTrack, elapsedTime })
+              setEditTrack({ ...editTrack, elapsedTime: newValue?.valueOf() ?? 0 })
             }
           }}
         />

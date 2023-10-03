@@ -17,16 +17,36 @@ export const tracksAddNew = createAsyncThunk(
   },
 )
 
-export const tracksEdit = createAsyncThunk(
-  `${storeName}/tracksEdit`,
+export const tracksEditItem = createAsyncThunk(
+  `${storeName}/tracksEditItem`,
   async (track: TTrack) => {
     await dbStore.put(storeName, track)
     return track
   },
 )
 
-export const trackDelete = createAsyncThunk(
-  `${storeName}/trackDelete`,
+export const tracksStartItem = createAsyncThunk(
+  `${storeName}/tracksStartItem`,
+  async (track: TTrack) => {
+    track.active = true
+    track.startTime = new Date().toISOString()
+    await dbStore.put(storeName, track)
+    return track
+  },
+)
+
+export const tracksStopItem = createAsyncThunk(
+  `${storeName}/tracksStopItem`,
+  async (track: TTrack) => {
+    track.active = false
+    track.elapsedTime += +new Date() - (+new Date(track.startTime))
+    await dbStore.put(storeName, track)
+    return track
+  },
+)
+
+export const tracksDeleteItem = createAsyncThunk(
+  `${storeName}/tracksDeleteItem`,
   async (id: string) => {
     await dbStore.delete(storeName, id)
     return id
@@ -42,13 +62,13 @@ export const tracksGetAll = createAsyncThunk(
   },
 )
 
-export const trackAdapter = createEntityAdapter<TTrack>()
+export const tracksAdapter = createEntityAdapter<TTrack>()
 const extraFields: {
   status: TStoreStatus
 } = {
   status: "idle",
 }
-const initialState = trackAdapter.getInitialState(extraFields)
+const initialState = tracksAdapter.getInitialState(extraFields)
 
 export const TracksSlice = createSlice({
   name: storeName,
@@ -61,7 +81,7 @@ export const TracksSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(tracksAddNew.fulfilled, (state, action) => {
-        trackAdapter.addOne(state, action.payload)
+        tracksAdapter.addOne(state, action.payload)
       })
       .addCase(tracksGetAll.pending, state => {
         if (state.status === "idle") {
@@ -69,11 +89,11 @@ export const TracksSlice = createSlice({
         }
       })
     builder.addCase(tracksGetAll.fulfilled, (state, action) => {
-      trackAdapter.setAll(state, action.payload)
+      tracksAdapter.setAll(state, action.payload)
       state.status = "succeeded"
     })
-    builder.addCase(trackDelete.fulfilled, (state, action) => {
-      trackAdapter.removeOne(state, action.payload)
+    builder.addCase(tracksDeleteItem.fulfilled, (state, action) => {
+      tracksAdapter.removeOne(state, action.payload)
       state.status = "succeeded"
     })
   },
@@ -88,4 +108,4 @@ export const {
   selectEntities: selectTrackEntities,
   selectAll: selectAllTracks,
   selectTotal: selectTotalTracks,
-} = trackAdapter.getSelectors<RootState>((state) => state.tracks)
+} = tracksAdapter.getSelectors<RootState>(state => state.tracks)

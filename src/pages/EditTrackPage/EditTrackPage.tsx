@@ -6,7 +6,7 @@ import { useAppDispatch } from "store"
 import {
   type TTrack,
   TrackEditForm,
-  tracksEdit,
+  tracksEditItem,
   useTrackById,
 } from "feature/Tracks"
 import { makeDayLink } from "common/dateTime"
@@ -19,7 +19,7 @@ export function EditTrackPage() {
 
   const handlerAddNew = useCallback(
     (tr: TTrack) => {
-      void dispatch(tracksEdit(tr))
+      void dispatch(tracksEditItem(tr))
       navigate(makeDayLink(tr.date))
     },
     [dispatch, navigate],

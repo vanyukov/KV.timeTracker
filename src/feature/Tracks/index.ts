@@ -3,8 +3,8 @@ export {
   TracksActions,
   TracksReducer,
   tracksAddNew,
-  tracksEdit,
-  trackDelete,
+  tracksEditItem,
+  tracksDeleteItem,
   tracksGetAll,
 } from "./Tracks.slice"
 export type { TTrack } from "./types"

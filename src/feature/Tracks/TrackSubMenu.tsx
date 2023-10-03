@@ -3,7 +3,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { Button, Menu, MenuItem } from "ui"
 import { useAppDispatch } from "store"
-import { trackDelete } from "./Tracks.slice"
+import { tracksDeleteItem } from "./Tracks.slice"
 
 export type TrackSubMenuProps = {
   id: string
@@ -23,7 +23,7 @@ export function TrackSubMenu({ id, onDelete = () => {} }: TrackSubMenuProps) {
   const dispatch = useAppDispatch()
 
   const handleDelete = () => {
-    void dispatch(trackDelete(id))
+    void dispatch(tracksDeleteItem(id))
     handleClose()
     onDelete()
   }
