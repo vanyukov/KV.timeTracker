@@ -9,6 +9,7 @@ import {
   TrackEditForm,
   tracksDB,
 } from "feature/Tracks"
+import { Typography } from "ui"
 
 export function NewTrackPage() {
   const dispatch = useAppDispatch()
@@ -26,6 +27,9 @@ export function NewTrackPage() {
   return (
     <MainLayout>
       <div className="container">
+        <Typography variant="h4" component="p" className="pb12">
+          Add new track
+        </Typography>
         <TrackEditForm track={track} handleSave={handlerAddNew} />
       </div>
     </MainLayout>

@@ -1,5 +1,7 @@
 html,
 body {
+  width: 360px;
+	min-height: 600px;
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,6 +10,10 @@ body {
 
 p {
   margin: 0;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .container {

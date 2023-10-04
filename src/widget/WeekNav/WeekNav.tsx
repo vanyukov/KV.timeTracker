@@ -1,4 +1,5 @@
 import classNames from "classnames"
+import { useParams } from "react-router-dom"
 import { Link, Typography } from "ui"
 import { useActiveDay } from "common/helpers"
 import { dateLib, makeDayLink } from "common/dateTime"
@@ -10,45 +11,58 @@ export type WeekNavProps = {
 }
 
 export function WeekNav({ className }: WeekNavProps) {
+  const params = useParams()
+  const day = (params.year
+      && params.month
+      && params.day
+      && `${params.year}-${+params.month}-${params.day}`)
+    ?? undefined
+
   const startWeek = dateLib().startOf("week")
   const activeDay = useActiveDay()
   const today = dateLib().format("D M YYYY")
 
   return (
-    <div className={classNames("flex g12", className)}>
-      {weekDays.map(item => {
-        const currentDay = startWeek.add(item, "day")
+    <>
+      <Typography variant="h6" component="p" className="pb12">
+        {dateLib(day).format("DD MMMM YYYY, dddd")}
+      </Typography>
 
-        if (activeDay === currentDay.format("D M YYYY")) {
+      <div className={classNames("flex g12", className)}>
+        {weekDays.map(item => {
+          const currentDay = startWeek.add(item, "day")
+
+          if (activeDay === currentDay.format("D M YYYY")) {
+            return (
+              <Typography
+                key={item}
+                variant="button"
+                className={classNames("flex", style.link)}
+              >
+                <span>{currentDay.format("ddd")}</span>
+                <span>{currentDay.format("DD")}</span>
+              </Typography>
+            )
+          }
+
+          const link = today === currentDay.format("D M YYYY")
+            ? "/"
+            : makeDayLink(currentDay)
+
           return (
-            <Typography
+            <Link
               key={item}
+              href={link}
               variant="button"
               className={classNames("flex", style.link)}
             >
               <span>{currentDay.format("ddd")}</span>
               <span>{currentDay.format("DD")}</span>
-            </Typography>
+            </Link>
           )
-        }
-
-        const link = today === currentDay.format("D M YYYY")
-          ? "/"
-          : makeDayLink(currentDay)
-
-        return (
-          <Link
-            key={item}
-            href={link}
-            variant="button"
-            className={classNames("flex", style.link)}
-          >
-            <span>{currentDay.format("ddd")}</span>
-            <span>{currentDay.format("DD")}</span>
-          </Link>
-        )
-      })}
-    </div>
+        })}
+      </div>
+    </>
   )
 }
 

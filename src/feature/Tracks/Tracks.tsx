@@ -46,7 +46,7 @@ export function Tracks({ className }: TracksProps) {
 
   if (!list.length) {
     return (
-      <Typography variant="h4" component="p" className="pt12">
+      <Typography variant="h5" component="p" className="pt12">
         Today don&apos;t have tracks
       </Typography>
     )

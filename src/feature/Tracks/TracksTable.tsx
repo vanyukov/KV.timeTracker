@@ -13,6 +13,7 @@ import {
 import { getElapsedTimeFormat } from "common/dateTime"
 import { type TTrack } from "./types"
 import { TrackSubMenu } from "./TrackSubMenu"
+import style from "./TracksTable.module.scss"
 
 export type TracksTableProps = {
   list: TTrack[]
@@ -25,7 +26,6 @@ export function TracksTable({ list }: TracksTableProps) {
         <TableHead>
           <TableRow>
             <TableCell>ticket</TableCell>
-            <TableCell>ticket title</TableCell>
             <TableCell>elapsed time</TableCell>
             <TableCell />
           </TableRow>
@@ -34,19 +34,17 @@ export function TracksTable({ list }: TracksTableProps) {
           {list.map(track => (
             <TableRow key={track.id} selected={track.active}>
               <TableCell>
-                <span>{track.ticket}</span>
+                <p className="bold">{track.ticket}</p>
+                <p className={style.ticketTitle}>{track.ticketTitle}</p>
               </TableCell>
-              <TableCell>{track.ticketTitle}</TableCell>
               <TableCell>{getElapsedTimeFormat(track)}</TableCell>
               <TableCell>
-                <div className="flex">
-                  <Link href={`/track/${track.id}`}>
-                    <Button color="secondary" size="small" variant="text">
-                      <EditIcon />
-                    </Button>
-                  </Link>
-                  <TrackSubMenu id={track.id} />
-                </div>
+                <Link href={`/track/${track.id}`}>
+                  <Button color="secondary" size="small" variant="text">
+                    <EditIcon />
+                  </Button>
+                </Link>
+                <TrackSubMenu id={track.id} />
               </TableCell>
             </TableRow>
           ))}

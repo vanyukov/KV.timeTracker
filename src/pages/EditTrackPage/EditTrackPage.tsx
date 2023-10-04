@@ -10,6 +10,7 @@ import {
   useTrackById,
 } from "feature/Tracks"
 import { makeDayLink } from "common/dateTime"
+import { Typography } from "ui"
 
 export function EditTrackPage() {
   const params = useParams()
@@ -32,6 +33,9 @@ export function EditTrackPage() {
   return (
     <MainLayout>
       <div className="container">
+        <Typography variant="h4" component="p" className="pb12">
+          Edit track
+        </Typography>
         <TrackEditForm track={track} handleSave={handlerAddNew} />
       </div>
     </MainLayout>
