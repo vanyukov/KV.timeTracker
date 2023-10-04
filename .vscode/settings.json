@@ -1,3 +1,7 @@
 {
-	"eslint.format.enable": true
+	"eslint.format.enable": true,
+	"search.exclude": {
+		"*.lock": true,
+		"**/build": true
+	}
 }
