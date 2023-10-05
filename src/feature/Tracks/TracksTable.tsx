@@ -9,11 +9,16 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TimePicker,
 } from "ui"
-import { getElapsedTimeFormat } from "common/dateTime"
+import { getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "./types"
 import { TrackSubMenu } from "./TrackSubMenu"
 import style from "./TracksTable.module.scss"
+
+function EmptyEl() {
+  return <> </>
+}
 
 export type TracksTableProps = {
   list: TTrack[]
@@ -37,7 +42,23 @@ export function TracksTable({ list }: TracksTableProps) {
                 <p className="bold">{track.ticket}</p>
                 <p className={style.ticketTitle}>{track.ticketTitle}</p>
               </TableCell>
-              <TableCell>{getElapsedTimeFormat(track)}</TableCell>
+              <TableCell>
+                <TimePicker
+                  value={getTrackElapsedTime(track)}
+                  views={["hours", "minutes"]}
+                  format="hh:mm"
+                  ampm={false}
+                  readOnly
+                  slots={{
+                    openPickerButton: EmptyEl,
+                  }}
+                  sx={{
+                    ".MuiInputBase-root": {
+                      paddingRight: 0,
+                    },
+                  }}
+                />
+              </TableCell>
               <TableCell>
                 <Link href={`/track/${track.id}`}>
                   <Button color="secondary" size="small" variant="text">

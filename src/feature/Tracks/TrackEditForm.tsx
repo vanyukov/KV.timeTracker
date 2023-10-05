@@ -9,7 +9,7 @@ import {
   TextField,
   TimePicker,
 } from "ui"
-import { type TdateLib, dateLib } from "common/dateTime"
+import { type TdateLib, dateLib, getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "./types"
 import style from "./TrackEditForm.module.scss"
 import { TrackSubMenu } from "./TrackSubMenu"
@@ -20,16 +20,6 @@ type TrackEditFormProps = {
   className?: string
 }
 
-function getTrackElapsedTime(track: TTrack) {
-  if (track.active) {
-    return dateLib(
-      dateLib().valueOf()
-        - dateLib(track.startTime).valueOf()
-        + track.elapsedTime,
-    ).utc()
-  }
-  return dateLib(track.elapsedTime).utc()
-}
 export function TrackEditForm({
   track,
   handleSave,
