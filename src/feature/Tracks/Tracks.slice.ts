@@ -62,6 +62,14 @@ export const tracksGetAll = createAsyncThunk(
   },
 )
 
+export const tracksGet = createAsyncThunk(
+  `${storeName}/dbGet`,
+  async (key: IDBValidKey | IDBKeyRange) => {
+    const track = await dbStore.get(storeName, key)
+    return track
+  },
+)
+
 export const tracksAdapter = createEntityAdapter<TTrack>()
 const extraFields: {
   status: TStoreStatus
@@ -88,14 +96,23 @@ export const TracksSlice = createSlice({
           state.status = "pending"
         }
       })
-    builder.addCase(tracksGetAll.fulfilled, (state, action) => {
-      tracksAdapter.setAll(state, action.payload)
-      state.status = "succeeded"
-    })
-    builder.addCase(tracksDeleteItem.fulfilled, (state, action) => {
-      tracksAdapter.removeOne(state, action.payload)
-      state.status = "succeeded"
-    })
+      .addCase(tracksGetAll.fulfilled, (state, action) => {
+        tracksAdapter.setAll(state, action.payload)
+        state.status = "succeeded"
+      })
+      .addCase(tracksGet.pending, state => {
+        if (state.status === "idle") {
+          state.status = "pending"
+        }
+      })
+      .addCase(tracksGet.fulfilled, (state, action) => {
+        tracksAdapter.addOne(state, action.payload)
+        state.status = "succeeded"
+      })
+      .addCase(tracksDeleteItem.fulfilled, (state, action) => {
+        tracksAdapter.removeOne(state, action.payload)
+        state.status = "succeeded"
+      })
   },
 })
 

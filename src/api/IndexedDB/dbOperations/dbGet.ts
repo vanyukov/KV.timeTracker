@@ -4,7 +4,7 @@ export async function dbGet(
   db: IDBDatabase,
   storeName: string,
   key: IDBValidKey | IDBKeyRange,
-): Promise<TTrack[]> {
+): Promise<TTrack> {
   return new Promise((resolve, reject) => {
     const request = db
       .transaction(storeName, "readonly")
