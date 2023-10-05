@@ -19,7 +19,7 @@ export const tracksDB = {
   getNew(): TTrack {
     return {
       id: makeNewId(),
-      active: true,
+      active: 1,
       date: new Date().toISOString(),
       startTime: new Date().toISOString(),
       elapsedTime: 0,

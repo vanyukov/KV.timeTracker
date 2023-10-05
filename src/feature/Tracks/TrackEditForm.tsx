@@ -37,7 +37,7 @@ export function TrackEditForm({
             labelPlacement="top"
             control={(
               <Switch
-                checked={editTrack.active}
+                checked={Boolean(editTrack.active)}
                 onChange={() => {
                   if (editTrack.active) {
                     // switch to unactive
@@ -46,7 +46,7 @@ export function TrackEditForm({
                     // switch to active
                     editTrack.startTime = new Date().toISOString()
                   }
-                  setEditTrack({ ...editTrack, active: !editTrack.active })
+                  setEditTrack({ ...editTrack, active: editTrack.active ? 0 : 1 })
                 }}
               />
             )}

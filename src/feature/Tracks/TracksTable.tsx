@@ -14,7 +14,9 @@ import {
 import { getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "./types"
 import { TrackSubMenu } from "./TrackSubMenu"
+import { BtnStopTrack } from "./BtnStopTrack"
 import style from "./TracksTable.module.scss"
+import { BtnStartTrack } from "./BtnStartTrack"
 
 function EmptyEl() {
   return <> </>
@@ -37,7 +39,7 @@ export function TracksTable({ list }: TracksTableProps) {
         </TableHead>
         <TableBody>
           {list.map(track => (
-            <TableRow key={track.id} selected={track.active}>
+            <TableRow key={track.id} selected={Boolean(track.active)}>
               <TableCell>
                 <p className="bold">{track.ticket}</p>
                 <p className={style.ticketTitle}>{track.ticketTitle}</p>
@@ -60,6 +62,8 @@ export function TracksTable({ list }: TracksTableProps) {
                 />
               </TableCell>
               <TableCell>
+                {Boolean(track.active) && <BtnStopTrack track={track} />}
+                {Boolean(!track.active) && <BtnStartTrack track={track} />}
                 <Link href={`/track/${track.id}`}>
                   <Button color="secondary" size="small" variant="text">
                     <EditIcon />
