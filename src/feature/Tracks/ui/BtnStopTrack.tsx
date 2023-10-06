@@ -6,8 +6,8 @@ import {
   useTrackListStatus,
   activeTracksGetAll,
   activeTracksStopItem,
-} from "./redux"
-import { type TTrack } from "./types"
+} from "../redux"
+import { type TTrack } from "../types"
 
 export function BtnStopTrack({ track }: { track: TTrack }) {
   const dispatch = useAppDispatch()

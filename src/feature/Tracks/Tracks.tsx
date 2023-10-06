@@ -4,7 +4,7 @@ import { CircularProgress, Typography } from "ui"
 import { dateLib } from "common/dateTime"
 import { useAppDispatch } from "store"
 import { useTrackList, useTrackListStatus, tracksGetAll } from "./redux"
-import { TracksTable } from "./TracksTable"
+import { TracksTable } from "./ui/TracksTable"
 import style from "./Tracks.module.scss"
 
 export type TracksProps = {

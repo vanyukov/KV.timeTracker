@@ -1,6 +1,5 @@
 export { Tracks, type TracksProps } from "./Tracks"
-export * from "./redux"
 export type { TTrack } from "./types"
 export { tracksDB } from "./tracksDB"
-export { BtnAddTrack } from "./BtnAddTrack"
-export { TrackEditForm } from "./TrackEditForm"
+export * from "./redux"
+export * from "./ui"

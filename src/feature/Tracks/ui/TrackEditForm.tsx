@@ -10,9 +10,9 @@ import {
   TimePicker,
 } from "ui"
 import { type TdateLib, dateLib, getTrackElapsedTime } from "common/dateTime"
-import { type TTrack } from "./types"
-import style from "./TrackEditForm.module.scss"
+import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
+import style from "./TrackEditForm.module.scss"
 
 type TrackEditFormProps = {
   track: TTrack

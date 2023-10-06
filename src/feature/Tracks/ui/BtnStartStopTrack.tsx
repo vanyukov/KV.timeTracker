@@ -1,10 +1,15 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow"
+import StopIcon from "@mui/icons-material/Stop"
 import { useAppDispatch } from "store"
 import { Button } from "ui"
-import { tracksEditItem, useTrackListStatus } from "./redux"
-import { type TTrack } from "./types"
+import {
+  activeTracksStopItem,
+  tracksEditItem,
+  useTrackListStatus,
+} from "../redux"
+import { type TTrack } from "../types"
 
-export function BtnStartTrack({ track }: { track: TTrack }) {
+export function BtnStartStopTrack({ track }: { track: TTrack }) {
   const dispatch = useAppDispatch()
   const status = useTrackListStatus()
 
@@ -14,6 +19,22 @@ export function BtnStartTrack({ track }: { track: TTrack }) {
     }
     const savedTrack: TTrack = { ...track, active: 1 }
     void dispatch(tracksEditItem(savedTrack))
+  }
+
+  const handleStop = () => {
+    void dispatch(activeTracksStopItem(track))
+  }
+
+  if (track.active) {
+    return (
+      <Button
+        color="primary"
+        disabled={status !== "succeeded"}
+        onClick={handleStop}
+      >
+        <StopIcon />
+      </Button>
+    )
   }
 
   return (

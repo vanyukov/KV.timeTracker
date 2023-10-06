@@ -3,7 +3,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz"
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever"
 import { Button, Menu, MenuItem } from "ui"
 import { useAppDispatch } from "store"
-import { tracksDeleteItem } from "./redux"
+import { tracksDeleteItem } from "../redux"
 
 export type TrackSubMenuProps = {
   id: string

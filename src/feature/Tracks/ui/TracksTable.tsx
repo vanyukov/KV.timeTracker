@@ -12,11 +12,10 @@ import {
   TimePicker,
 } from "ui"
 import { getTrackElapsedTime } from "common/dateTime"
-import { type TTrack } from "./types"
+import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
-import { BtnStopTrack } from "./BtnStopTrack"
+import { BtnStartStopTrack } from "./BtnStartStopTrack"
 import style from "./TracksTable.module.scss"
-import { BtnStartTrack } from "./BtnStartTrack"
 
 function EmptyEl() {
   return <> </>
@@ -62,8 +61,7 @@ export function TracksTable({ list }: TracksTableProps) {
                 />
               </TableCell>
               <TableCell>
-                {Boolean(track.active) && <BtnStopTrack track={track} />}
-                {Boolean(!track.active) && <BtnStartTrack track={track} />}
+                <BtnStartStopTrack track={track} />
                 <Link href={`/track/${track.id}`}>
                   <Button color="secondary" size="small" variant="text">
                     <EditIcon />
