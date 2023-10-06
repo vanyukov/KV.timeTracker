@@ -30,12 +30,10 @@ export function EditTrackPage() {
   )
 
   if (!track) {
-    void dispatch(tracksGet(params.id ?? ""))
-
-    if (status !== "succeeded") {
-      return <CircularProgress />
+    if (status === "succeeded") {
+      return <NotFound />
     }
-    return <NotFound />
+    void dispatch(tracksGet(params.id ?? ""))
   }
 
   return (
@@ -44,7 +42,11 @@ export function EditTrackPage() {
         <Typography variant="h4" component="p" className="pb12">
           Edit track
         </Typography>
-        <TrackEditForm track={track} handleSave={handlerSave} />
+        {track && status === "succeeded" ? (
+          <TrackEditForm track={track} handleSave={handlerSave} />
+        ) : (
+          <CircularProgress />
+        )}
       </div>
     </MainLayout>
   )

@@ -20,8 +20,33 @@ export const tracksAddNew = createAsyncThunk(
 export const tracksEditItem = createAsyncThunk(
   `${storeName}/tracksEditItem`,
   async (track: TTrack) => {
-    await dbStore.put(storeName, track)
-    return track
+    const editTrack = { ...track }
+    if (editTrack.active) {
+      editTrack.startTime = new Date().toISOString()
+    } else {
+      if (editTrack.startTime) {
+        editTrack.elapsedTime += +new Date() - +new Date(editTrack.startTime)
+      }
+      editTrack.startTime = ""
+    }
+
+    await dbStore.put(storeName, editTrack)
+    return editTrack
+  },
+)
+
+export const tracksStopOther = createAsyncThunk(
+  `${storeName}/tracksStopOther`,
+  async (track: TTrack) => {
+    const listActive = await dbStore.getAll(storeName, 1, "active")
+    const listForStop = listActive.filter(item => item.id !== track.id)
+    listForStop.forEach(item => {
+      const savedTrack = { ...item }
+      savedTrack.active = 0
+      savedTrack.elapsedTime += +new Date() - +new Date(savedTrack.startTime)
+      void dbStore.put(storeName, savedTrack)
+    })
+    return listForStop.map(item => item.id)
   },
 )
 
@@ -68,29 +93,42 @@ export const TracksSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(tracksAddNew.pending, state => {
+        state.status = "pending"
+      })
       .addCase(tracksAddNew.fulfilled, (state, action) => {
         tracksAdapter.addOne(state, action.payload)
       })
       .addCase(tracksGetAll.pending, state => {
-        if (state.status === "idle") {
-          state.status = "pending"
-        }
+        state.status = "pending"
       })
       .addCase(tracksGetAll.fulfilled, (state, action) => {
         tracksAdapter.setAll(state, action.payload)
         state.status = "succeeded"
       })
       .addCase(tracksGet.pending, state => {
-        if (state.status === "idle") {
-          state.status = "pending"
-        }
+        state.status = "pending"
       })
       .addCase(tracksGet.fulfilled, (state, action) => {
-        tracksAdapter.addOne(state, action.payload)
+        if (action.payload) {
+          tracksAdapter.setOne(state, action.payload)
+        } else {
+          console.error("Not found track: ", action.meta)
+        }
         state.status = "succeeded"
+      })
+      .addCase(tracksDeleteItem.pending, state => {
+        state.status = "pending"
       })
       .addCase(tracksDeleteItem.fulfilled, (state, action) => {
         tracksAdapter.removeOne(state, action.payload)
+        state.status = "succeeded"
+      })
+      .addCase(tracksEditItem.pending, state => {
+        state.status = "pending"
+      })
+      .addCase(tracksEditItem.fulfilled, (state, action) => {
+        tracksAdapter.setOne(state, action.payload)
         state.status = "succeeded"
       })
   },

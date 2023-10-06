@@ -35,7 +35,7 @@ export function Tracks({ className }: TracksProps) {
   const list = useTrackList()
   const status = useTrackListStatus()
 
-  if (["pending", "idle"].includes(status)) {
+  if (status === "idle" || (!list.length && status === "pending")) {
     return (
       <div className={style.circularProgress}>
         <CircularProgress />

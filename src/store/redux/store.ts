@@ -1,9 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit"
-import { useSelector, type TypedUseSelectorHook, useDispatch } from "react-redux"
+import {
+  useSelector,
+  type TypedUseSelectorHook,
+  useDispatch,
+} from "react-redux"
+import { changeTrackActivityListenerMiddleware } from "feature/Tracks/redux"
 import { reducer } from "./reducer"
 
 export const store = configureStore({
   reducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(
+    changeTrackActivityListenerMiddleware.middleware,
+  ),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

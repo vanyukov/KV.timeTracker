@@ -4,14 +4,13 @@ import classNames from "classnames"
 import {
   Button,
   DatePicker,
-  FormControlLabel,
-  Switch,
   TextField,
   TimePicker,
 } from "ui"
 import { type TdateLib, dateLib, getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
+import { BtnStartStopTrack } from "./BtnStartStopTrack"
 import style from "./TrackEditForm.module.scss"
 
 type TrackEditFormProps = {
@@ -30,27 +29,26 @@ export function TrackEditForm({
 
   return (
     <div className={classNames(className, style.wrap)}>
+      <div className="flex">
+        <Button
+          variant="contained"
+          className="w100"
+          onClick={() => {
+            handleSave(editTrack)
+          }}
+        >
+          Save
+        </Button>
+        <TrackSubMenu
+          id={track.id}
+          onDelete={() => {
+            navigate(-1)
+          }}
+        />
+      </div>
       <div className={style.row}>
         <div className={style.row}>
-          <FormControlLabel
-            label="active"
-            labelPlacement="top"
-            control={(
-              <Switch
-                checked={Boolean(editTrack.active)}
-                onChange={() => {
-                  if (editTrack.active) {
-                    // switch to unactive
-                    editTrack.elapsedTime += +new Date() - (+new Date(editTrack.startTime));
-                  } else {
-                    // switch to active
-                    editTrack.startTime = new Date().toISOString()
-                  }
-                  setEditTrack({ ...editTrack, active: editTrack.active ? 0 : 1 })
-                }}
-              />
-            )}
-          />
+          <BtnStartStopTrack track={track} />
         </div>
         <TextField value={track.id} disabled label="id" />
       </div>
@@ -64,15 +62,11 @@ export function TrackEditForm({
             if (!newValue) {
               return
             }
-            if (editTrack.active) {
-              setEditTrack({
-                ...editTrack,
-                startTime: dateLib(dateLib().valueOf() - newValue.valueOf()).utc().toISOString(),
-                elapsedTime: 0,
-              })
-            } else {
-              setEditTrack({ ...editTrack, elapsedTime: newValue?.valueOf() ?? 0 })
-            }
+            setEditTrack({
+              ...editTrack,
+              startTime: new Date().toISOString(),
+              elapsedTime: newValue?.valueOf() ?? 0,
+            })
           }}
         />
         <DatePicker
@@ -114,23 +108,6 @@ export function TrackEditForm({
         multiline
         label="comment"
       />
-      <div className="flex">
-        <Button
-          variant="contained"
-          className="w100"
-          onClick={() => {
-            handleSave(editTrack)
-          }}
-        >
-          Save
-        </Button>
-        <TrackSubMenu
-          id={track.id}
-          onDelete={() => {
-            navigate(-1)
-          }}
-        />
-      </div>
     </div>
   )
 }

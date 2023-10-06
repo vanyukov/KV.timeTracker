@@ -1,1 +1,3 @@
-export { store, useAppDispatch, useAppSelector } from "./store"
+export {
+  store, useAppDispatch, useAppSelector, type RootState,
+} from "./store"

@@ -47,7 +47,6 @@ export function TracksTable({ list }: TracksTableProps) {
                 <TimePicker
                   value={getTrackElapsedTime(track)}
                   views={["hours", "minutes"]}
-                  format="hh:mm"
                   ampm={false}
                   readOnly
                   slots={{
