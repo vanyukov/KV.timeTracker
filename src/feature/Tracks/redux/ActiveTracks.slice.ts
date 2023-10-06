@@ -5,7 +5,7 @@ import {
 } from "@reduxjs/toolkit"
 import { type TStoreStatus, dbStore } from "store"
 import { type RootState } from "store/redux/store"
-import { type TTrack } from "./types"
+import { type TTrack } from "../types"
 
 const storeName = "activeTracks"
 const storeDBName = "tracks"

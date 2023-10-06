@@ -1,9 +1,8 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow"
 import { useAppDispatch } from "store"
 import { Button } from "ui"
-import { tracksEditItem } from "./Tracks.slice"
+import { tracksEditItem, useTrackListStatus } from "./redux"
 import { type TTrack } from "./types"
-import { useTrackListStatus } from "./Tracks.hooks"
 
 export function BtnStartTrack({ track }: { track: TTrack }) {
   const dispatch = useAppDispatch()

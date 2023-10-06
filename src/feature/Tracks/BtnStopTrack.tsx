@@ -2,9 +2,12 @@ import { useEffect } from "react"
 import StopIcon from "@mui/icons-material/Stop"
 import { useAppDispatch } from "store"
 import { Button } from "ui"
-import { activeTracksGetAll, activeTracksStopItem } from "./ActiveTracks.slice"
+import {
+  useTrackListStatus,
+  activeTracksGetAll,
+  activeTracksStopItem,
+} from "./redux"
 import { type TTrack } from "./types"
-import { useTrackListStatus } from "./Tracks.hooks"
 
 export function BtnStopTrack({ track }: { track: TTrack }) {
   const dispatch = useAppDispatch()
