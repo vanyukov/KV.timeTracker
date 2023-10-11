@@ -4,13 +4,14 @@ import {
   type TypedUseSelectorHook,
   useDispatch,
 } from "react-redux"
-import { changeTrackActivityListenerMiddleware } from "feature/Tracks/redux"
+import { changeTrackActivityListenerMiddleware, maxTimeListenerMiddleware } from "feature/Tracks/redux"
 import { reducer } from "./reducer"
 
 export const store = configureStore({
   reducer,
   middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(
     changeTrackActivityListenerMiddleware.middleware,
+    maxTimeListenerMiddleware.middleware,
   ),
 })
 

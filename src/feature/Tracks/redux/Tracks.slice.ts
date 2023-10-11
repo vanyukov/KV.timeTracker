@@ -5,9 +5,15 @@ import {
 } from "@reduxjs/toolkit"
 import { type TStoreStatus, dbStore } from "store"
 import { type RootState } from "store/redux/store"
+import { getMaxElapsedTime } from "common/dateTime"
 import { type TTrack } from "../types"
 
 const storeName = "tracks"
+
+function getNotActiveTrackEplapsedTime(track: TTrack) {
+  const elapsedTime = track.elapsedTime + (+new Date() - +new Date(track.startTime))
+  return getMaxElapsedTime(elapsedTime)
+}
 
 export const tracksAddNew = createAsyncThunk(
   `${storeName}/tracksAddNew`,
@@ -25,7 +31,7 @@ export const tracksEditItem = createAsyncThunk(
       editTrack.startTime = new Date().toISOString()
     } else {
       if (editTrack.startTime) {
-        editTrack.elapsedTime += +new Date() - +new Date(editTrack.startTime)
+        editTrack.elapsedTime = getNotActiveTrackEplapsedTime(editTrack)
       }
       editTrack.startTime = ""
     }
@@ -43,7 +49,7 @@ export const tracksStopOther = createAsyncThunk(
     listForStop.forEach(item => {
       const savedTrack = { ...item }
       savedTrack.active = 0
-      savedTrack.elapsedTime += +new Date() - +new Date(savedTrack.startTime)
+      savedTrack.elapsedTime = getNotActiveTrackEplapsedTime(savedTrack)
       void dbStore.put(storeName, savedTrack)
     })
     return listForStop.map(item => item.id)
