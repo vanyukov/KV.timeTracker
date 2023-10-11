@@ -6,6 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "serve": "serve -s build",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "react-scripts test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -68,6 +69,7 @@
     "eslint-plugin-storybook": "^0.6.13",
     "prop-types": "^15.8.1",
     "serve": "^14.2.1",
+    "source-map-explorer": "^2.5.3",
     "storybook": "^7.2.1",
     "storybook-addon-react-router-v6": "^2.0.2",
     "webpack": "^5.88.2"
