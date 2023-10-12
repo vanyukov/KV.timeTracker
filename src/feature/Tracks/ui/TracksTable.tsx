@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Button,
@@ -11,7 +12,7 @@ import {
   TableRow,
   TimePicker,
 } from "ui"
-import { getTrackElapsedTime } from "common/dateTime"
+import { timeDiffSplitted, getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
 import { BtnStartStopTrack } from "./BtnStartStopTrack"
@@ -24,8 +25,27 @@ function EmptyEl() {
 export type TracksTableProps = {
   list: TTrack[]
 }
+function getTotalTime(list: TTrack[]) {
+  return list.reduce(
+    (acc, track) => acc + getTrackElapsedTime(track).valueOf(),
+    0,
+  )
+}
 
 export function TracksTable({ list }: TracksTableProps) {
+  const [totalTimeView, setTotalTimeView] = useState(
+    timeDiffSplitted(0, 0, getTotalTime(list)),
+  )
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTotalTimeView(timeDiffSplitted(0, 0, getTotalTime(list)))
+    }, 1000)
+    return () => {
+      clearInterval(interval)
+    }
+  }, [list])
+
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader size="small">
@@ -46,7 +66,7 @@ export function TracksTable({ list }: TracksTableProps) {
               <TableCell>
                 <TimePicker
                   value={getTrackElapsedTime(track)}
-                  views={["hours", "minutes"]}
+                  views={["hours", "minutes", "seconds"]}
                   ampm={false}
                   readOnly
                   slots={{
@@ -70,6 +90,14 @@ export function TracksTable({ list }: TracksTableProps) {
               </TableCell>
             </TableRow>
           ))}
+          <TableRow>
+            <TableCell colSpan={1} size="medium" sx={{ fontWeight: "bold" }}>
+              Total
+            </TableCell>
+            <TableCell align="center">
+              {`${totalTimeView.hours}:${totalTimeView.minutes}:${totalTimeView.seconds}`}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
