@@ -46,5 +46,11 @@ module.exports = {
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
     "no-console": ["warn", { allow: ["warn", "error"] }],
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: ["@mui/*/*/*"],
+      },
+    ],
   },
 }
