@@ -1,4 +1,4 @@
-import { type PaletteOptions } from "@mui/material/styles/createPalette"
+import { type PaletteOptions } from "@mui/material/styles"
 import { blueGrey } from "@mui/material/colors"
 
 // pallete info https://mui.com/material-ui/customization/palette/
