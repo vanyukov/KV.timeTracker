@@ -27,7 +27,7 @@ export function TracksTable({ list }: TracksTableProps) {
         </TableHead>
         <TableBody>
           {list.map(track => (
-            <TracksRow track={track} />
+            <TracksRow track={track} key={track.id} />
           ))}
         </TableBody>
         <TracksTotal list={list} />
