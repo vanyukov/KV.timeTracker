@@ -30,8 +30,8 @@ export function TracksTable({ list, showDate }: TracksTableProps) {
           {list.map(track => (
             <TracksRow track={track} key={track.id} showDate={showDate} />
           ))}
+          <TracksTotal list={list} />
         </TableBody>
-        <TracksTotal list={list} />
       </Table>
     </TableContainer>
   )
