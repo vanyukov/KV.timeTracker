@@ -13,8 +13,9 @@ import { type TTrack } from "../types"
 
 export type TracksTableProps = {
   list: TTrack[]
+  showDate?: boolean
 }
-export function TracksTable({ list }: TracksTableProps) {
+export function TracksTable({ list, showDate }: TracksTableProps) {
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader size="small">
@@ -27,7 +28,7 @@ export function TracksTable({ list }: TracksTableProps) {
         </TableHead>
         <TableBody>
           {list.map(track => (
-            <TracksRow track={track} key={track.id} />
+            <TracksRow track={track} key={track.id} showDate={showDate} />
           ))}
         </TableBody>
         <TracksTotal list={list} />

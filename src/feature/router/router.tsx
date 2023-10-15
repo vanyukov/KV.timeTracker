@@ -32,12 +32,10 @@ export const router = createBrowserRouter([
   {
     path: "/reports",
     element: <ReportsPage />,
-    children: [
-      {
-        path: "TracksByPeriod",
-        element: <TracksByPeriod />,
-      },
-    ],
+  },
+  {
+    path: "/reports/TracksByPeriod",
+    element: <TracksByPeriod />,
   },
   {
     path: "*",

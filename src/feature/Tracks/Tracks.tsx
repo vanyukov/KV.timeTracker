@@ -1,36 +1,33 @@
 import { useEffect } from "react"
-import { useParams } from "react-router-dom"
 import { CircularProgress, Typography } from "ui"
-import { dateLib } from "common/dateTime"
 import { useAppDispatch } from "store"
+import { type TdateLib } from "common/dateTime"
 import { useTrackList, useTrackListStatus, tracksGetAll } from "./redux"
 import { TracksTable } from "./ui/TracksTable"
 import style from "./Tracks.module.scss"
 
 export type TracksProps = {
+  dateStart: TdateLib
+  dateEnd: TdateLib
   className?: string
+  showDate?: boolean
 }
 
-export function Tracks({ className }: TracksProps) {
-  const params = useParams()
-  let dateStart: string
-  if (!params.day || !params.month || !params.year) {
-    dateStart = dateLib().startOf("day").toISOString()
-  } else {
-    dateStart = dateLib(
-      `${params.year}-${params.month}-${params.day}`,
-    ).toISOString()
-  }
-
+export function Tracks({
+  className,
+  dateStart,
+  dateEnd,
+  showDate,
+}: TracksProps) {
   const dispatch = useAppDispatch()
   useEffect(() => {
     void dispatch(
       tracksGetAll({
-        dateStart,
-        dateEnd: dateLib(dateStart).endOf("day").toISOString(),
+        dateStart: dateStart.toISOString(),
+        dateEnd: dateEnd.endOf("day").toISOString(),
       }),
     )
-  }, [dateStart, dispatch])
+  }, [dateEnd, dateStart, dispatch])
 
   const list = useTrackList()
   const status = useTrackListStatus()
@@ -52,7 +49,7 @@ export function Tracks({ className }: TracksProps) {
   }
   return (
     <div className={className}>
-      <TracksTable list={list} />
+      <TracksTable list={list} showDate={showDate} />
     </div>
   )
 }
