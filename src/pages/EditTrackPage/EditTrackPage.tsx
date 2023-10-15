@@ -11,7 +11,6 @@ import {
   tracksGet,
   useTrackListStatus,
 } from "feature/Tracks"
-import { makeDayLink } from "common/dateTime"
 import { CircularProgress, Typography } from "ui"
 
 export function EditTrackPage() {
@@ -24,7 +23,7 @@ export function EditTrackPage() {
   const handlerSave = useCallback(
     (tr: TTrack) => {
       void dispatch(tracksEditItem(tr))
-      navigate(makeDayLink(tr.date))
+      navigate(-1)
     },
     [dispatch, navigate],
   )
