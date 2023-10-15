@@ -1,6 +1,8 @@
-import { Link } from "ui"
+import { Link, MenuComponent } from "ui"
 import { BtnAddTrack } from "feature/Tracks"
 import style from "./Header.module.scss"
+
+const menuItems = [{ title: <Link href="/reports">Reports</Link>, id: 1 }]
 
 export function Header() {
   return (
@@ -16,6 +18,11 @@ export function Header() {
             />
           </Link>
           <BtnAddTrack />
+          <MenuComponent
+            title="Menu"
+            items={menuItems}
+            className={style.menu}
+          />
         </div>
       </header>
     </div>
