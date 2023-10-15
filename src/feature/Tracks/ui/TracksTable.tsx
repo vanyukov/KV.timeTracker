@@ -20,9 +20,9 @@ export function TracksTable({ list }: TracksTableProps) {
       <Table stickyHeader size="small">
         <TableHead>
           <TableRow>
-            <TableCell>ticket</TableCell>
-            <TableCell>elapsed time</TableCell>
-            <TableCell />
+            <TableCell width="40%">ticket</TableCell>
+            <TableCell width="20%">elapsed time</TableCell>
+            <TableCell width="20%" />
           </TableRow>
         </TableHead>
         <TableBody>
