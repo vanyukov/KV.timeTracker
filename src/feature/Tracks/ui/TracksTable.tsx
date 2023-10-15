@@ -28,7 +28,7 @@ export function TracksTable({ list, showDate }: TracksTableProps) {
         </TableHead>
         <TableBody>
           {list.map(track => (
-            <TracksRow track={track} key={track.id} showDate={showDate} />
+            <TracksRow track={track} key={`${track.id}${track.elapsedTime}`} showDate={showDate} />
           ))}
           <TracksTotal list={list} />
         </TableBody>
