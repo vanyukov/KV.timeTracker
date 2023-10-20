@@ -1,0 +1,14 @@
+public/mockServiceWorker.js
+/scripts
+/build
+/public
+/dist
+/node_modules
+/storybook-static
+src/react-app-env.d.ts
+src/setupTests.ts
+src/reportWebVitals.ts
+.eslintrc.js
+rollup.config.js
+modulefederation.config.js
+craco.module-federation.js

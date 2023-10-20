@@ -1,3 +1,7 @@
 {
-	"npm.packageManager": "npm"
+	"eslint.format.enable": true,
+	"search.exclude": {
+		"*.lock": true,
+		"**/build": true
+	}
 }
