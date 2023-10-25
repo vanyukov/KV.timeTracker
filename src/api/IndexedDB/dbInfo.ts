@@ -1,4 +1,4 @@
 export const dbInfo = {
   name: "KV.TimeTracker",
-  version: 1,
+  version: 2,
 }
