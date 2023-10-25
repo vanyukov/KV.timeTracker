@@ -44,7 +44,7 @@ export const tracksEditItem = createAsyncThunk(
 export const tracksStopOther = createAsyncThunk(
   `${storeName}/tracksStopOther`,
   async (track: TTrack) => {
-    const listActive = await dbStore.getAll(storeName, 1, "active")
+    const listActive = await dbStore.getAll<TTrack>(storeName, 1, "active")
     const listForStop = listActive.filter(item => item.id !== track.id)
     listForStop.forEach(item => {
       const savedTrack = { ...item }
@@ -68,7 +68,7 @@ export const tracksGetAll = createAsyncThunk(
   `${storeName}/tracksGetAll`,
   async ({ dateStart, dateEnd }: { dateStart: string, dateEnd: string }) => {
     const keyRangeValue = IDBKeyRange.bound(dateStart, dateEnd)
-    const list = await dbStore.getAll(storeName, keyRangeValue, "date")
+    const list = await dbStore.getAll<TTrack>(storeName, keyRangeValue, "date")
     return list
   },
 )
@@ -76,7 +76,7 @@ export const tracksGetAll = createAsyncThunk(
 export const tracksGet = createAsyncThunk(
   `${storeName}/tracksGet`,
   async (key: IDBValidKey | IDBKeyRange) => {
-    const track = await dbStore.get(storeName, key)
+    const track = await dbStore.get<TTrack>(storeName, key)
     return track
   },
 )

@@ -1,12 +1,10 @@
-import { type TTrack } from "feature/Tracks"
-
-export async function dbGetAll(
+export async function dbGetAll<T>(
   db: IDBDatabase,
   storeName: string,
   key?: IDBValidKey | IDBKeyRange | null | undefined,
   index?: string,
   count?: number | undefined,
-): Promise<TTrack[]> {
+): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const objectStore = db
       .transaction(storeName, "readonly")

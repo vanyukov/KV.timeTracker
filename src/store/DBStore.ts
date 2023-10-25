@@ -19,17 +19,17 @@ class DBStore {
     return dbPut(this.db!, storeName, value, key)
   }
 
-  async get(
+  async get<T>(
     storeName: string,
     key: IDBValidKey | IDBKeyRange,
   ) {
     if (!this.db) {
       await this.init()
     }
-    return dbGet(this.db!, storeName, key)
+    return dbGet<T>(this.db!, storeName, key)
   }
 
-  async getAll(
+  async getAll<T>(
     storeName: string,
     key?: IDBValidKey | IDBKeyRange | null,
     index?: string,
@@ -38,7 +38,7 @@ class DBStore {
     if (!this.db) {
       await this.init()
     }
-    return dbGetAll(this.db!, storeName, key, index, count)
+    return dbGetAll<T>(this.db!, storeName, key, index, count)
   }
 
   async delete(storeName: string, key: IDBValidKey | IDBKeyRange) {

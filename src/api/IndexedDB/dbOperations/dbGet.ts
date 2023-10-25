@@ -1,10 +1,8 @@
-import { type TTrack } from "feature/Tracks"
-
-export async function dbGet(
+export async function dbGet<T>(
   db: IDBDatabase,
   storeName: string,
   key: IDBValidKey | IDBKeyRange,
-): Promise<TTrack> {
+): Promise<T> {
   return new Promise((resolve, reject) => {
     const request = db
       .transaction(storeName, "readonly")
