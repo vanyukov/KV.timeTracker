@@ -1,8 +1,7 @@
 import { Link, MenuComponent } from "ui"
 import { BtnAddTrack } from "feature/Tracks"
+import { menuItems } from "./menuItems"
 import style from "./Header.module.scss"
-
-const menuItems = [{ title: <Link href="/reports">Reports</Link>, id: 1 }]
 
 export function Header() {
   return (

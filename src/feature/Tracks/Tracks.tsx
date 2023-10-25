@@ -43,7 +43,7 @@ export function Tracks({
   if (!list.length) {
     return (
       <Typography variant="h5" component="p" className="pt12">
-        Today don&apos;t have tracks
+        Don&apos;t have tracks
       </Typography>
     )
   }

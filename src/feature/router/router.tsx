@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import {
+  ClientsPage,
   DayPage,
   EditTrackPage,
   NewTrackPage,
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
   {
     path: "/reports",
     element: <ReportsPage />,
+  },
+  {
+    path: "/clients",
+    element: <ClientsPage />,
   },
   {
     path: "/reports/TracksByPeriod",
