@@ -14,6 +14,10 @@ export const tracksDB = {
       name: "date",
       options: { unique: false },
     },
+    {
+      name: "clientId",
+      options: { unique: false },
+    },
   ],
 
   getNew(): TTrack {
@@ -26,6 +30,7 @@ export const tracksDB = {
       ticket: "",
       ticketTitle: "",
       epic: "",
+      clientId: "",
       comment: "",
     }
   },

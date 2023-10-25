@@ -7,6 +7,7 @@ import {
   TextField,
   TimePicker,
 } from "ui"
+import { SelectClient } from "widget"
 import { type TdateLib, dateLib, getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
@@ -99,6 +100,16 @@ export function TrackEditForm({
           setEditTrack({ ...editTrack, ticketTitle: event.target.value })
         }}
         label="ticketTitle"
+      />
+      <SelectClient
+        value={track.clientId}
+        label="client"
+        handleChange={event => {
+          if (!event.target.value) {
+            return
+          }
+          setEditTrack({ ...editTrack, clientId: event.target.value as string })
+        }}
       />
       <TextField
         value={editTrack.comment}

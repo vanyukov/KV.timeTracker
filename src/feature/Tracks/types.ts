@@ -8,5 +8,6 @@ export type TTrack = {
   ticket: string
   ticketTitle: string
   epic: string
+  clientId: string
   comment: string
 }
