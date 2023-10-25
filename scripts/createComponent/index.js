@@ -4,24 +4,14 @@ const createTemplate = require("./createTemplate")
 
 const availableLayers = ["ui", "widget", "feature", "pages"]
 
-if (!process.argv[2]) {
-  console.error(
-    `\nPlease enter the layer name, format: layer/newComponent\navailable layers: \'${availableLayers.join(
-      "' or '",
-    )}\'\nexample: components/NewComponent`,
-  )
-  return
-}
-
-const args = process.argv[2].split("/")
-const layer = args[0]
-const componentName = firstCharUpperCase(args[1])
+const layer = process.argv[2]
+const componentName = firstCharUpperCase(process.argv[3])
 
 if (!layer || !availableLayers.includes(layer)) {
   console.error(
     `\nPlease enter the layer name: \'${availableLayers.join(
       "' or '",
-    )}\' \nformat: layer/componentName\n`,
+    )}\' \nformat: layer componentName\n`,
   )
   return
 }
