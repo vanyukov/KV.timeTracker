@@ -1,6 +1,9 @@
 import { useEffect } from "react"
+import EditIcon from "@mui/icons-material/Edit"
 import {
+  Button,
   CircularProgress,
+  Link,
   Paper,
   Table,
   TableBody,
@@ -13,6 +16,7 @@ import {
 import { useAppDispatch } from "store"
 import { clientsGetAll, useClientList, useClientListStatus } from "./redux"
 import style from "./Clients.module.scss"
+import { ClientSubMenu } from "./ui"
 
 export type ClientsProps = {
   className?: string
@@ -48,12 +52,24 @@ export function Clients({ className }: ClientsProps) {
         <Table stickyHeader size="small">
           <TableHead>
             <TableRow>
-              <TableCell width="100%">title</TableCell>
+              <TableCell width="80%">title</TableCell>
+              <TableCell />
             </TableRow>
+            <TableRow />
           </TableHead>
           <TableBody>
             {list.map(item => (
-              <TableCell>{item.name}</TableCell>
+              <TableRow key={item.id}>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>
+                  <Link href={`/clients/${item.id}`}>
+                    <Button color="secondary" size="small" variant="text">
+                      <EditIcon />
+                    </Button>
+                  </Link>
+                  <ClientSubMenu id={item.id} />
+                </TableCell>
+              </TableRow>
             ))}
           </TableBody>
         </Table>

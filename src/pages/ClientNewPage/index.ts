@@ -1,0 +1,1 @@
+export { ClientNewPage } from "./ClientNewPage"

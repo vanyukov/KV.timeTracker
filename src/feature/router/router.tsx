@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import {
+  ClientEditPage,
+  ClientNewPage,
   ClientsPage,
   DayPage,
   EditTrackPage,
@@ -33,6 +35,18 @@ export const router = createBrowserRouter([
   {
     path: "/reports",
     element: <ReportsPage />,
+  },
+  {
+    path: "/clients",
+    element: <ClientsPage />,
+  },
+  {
+    path: "/clients/new",
+    element: <ClientNewPage />,
+  },
+  {
+    path: "/clients/:id",
+    element: <ClientEditPage />,
   },
   {
     path: "/clients",
