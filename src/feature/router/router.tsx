@@ -5,7 +5,7 @@ import {
   ClientsPage,
   DayPage,
   TrackEditPage,
-  NewTrackPage,
+  TrackNewPage,
   NotFound,
   ReportsPage,
   TracksByPeriod,
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/track/new",
-    element: <NewTrackPage />,
+    element: <TrackNewPage />,
   },
   {
     path: "/track/:id",

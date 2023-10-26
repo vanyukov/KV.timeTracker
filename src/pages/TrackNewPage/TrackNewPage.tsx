@@ -11,7 +11,7 @@ import {
 } from "feature/Tracks"
 import { Typography } from "ui"
 
-export function NewTrackPage() {
+export function TrackNewPage() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
