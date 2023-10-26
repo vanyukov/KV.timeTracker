@@ -9,6 +9,7 @@ import {
   NotFound,
   ReportsPage,
   TracksByPeriod,
+  ProjectsPage,
 } from "pages"
 
 export const router = createBrowserRouter([
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
   {
     path: "/reports/TracksByPeriod",
     element: <TracksByPeriod />,
+  },
+  {
+    path: "/projects",
+    element: <ProjectsPage />,
   },
   {
     path: "*",
