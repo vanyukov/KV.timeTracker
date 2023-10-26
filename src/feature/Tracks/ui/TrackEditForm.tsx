@@ -2,12 +2,9 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames"
 import {
-  Button,
-  DatePicker,
-  TextField,
-  TimePicker,
+  Button, DatePicker, TextField, TimePicker,
 } from "ui"
-import { SelectClient } from "widget"
+import { SelectClient, SelectProject } from "widget"
 import { type TdateLib, dateLib, getTrackElapsedTime } from "common/dateTime"
 import { type TTrack } from "../types"
 import { TrackSubMenu } from "./TrackSubMenu"
@@ -108,7 +105,25 @@ export function TrackEditForm({
           if (!event.target.value) {
             return
           }
-          setEditTrack({ ...editTrack, clientId: event.target.value as string })
+          setEditTrack({
+            ...editTrack,
+            clientId: event.target.value as string,
+            projectId: "",
+          })
+        }}
+      />
+      <SelectProject
+        clientId={editTrack.clientId}
+        value={editTrack.projectId}
+        label="project"
+        handleChange={event => {
+          if (!event.target.value) {
+            return
+          }
+          setEditTrack({
+            ...editTrack,
+            projectId: event.target.value as string,
+          })
         }}
       />
       <TextField

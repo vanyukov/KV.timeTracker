@@ -31,6 +31,7 @@ export const tracksDB = {
       ticketTitle: "",
       epic: "",
       clientId: "",
+      projectId: "",
       comment: "",
     }
   },
