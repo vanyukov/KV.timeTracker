@@ -1,8 +1,9 @@
 import { tracksDB } from "feature/Tracks/tracksDB"
 import { clientsDB } from "feature/Clients"
+import { projectsDB } from "feature/Projects"
 import { dbInfo } from "../dbInfo"
 
-const stores = [tracksDB, clientsDB]
+const stores = [tracksDB, clientsDB, projectsDB]
 
 export async function dbOpen(): Promise<IDBDatabase> {
   return new Promise(resolve => {

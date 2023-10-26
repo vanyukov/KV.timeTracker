@@ -102,7 +102,7 @@ export function TrackEditForm({
         label="ticketTitle"
       />
       <SelectClient
-        value={track.clientId}
+        value={editTrack.clientId}
         label="client"
         handleChange={event => {
           if (!event.target.value) {
