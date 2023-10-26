@@ -1,7 +1,7 @@
 export { NotFound } from "./NotFound"
 export { DayPage } from "./DayPage"
 export { NewTrackPage } from "./NewTrackPage"
-export { EditTrackPage } from "./EditTrackPage"
+export { TrackEditPage } from "./TrackEditPage"
 export { ReportsPage, TracksByPeriod } from "./ReportsPage"
 export { ClientsPage } from "./ClientsPage"
 export { ClientEditPage } from "./ClientEditPage"

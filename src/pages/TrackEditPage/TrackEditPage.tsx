@@ -13,7 +13,7 @@ import {
 } from "feature/Tracks"
 import { CircularProgress, Typography } from "ui"
 
-export function EditTrackPage() {
+export function TrackEditPage() {
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useAppDispatch()

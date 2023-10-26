@@ -4,7 +4,7 @@ import {
   ClientNewPage,
   ClientsPage,
   DayPage,
-  EditTrackPage,
+  TrackEditPage,
   NewTrackPage,
   NotFound,
   ReportsPage,
@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/track/:id",
-    element: <EditTrackPage />,
+    element: <TrackEditPage />,
   },
   {
     path: "/reports",
