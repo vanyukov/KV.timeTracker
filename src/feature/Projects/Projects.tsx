@@ -1,9 +1,6 @@
 import { useEffect } from "react"
-import EditIcon from "@mui/icons-material/Edit"
 import {
-  Button,
   CircularProgress,
-  Link,
   Paper,
   Table,
   TableBody,
@@ -14,8 +11,9 @@ import {
   Typography,
 } from "ui"
 import { useAppDispatch } from "store"
+import { clientsGetAll } from "feature/Clients"
 import { projectsGetAll, useProjectList, useProjectListStatus } from "./redux"
-import { ProjectSubMenu } from "./ui"
+import { ProjectTableRow } from "./ui"
 import style from "./Projects.module.scss"
 
 export type ProjectsProps = {
@@ -26,6 +24,7 @@ export function Projects({ className }: ProjectsProps) {
   const dispatch = useAppDispatch()
   useEffect(() => {
     void dispatch(projectsGetAll())
+    void dispatch(clientsGetAll())
   }, [dispatch])
 
   const list = useProjectList()
@@ -52,25 +51,15 @@ export function Projects({ className }: ProjectsProps) {
         <Table stickyHeader size="small">
           <TableHead>
             <TableRow>
+              <TableCell width="40%">Client</TableCell>
               <TableCell width="40%">Project</TableCell>
-              <TableCell width="40%">Title</TableCell>
               <TableCell />
             </TableRow>
             <TableRow />
           </TableHead>
           <TableBody>
             {list.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>
-                  <Link href={`/projects/${item.id}`}>
-                    <Button color="secondary" size="small" variant="text">
-                      <EditIcon />
-                    </Button>
-                  </Link>
-                  <ProjectSubMenu id={item.id} />
-                </TableCell>
-              </TableRow>
+              <ProjectTableRow item={item} key={item.id} />
             ))}
           </TableBody>
         </Table>

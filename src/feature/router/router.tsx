@@ -10,6 +10,8 @@ import {
   ReportsPage,
   TracksByPeriod,
   ProjectsPage,
+  ProjectNewPage,
+  ProjectEditPage,
 } from "pages"
 
 export const router = createBrowserRouter([
@@ -38,6 +40,10 @@ export const router = createBrowserRouter([
     element: <ReportsPage />,
   },
   {
+    path: "/reports/TracksByPeriod",
+    element: <TracksByPeriod />,
+  },
+  {
     path: "/clients",
     element: <ClientsPage />,
   },
@@ -54,8 +60,12 @@ export const router = createBrowserRouter([
     element: <ClientsPage />,
   },
   {
-    path: "/reports/TracksByPeriod",
-    element: <TracksByPeriod />,
+    path: "/projects/new",
+    element: <ProjectNewPage />,
+  },
+  {
+    path: "/projects/:id",
+    element: <ProjectEditPage />,
   },
   {
     path: "/projects",
