@@ -9,6 +9,8 @@ export default meta
 type Story = StoryObj<typeof PaperComponent>
 
 export const Paper: Story = {
-  args: {},
-  render: props => (<PaperComponent {...props} />),
+  args: {
+    elevation: 2,
+  },
+  render: props => <PaperComponent {...props}>Paper</PaperComponent>,
 }

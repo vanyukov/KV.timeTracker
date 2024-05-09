@@ -9,6 +9,8 @@ export default meta
 type Story = StoryObj<typeof MenuItemComponent>
 
 export const MenuItem: Story = {
-  args: {},
+  args: {
+    children: "MenuItem",
+  },
   render: props => (<MenuItemComponent {...props} />),
 }
