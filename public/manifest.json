@@ -5,9 +5,6 @@
   "description": "Time Tracker connected with Jira",
   "version": "2.0",
 
-  "background": {
-    "scripts": ["background.js"]
-  },
   "externally_connectable": {
     "matches": [
       "*://localhost/*"
@@ -27,7 +24,7 @@
     }
   ],
 
-  "browser_action": {
+  "action": {
     "default_title": "KV time tracker",
     "default_icon": "logo_57x57.png",
     "default_popup": "index.html"
