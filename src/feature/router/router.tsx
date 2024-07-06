@@ -26,58 +26,114 @@ export const router = createBrowserRouter([
   },
   {
     path: "/index.html",
-    element: <DayPage />,
+    element: (
+      <Protected>
+        <DayPage />
+      </Protected>
+    ),
   },
   {
     path: "/day/:year/:month/:day",
-    element: <DayPage />,
+    element: (
+      <Protected>
+        <DayPage />
+      </Protected>
+    ),
   },
   {
     path: "/track/new",
-    element: <TrackNewPage />,
+    element: (
+      <Protected>
+        <TrackNewPage />
+      </Protected>
+    ),
   },
   {
     path: "/track/:id",
-    element: <TrackEditPage />,
+    element: (
+      <Protected>
+        <TrackEditPage />
+      </Protected>
+    ),
   },
   {
     path: "/reports",
-    element: <ReportsPage />,
+    element: (
+      <Protected>
+        <ReportsPage />
+      </Protected>
+    ),
   },
   {
     path: "/reports/TracksByPeriod",
-    element: <TracksByPeriod />,
+    element: (
+      <Protected>
+        <TracksByPeriod />
+      </Protected>
+    ),
   },
   {
     path: "/clients",
-    element: <ClientsPage />,
+    element: (
+      <Protected>
+        <ClientsPage />
+      </Protected>
+    ),
   },
   {
     path: "/clients/new",
-    element: <ClientNewPage />,
+    element: (
+      <Protected>
+        <ClientNewPage />
+      </Protected>
+    ),
   },
   {
     path: "/clients/:id",
-    element: <ClientEditPage />,
+    element: (
+      <Protected>
+        <ClientEditPage />
+      </Protected>
+    ),
   },
   {
     path: "/clients",
-    element: <ClientsPage />,
+    element: (
+      <Protected>
+        <ClientsPage />
+      </Protected>
+    ),
   },
   {
     path: "/projects/new",
-    element: <ProjectNewPage />,
+    element: (
+      <Protected>
+        <ProjectNewPage />
+      </Protected>
+    ),
   },
   {
     path: "/projects/:id",
-    element: <ProjectEditPage />,
+    element: (
+      <Protected>
+        <ProjectEditPage />
+      </Protected>
+    ),
   },
   {
     path: "/projects",
-    element: <ProjectsPage />,
+    element: (
+      <Protected>
+        <ProjectsPage />
+      </Protected>
+    ),
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: (
+      <Protected>
+        <NotFound />
+      </Protected>
+    ),
   },
 ])
