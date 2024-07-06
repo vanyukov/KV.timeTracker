@@ -13,11 +13,16 @@ import {
   ProjectNewPage,
   ProjectEditPage,
 } from "pages"
+import { Protected } from "./Protected"
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <DayPage />,
+    element: (
+      <Protected>
+        <DayPage />
+      </Protected>
+    ),
   },
   {
     path: "/index.html",
