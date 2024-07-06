@@ -3,6 +3,7 @@ import { Provider } from "react-redux"
 import { ThemeWrapper } from "common/theme"
 import { router } from "feature/router"
 import { store } from "store"
+import "api/firebase"
 
 function App() {
   return (
