@@ -8,4 +8,4 @@ Layer type: "ui", "widget", "feature", "pages"
 
 ## Run
 
-`node ./scripts/createComponent layer/newComponent`
+`node ./scripts/createComponent layer newComponent`
