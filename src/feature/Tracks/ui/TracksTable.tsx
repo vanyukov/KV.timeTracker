@@ -1,12 +1,7 @@
 import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
+  Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
 } from "ui"
+import { dateLib } from "common/dateTime"
 import { TracksRow } from "./TracksRow"
 import { TracksTotal } from "./TracksTotal"
 import { type TTrack } from "../types"
@@ -27,9 +22,11 @@ export function TracksTable({ list, showDate }: TracksTableProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {list.map(track => (
-            <TracksRow track={track} key={`${track.id}${track.elapsedTime}`} showDate={showDate} />
-          ))}
+          {list
+            .sort((a, b) => (dateLib(b.date).unix() - dateLib(a.date).unix()))
+            .map(track => (
+              <TracksRow track={track} key={`${track.id}${track.elapsedTime}`} showDate={showDate} />
+            ))}
           <TracksTotal list={list} />
         </TableBody>
       </Table>
