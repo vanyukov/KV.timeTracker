@@ -8,6 +8,7 @@ import { TrackSubMenu } from "./TrackSubMenu"
 import { BtnStartStopTrack } from "./BtnStartStopTrack"
 import style from "./TracksRow.module.scss"
 import { type TTrack } from "../types"
+import { BtnDone } from "./BtnDone"
 
 export type TracksRowProps = { track: TTrack, showDate?: boolean }
 
@@ -42,6 +43,7 @@ export function TracksRow({ track, showDate = false }: TracksRowProps) {
       </TableCell>
       <TableCell>
         <BtnStartStopTrack track={track} />
+        <BtnDone track={track} />
         <Link href={`/track/${track.id}`}>
           <Button color="secondary" size="small" variant="text">
             <EditIcon />

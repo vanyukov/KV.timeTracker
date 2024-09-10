@@ -1,5 +1,5 @@
 import { LinkBehavior } from "ui"
-import { MuiLink, MuiTableRow } from "./componentsMui"
+import { MuiCheckbox, MuiLink, MuiTableRow } from "./componentsMui"
 
 export const components = {
   MuiLink,
@@ -9,4 +9,5 @@ export const components = {
     },
   },
   MuiTableRow,
+  MuiCheckbox,
 }

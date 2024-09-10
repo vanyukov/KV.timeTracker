@@ -2,6 +2,7 @@ export {
   TracksReducer,
   TracksActions,
   tracksAddNew,
+  tracksStartStopItem,
   tracksEditItem,
   tracksDeleteItem,
   tracksGet,
