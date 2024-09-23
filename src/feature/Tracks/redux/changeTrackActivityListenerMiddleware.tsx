@@ -3,7 +3,6 @@ import { type RootState } from "store"
 import {
   tracksStopOther,
   tracksStartStopItem,
-  tracksEditItem,
   tracksGet,
   tracksAddNew,
 } from "./Tracks.slice"
@@ -14,7 +13,6 @@ changeTrackActivityListenerMiddleware.startListening({
   predicate: action => (
     [
       tracksStartStopItem.fulfilled.type,
-      tracksEditItem.fulfilled.type,
       tracksAddNew.fulfilled.type,
     ]
       .includes(
