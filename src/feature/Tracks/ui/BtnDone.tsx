@@ -1,6 +1,6 @@
 import { useAppDispatch } from "store"
 import { Checkbox, FormControlLabel } from "ui"
-import { tracksStartStopItem } from "../redux"
+import { tracksEditItem, tracksStartStopItem } from "../redux"
 import { type TTrack } from "../types"
 
 export function BtnDone({ track }: { track: TTrack }) {
@@ -8,7 +8,7 @@ export function BtnDone({ track }: { track: TTrack }) {
 
   const handleAction = () => {
     const savedTrack: TTrack = { ...track, done: track.done ? 0 : 1 }
-    void dispatch(tracksStartStopItem(savedTrack))
+    void dispatch(tracksEditItem(savedTrack))
     if (savedTrack.active && savedTrack.done) {
       savedTrack.active = 0
       void dispatch(tracksStartStopItem(savedTrack))
