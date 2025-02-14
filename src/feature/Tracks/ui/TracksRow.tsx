@@ -4,6 +4,7 @@ import {
   Button, Link, TableCell, TableRow,
 } from "ui"
 import { timeDiffSplitted, getTrackElapsedTime, dateLib } from "common/dateTime"
+import classNames from "classnames"
 import { TrackSubMenu } from "./TrackSubMenu"
 import { BtnStartStopTrack } from "./BtnStartStopTrack"
 import style from "./TracksRow.module.scss"
@@ -20,19 +21,21 @@ export function TracksRow({ track, showDate = false }: TracksRowProps) {
   useEffect(() => {
     if (track.active) {
       const interval = setInterval(() => {
-        setTimeView(
-          timeDiffSplitted(0, 0, getTrackElapsedTime(track).valueOf()),
-        )
+        setTimeView(timeDiffSplitted(0, 0, getTrackElapsedTime(track).valueOf()))
       }, 1000)
       return () => {
         clearInterval(interval)
       }
     }
-    return () => {}
+    return () => { }
   }, [track])
 
   return (
-    <TableRow key={track.id} selected={Boolean(track.active)}>
+    <TableRow
+      key={track.id}
+      selected={Boolean(track.active)}
+      className={classNames({ [style.done]: track.done })}
+    >
       <TableCell>
         {showDate && <p className="pb12">{dateLib(track.date).format("DD.MM.YYYY")}</p>}
         <p className="bold">{track.ticket}</p>
