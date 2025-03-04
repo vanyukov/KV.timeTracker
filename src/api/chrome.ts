@@ -21,3 +21,16 @@ export async function runInTab<T extends any[], U>(
 }
 
 export const currentTab = isExtensionMode() ? ((await getCurrentTab()).id as number) : 0
+
+export const getcurrentLink = async () => {
+  if (!isExtensionMode()) {
+    return Promise.resolve(window.location.href)
+  }
+
+  return getCurrentTab().then(tab => {
+    if (typeof tab?.url === "string") {
+      return tab.url ?? ""
+    }
+    return ""
+  })
+}

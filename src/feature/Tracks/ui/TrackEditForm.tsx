@@ -133,6 +133,13 @@ export function TrackEditForm({ track, handleSave, className }: TrackEditFormPro
         multiline
         label="comment"
       />
+      <TextField
+        value={editTrack.link}
+        onChange={event => {
+          setEditTrack({ ...editTrack, link: event.target.value })
+        }}
+        label="link"
+      />
     </div>
   )
 }

@@ -12,4 +12,5 @@ export type TTrack = {
   clientId: string
   projectId: string
   comment: string
+  link: string
 }

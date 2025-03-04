@@ -1,5 +1,7 @@
 import { type TTrack } from "feature/Tracks"
-import { getCurrentTab, isExtensionMode, runInTab } from "./chrome"
+import {
+  getcurrentLink, getCurrentTab, isExtensionMode, runInTab,
+} from "./chrome"
 
 const jiraGetTicket = async () => {
   if (!isExtensionMode()) {
@@ -33,7 +35,9 @@ const jiraGetTitle = async () => {
 }
 
 export const jiraFillTrack = async (track: TTrack): Promise<TTrack> => Promise.all(
-  [jiraGetTicket(), jiraGetTitle()],
+  [jiraGetTicket(), jiraGetTitle(), getcurrentLink()],
 ).then(
-  res => ({ ...track, ticket: res[0], ticketTitle: res[1] }),
+  res => ({
+    ...track, ticket: res[0], ticketTitle: res[1], link: res[2],
+  }),
 )

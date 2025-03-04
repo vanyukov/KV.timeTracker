@@ -38,7 +38,7 @@ export function TracksRow({ track, showDate = false }: TracksRowProps) {
     >
       <TableCell>
         {showDate && <p className="pb12">{dateLib(track.date).format("DD.MM.YYYY")}</p>}
-        <p className="bold">{track.ticket}</p>
+        <Link href={track.link} target="_blank">{track.ticket}</Link>
         <p className={style.ticketTitle}>{track.ticketTitle}</p>
       </TableCell>
       <TableCell>

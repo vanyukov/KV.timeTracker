@@ -34,6 +34,7 @@ export const tracksDB = {
       clientId: "",
       projectId: "",
       comment: "",
+      link: "",
     }
   },
 }
