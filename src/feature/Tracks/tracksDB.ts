@@ -24,6 +24,7 @@ export const tracksDB = {
     return {
       id: makeNewId(),
       active: 1,
+      done: 0,
       date: new Date().toISOString(),
       startTime: new Date().toISOString(),
       elapsedTime: 0,
@@ -33,6 +34,7 @@ export const tracksDB = {
       clientId: "",
       projectId: "",
       comment: "",
+      link: "",
     }
   },
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames"
 import {
@@ -17,13 +17,12 @@ type TrackEditFormProps = {
   className?: string
 }
 
-export function TrackEditForm({
-  track,
-  handleSave,
-  className,
-}: TrackEditFormProps) {
+export function TrackEditForm({ track, handleSave, className }: TrackEditFormProps) {
   const [editTrack, setEditTrack] = useState({ ...track })
   const navigate = useNavigate()
+  useEffect(() => {
+    setEditTrack(track)
+  }, [track])
 
   return (
     <div className={classNames(className, style.wrap)}>
@@ -133,6 +132,13 @@ export function TrackEditForm({
         }}
         multiline
         label="comment"
+      />
+      <TextField
+        value={editTrack.link}
+        onChange={event => {
+          setEditTrack({ ...editTrack, link: event.target.value })
+        }}
+        label="link"
       />
     </div>
   )

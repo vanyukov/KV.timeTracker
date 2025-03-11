@@ -3,7 +3,7 @@ import { dateLib, getTrackElapsedTime, time2359 } from "common/dateTime"
 import {
   tracksGetAll,
   tracksGet,
-  tracksEditItem,
+  tracksStartStopItem,
 } from "./Tracks.slice"
 import { type TTrack } from "../types"
 
@@ -22,7 +22,7 @@ maxTimeListenerMiddleware.startListening({
   effect: async (action, listenerApi) => {
     async function chechActionNaxTime(track: TTrack) {
       if (dateLib(getTrackElapsedTime(track)).valueOf() > time2359) {
-        await listenerApi.dispatch(tracksEditItem({ ...track, active: 0 }))
+        await listenerApi.dispatch(tracksStartStopItem({ ...track, active: 0 }))
         void listenerApi.dispatch(tracksGet(track.id))
       }
     }

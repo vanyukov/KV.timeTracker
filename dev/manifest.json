@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
 
-  "name": "KV Time Tracker",
+  "name": "KV Time Tracker. DEV",
   "description": "Time Tracker connected with Jira",
   "version": "2.0",
 
@@ -18,18 +18,17 @@
     "unlimitedStorage",
     "unlimited_storage"
   ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' https://apis.google.com; object-src 'self'"
-  },
   "content_scripts": [
     {
       "matches": [ "*://*/*" ],
       "js": [ "allPage.js" ]
     }
   ],
-
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' http://localhost:3000 ; object-src 'self';"
+  },
   "action": {
-    "default_title": "KV time tracker",
+    "default_title": "KV time tracker DEV",
     "default_icon": "logo_57x57.png",
     "default_popup": "index.html"
   }

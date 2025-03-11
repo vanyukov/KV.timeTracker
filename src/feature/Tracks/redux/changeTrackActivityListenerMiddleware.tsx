@@ -2,7 +2,7 @@ import { createListenerMiddleware } from "@reduxjs/toolkit"
 import { type RootState } from "store"
 import {
   tracksStopOther,
-  tracksEditItem,
+  tracksStartStopItem,
   tracksGet,
   tracksAddNew,
 } from "./Tracks.slice"
@@ -12,7 +12,7 @@ export const changeTrackActivityListenerMiddleware = createListenerMiddleware()
 changeTrackActivityListenerMiddleware.startListening({
   predicate: action => (
     [
-      tracksEditItem.fulfilled.type,
+      tracksStartStopItem.fulfilled.type,
       tracksAddNew.fulfilled.type,
     ]
       .includes(

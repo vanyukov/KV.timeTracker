@@ -1,4 +1,5 @@
 .ticketTitle {
+	max-width: 85px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -moz-box;
@@ -8,4 +9,8 @@
 	-webkit-box-orient: vertical;
 	line-clamp: 2;
 	box-orient: vertical;
+}
+
+.done {
+	opacity: 0.7;
 }

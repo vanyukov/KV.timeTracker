@@ -23,8 +23,8 @@ export const tracksAddNew = createAsyncThunk(
   },
 )
 
-export const tracksEditItem = createAsyncThunk(
-  `${storeName}/tracksEditItem`,
+export const tracksStartStopItem = createAsyncThunk(
+  `${storeName}/tracksStartStopItem`,
   async (track: TTrack) => {
     const editTrack = { ...track }
     if (editTrack.active) {
@@ -38,6 +38,14 @@ export const tracksEditItem = createAsyncThunk(
 
     await dbStore.put(storeName, editTrack)
     return editTrack
+  },
+)
+
+export const tracksEditItem = createAsyncThunk(
+  `${storeName}/tracksEditItem`,
+  async (track: TTrack) => {
+    await dbStore.put(storeName, track)
+    return track
   },
 )
 
@@ -128,6 +136,13 @@ export const TracksSlice = createSlice({
       })
       .addCase(tracksDeleteItem.fulfilled, (state, action) => {
         tracksAdapter.removeOne(state, action.payload)
+        state.status = "succeeded"
+      })
+      .addCase(tracksStartStopItem.pending, state => {
+        state.status = "pending"
+      })
+      .addCase(tracksStartStopItem.fulfilled, (state, action) => {
+        tracksAdapter.setOne(state, action.payload)
         state.status = "succeeded"
       })
       .addCase(tracksEditItem.pending, state => {

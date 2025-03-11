@@ -22,6 +22,7 @@
     "@mui/material": "^5.14.5",
     "@mui/x-date-pickers": "^6.16.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/chrome": "^0.0.277",
     "classnames": "^2.3.2",
     "dayjs": "^1.11.9",
     "firebase": "^10.12.3",
