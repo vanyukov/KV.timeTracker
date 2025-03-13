@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import EditIcon from "@mui/icons-material/Edit"
 import {
   Button, Link, TableCell, TableRow,
+  Tooltip,
 } from "ui"
 import { timeDiffSplitted, getTrackElapsedTime, dateLib } from "common/dateTime"
 import classNames from "classnames"
@@ -39,7 +40,9 @@ export function TracksRow({ track, showDate = false }: TracksRowProps) {
       <TableCell>
         {showDate && <p className="pb12">{dateLib(track.date).format("DD.MM.YYYY")}</p>}
         <Link href={track.link} target="_blank">{track.ticket}</Link>
-        <p className={style.ticketTitle}>{track.ticketTitle}</p>
+        <Tooltip title={track.ticketTitle}>
+          <p className={style.ticketTitle}>{track.ticketTitle}</p>
+        </Tooltip>
       </TableCell>
       <TableCell>
         {`${timeView.hours}:${timeView.minutes}:${timeView.seconds}`}
