@@ -1,4 +1,3 @@
-import { makeNewId } from "common/helpers"
 import { type TClient } from "./types"
 
 export const clientsDB = {
@@ -9,7 +8,7 @@ export const clientsDB = {
 
   getNew(): TClient {
     return {
-      id: makeNewId(),
+      id:  "",
       name: "",
     }
   },

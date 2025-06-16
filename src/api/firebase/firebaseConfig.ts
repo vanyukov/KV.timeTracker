@@ -1,4 +1,6 @@
-export const firebaseConfig = {
+import { type FirebaseOptions } from "firebase/app"
+
+export const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
   projectId: process.env.REACT_APP_FIREBASE_PROJECTID,

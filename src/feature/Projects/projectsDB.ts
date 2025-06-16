@@ -1,4 +1,3 @@
-import { makeNewId } from "common/helpers"
 import { type TProject } from "./types"
 
 export const projectsDB = {
@@ -14,7 +13,7 @@ export const projectsDB = {
 
   getNew(): TProject {
     return {
-      id: makeNewId(),
+      id:  "",
       name: "",
       clientId: "",
     }

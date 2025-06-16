@@ -8,7 +8,7 @@ export function MainLayout({ children }: PropsType) {
   return (
     <>
       <Header />
-      <main className="content">{children}</main>
+      {children}
     </>
   )
 }

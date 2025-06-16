@@ -1,5 +1,6 @@
 export type TTrack = {
   id: string
+  userId: string
   // boolean is not a valid key as index for IndexedDB
   active: 0 | 1
   done: 0 | 1

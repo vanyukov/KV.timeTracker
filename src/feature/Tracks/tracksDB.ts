@@ -1,4 +1,3 @@
-import { makeNewId } from "common/helpers"
 import { type TTrack } from "./types"
 
 export const tracksDB = {
@@ -20,9 +19,10 @@ export const tracksDB = {
     },
   ],
 
-  getNew(): TTrack {
+  getNew(userId: string): TTrack {
     return {
-      id: makeNewId(),
+      id: '',
+      userId,
       active: 1,
       done: 0,
       date: new Date().toISOString(),
