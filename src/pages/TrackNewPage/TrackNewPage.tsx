@@ -12,7 +12,7 @@ export function TrackNewPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuthState();
-  const [track, setTrack] = useState(tracksDB.getNew(user?.uid ?? "local"));
+  const [track, setTrack] = useState(tracksDB.getNew(user?.email ?? "local"));
   useEffect(() => {
     void jiraFillTrack(track).then(res => {
       setTrack(res);

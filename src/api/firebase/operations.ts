@@ -23,7 +23,7 @@ export var fsGet = async (path: string, id: string) => {
   try {
     const querySnapshot = await getDocs(collection(database, path));
     const data = querySnapshot.docs.find(doc => doc.id === id);
-    return { id: data?.id, ...data?.data() };
+    return { ...data?.data(), id: data?.id };
   } catch (error) {
     console.error(error);
     return {};
@@ -80,7 +80,7 @@ export var fsGetAll = async (path: string, dateStart?: string, dateEnd?: string)
   }
 
   const snapshot = await getDocs(q ?? colRef);
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  return snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
 };
 
 export var fsGetAllByField = async (path: string, field: string, value: unknown) => {
@@ -88,7 +88,7 @@ export var fsGetAllByField = async (path: string, field: string, value: unknown)
     const querySnapshot = await getDocs(collection(database, path));
     const data = querySnapshot.docs
       .map(doc => {
-        const x: Record<string, any> = { id: doc.id, ...doc.data() };
+        const x: Record<string, any> = { ...doc.data(), id: doc.id };
         return x;
       })
       .filter(doc => doc[field] === value);

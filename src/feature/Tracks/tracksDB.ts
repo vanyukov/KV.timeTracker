@@ -19,10 +19,10 @@ export const tracksDB = {
     },
   ],
 
-  getNew(userId: string): TTrack {
+  getNew(userEmail: string): TTrack {
     return {
       id: '',
-      userId,
+      userEmail,
       active: 1,
       done: 0,
       date: new Date().toISOString(),

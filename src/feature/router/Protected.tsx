@@ -19,8 +19,8 @@ export function Protected({ children }: { children: ReactElement }) {
       <div className="content">
         <p>
           Error:
-          {error.name}
-          {error.message}
+          {error instanceof Error ? error.name : ""}
+          {error instanceof Error ? error.message : ""}
         </p>
       </div>
     )
