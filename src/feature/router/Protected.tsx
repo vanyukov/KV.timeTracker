@@ -1,10 +1,12 @@
-import { type ReactElement } from "react"
-import { Login } from "pages"
-import { useAuthState } from "feature/Auth"
-import { CircularProgress } from "ui"
+import { type ReactElement } from "react";
+import { Login } from "pages";
+import { useAuthError, useAuthLoading, useAuthUser } from "feature/Auth";
+import { CircularProgress } from "ui";
 
 export function Protected({ children }: { children: ReactElement }) {
-  const { user, loading, error } = useAuthState()
+  const user = useAuthUser();
+  const loading = useAuthLoading();
+  const error = useAuthError();
 
   if (loading) {
     return (
@@ -12,21 +14,20 @@ export function Protected({ children }: { children: ReactElement }) {
         <CircularProgress />
         <p>Initialising User...</p>
       </div>
-    )
+    );
   }
   if (error) {
     return (
       <div className="content">
         <p>
           Error:
-          {error instanceof Error ? error.name : ""}
-          {error instanceof Error ? error.message : ""}
+          {error}
         </p>
       </div>
-    )
+    );
   }
   if (user) {
-    return children
+    return children;
   }
-  return <Login />
+  return <Login />;
 }

@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "store";
 import { Button, TextField } from "ui";
-import { useAuthState } from "./useAuthState";
+import { LS } from "api/LS";
+import { loginSuccess } from "./redux";
 
 export function LoginExtention() {
-  const [userEmail, setuserEmail] = useState<string | null>(null);
-  const { setlocalUser } = useAuthState();
+  const [userEmail, setuserEmail] = useState<string | null>("");
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const saveduserEmail = LS.get("userEmail", false);
+    if (saveduserEmail) {
+      dispatch(loginSuccess({ email: saveduserEmail }));
+    }
+  }, [dispatch]);
 
   return (
     <>
@@ -17,11 +25,10 @@ export function LoginExtention() {
         name="email"
       />
       <Button
-        disabled={!!userEmail}
+        disabled={!userEmail}
         onClick={() => {
-          if (setlocalUser && userEmail !== null) {
-            setlocalUser({ email: userEmail });
-          }
+          dispatch(loginSuccess({ email: userEmail }));
+          LS.set("userEmail", userEmail);
         }}
       >
         set email
