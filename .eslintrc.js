@@ -12,6 +12,7 @@ module.exports = {
     "airbnb-typescript",
     "plugin:import/typescript",
     "plugin:storybook/recommended",
+    "prettier",
   ],
   overrides: [
     {
@@ -44,6 +45,8 @@ module.exports = {
     "react/require-default-props": "off",
     "arrow-parens": "off",
     "import/prefer-default-export": "off",
+    "import/no-mutable-exports": "off",
+    "no-var": "off",
     "no-param-reassign": "off",
     "no-console": ["warn", { allow: ["warn", "error"] }],
     "no-restricted-imports": [
